@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using MyInflatables.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace MyInflatables
 {
@@ -27,17 +29,18 @@ namespace MyInflatables
 
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddDbContext<ToyContext>(options => options.UseSqlServer(_Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc();
-
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ToyContext context)
         {
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
             app.UseMvc();
+
+            ToyInitializer.Initialize(context);
         }
     }
 }
