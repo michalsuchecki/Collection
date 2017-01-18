@@ -11,6 +11,6 @@ namespace MyInflatables.Models
 
         public string Name { get; set; }
 
-        public ICollection<Category> Parent { get; set; }
+        //public ICollection<Category> Parent { get; set; }
     }
 }
