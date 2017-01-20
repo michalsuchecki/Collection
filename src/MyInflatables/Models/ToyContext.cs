@@ -14,6 +14,6 @@ namespace MyInflatables.Models
         }
 
         public DbSet<Category> Categories { get; set; }
-
+        public DbSet<Toy> Toys { get; set; }
     }
 }
