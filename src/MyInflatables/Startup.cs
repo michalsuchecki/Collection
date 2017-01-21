@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using MyInflatables.Models;
 using Microsoft.EntityFrameworkCore;
+using MyInflatables.Repositories;
 
 namespace MyInflatables
 {
@@ -29,8 +30,14 @@ namespace MyInflatables
 
         public void ConfigureServices(IServiceCollection services)
         {
+            // Database
             services.AddDbContext<ToyContext>(options => options.UseSqlServer(_Configuration.GetConnectionString("DefaultConnection")));
+
+            // MVC
             services.AddMvc();
+
+            // Services - Dependency Injection
+            services.AddTransient<IToyRepository, ToyRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ToyContext context)

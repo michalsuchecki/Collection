@@ -8,6 +8,10 @@ namespace MyInflatables.Models
 {
     public class ToyContext : DbContext
     {
+        public ToyContext()
+        {
+
+        }
         public ToyContext(DbContextOptions<ToyContext> options) : base(options)
         {
 

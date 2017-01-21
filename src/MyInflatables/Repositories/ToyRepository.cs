@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using MyInflatables.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace MyInflatables.DAL
+namespace MyInflatables.Repositories
 {
     public class ToyRepository : IToyRepository, IDisposable
     {
