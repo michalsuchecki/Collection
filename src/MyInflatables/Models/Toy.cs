@@ -14,5 +14,7 @@ namespace MyInflatables.Models
         public string Name { get; set; }
 
         public Category Category { get; set; }
+
+        public Producer Producer { get; set; }
     }
 }

@@ -13,6 +13,30 @@ namespace MyInflatables.Models
         {
             context.Database.EnsureCreated();
 
+            if (!context.Producers.Any())
+            {
+                var producers = new Producer[]
+                {
+                    new Producer() { Name = "All" },
+                    new Producer() { Name = "Intex" },
+                    new Producer() { Name = "Inflatable World" },
+                    new Producer() { Name = "Bestway" },
+                    new Producer() { Name = "RoyalBeach" },
+                    new Producer() { Name = "Sevylor" },
+                    new Producer() { Name = "Puffypaws" },
+                    new Producer() { Name = "Wehncke" },
+                    new Producer() { Name = "Swimline" },
+                    new Producer() { Name = "Unknown" }
+                }.OrderBy(s => s.Name).ToArray();
+
+                foreach (var prod in producers)
+                {
+                    context.Producers.Add(prod);
+                }
+
+                context.SaveChanges();
+            }
+
             if (!context.Categories.Any())
             {
                 var categories = new Category[]
@@ -31,7 +55,7 @@ namespace MyInflatables.Models
                 }
                 .OrderBy(s => s.Name).ToArray();
 
-                foreach(var cat in categories)
+                foreach (var cat in categories)
                 {
                     context.Categories.Add(cat);
                 }
