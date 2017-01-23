@@ -23,7 +23,6 @@ namespace MyInflatables.Repositories
 
         public IEnumerable<Toy> GetToys()
         {
-            //_context.Toys.
             var result = _context.Toys.Include(i => i.Category).Include(i => i.Producer).ToList();
             return result;
         }
