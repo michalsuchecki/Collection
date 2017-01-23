@@ -38,14 +38,23 @@ namespace MyInflatables
 
             // Services - Dependency Injection
             services.AddTransient<IToyRepository, ToyRepository>();
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<IProducerRepository, ProducerRepository>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ToyContext context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory log, ToyContext context)
         {
+            if(env.IsDevelopment())
+            {
+                log.AddDebug(LogLevel.Information);
+                app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
+            }
+            
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseMvc();
+            app.UseMvc( r => r.MapRoute("default", "{controller=Home}/{action=Index}/{id?}"));
 
             ToyInitializer.Initialize(context);
         }
