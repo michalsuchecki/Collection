@@ -18,7 +18,7 @@ namespace MyInflatables.Repositories
 
         public IEnumerable<Category> GetCategories()
         {
-            return _context.Categories.ToList();
+            return _context.Categories.OrderBy(o => o.Name).ToList();
         }
 
         public Category GetCategoryByID(int Id)

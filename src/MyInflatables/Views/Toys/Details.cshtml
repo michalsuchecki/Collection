@@ -1,0 +1,14 @@
+﻿@model MyInflatables.Models.Toy
+
+@{
+    <p>Details</p>
+    if (Model != null)
+    {
+        <p>Name: @Model.Name</p>
+        <p>Category: @Model.Category.Name</p>
+    }
+    else
+    {
+        <p>Error!</p>
+    }
+}

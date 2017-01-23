@@ -1,0 +1,11 @@
+﻿@model MyInflatables.ViewModels.ToyAddViewModel
+
+<h1>Add new Toy to my Collection :)</h1>
+
+<form asp-controller="Toys" asp-action="Create" method="post">
+    <p>Toy name: <input asp-for="Toy.Name" /></p>
+    <p>Category: <select asp-for="Category" asp-items="Model.Categories"></select></p>
+    <p>Producer: <select asp-for="Producer" asp-items="Model.Producers"></select></p>
+    <p>Index: <input type="text"/></p>
+    <p><button type="submit">Add toy</button></p>
+</form>

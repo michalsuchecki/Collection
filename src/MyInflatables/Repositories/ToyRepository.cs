@@ -19,12 +19,13 @@ namespace MyInflatables.Repositories
         public Toy GetToyByID(int toyId)
         {
             return _context.Toys.Find(toyId);
-            // return _context.Toys.Where(s => s.ToyID == toyId).SingleOrDefault();
         }
 
         public IEnumerable<Toy> GetToys()
         {
-            return _context.Toys.ToList();
+            //_context.Toys.
+            var result = _context.Toys.Include(i => i.Category).Include(i => i.Producer).ToList();
+            return result;
         }
 
         public void DeleteToy(int toyId)

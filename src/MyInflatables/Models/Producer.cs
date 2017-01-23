@@ -7,7 +7,7 @@ namespace MyInflatables.Models
 {
     public class Producer
     {
-        public int ProducerId { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
     }
 }

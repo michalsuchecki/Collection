@@ -26,6 +26,7 @@ namespace MyInflatables.Models
                     new Producer() { Name = "Puffypaws" },
                     new Producer() { Name = "Wehncke" },
                     new Producer() { Name = "Swimline" },
+                    new Producer() { Name = "BIG MOUTH" },
                     new Producer() { Name = "Unknown" }
                 }.OrderBy(s => s.Name).ToArray();
 
