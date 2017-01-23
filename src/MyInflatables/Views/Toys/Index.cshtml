@@ -13,7 +13,7 @@
     {
         foreach (var m in Model)
         {
-            <p>ID: @m.ToyID - Name: @m.Name <a asp-controller="toys" asp-action="remove" asp-route-id="@m.ToyID">Delete</a></p>
+            <p>ID: @m.ToyID - Name: @m.Name (@m.Index) <a asp-controller="toys" asp-action="remove" asp-route-id="@m.ToyID">Delete</a></p>
             <p>Category: @m.Category.Name Producer: @m.Producer.Name</p>
             <hr />
             

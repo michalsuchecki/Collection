@@ -4,8 +4,8 @@
 
 <form asp-controller="Toys" asp-action="Create" method="post">
     <p>Toy name: <input asp-for="Toy.Name" /></p>
-    <p>Category: <select asp-for="Category" asp-items="Model.Categories"></select></p>
-    <p>Producer: <select asp-for="Producer" asp-items="Model.Producers"></select></p>
-    <p>Index: <input type="text"/></p>
+    <p>Category: <select asp-for="CategoryId" asp-items="Model.Categories"></select></p>
+    <p>Producer: <select asp-for="ProducerId" asp-items="Model.Producers"></select></p>
+    <p>Index: <input type="text" asp-for="Toy.Index"/></p>
     <p><button type="submit">Add toy</button></p>
 </form>
