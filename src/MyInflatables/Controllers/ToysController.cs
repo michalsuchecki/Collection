@@ -53,9 +53,6 @@ namespace MyInflatables.Controllers
         {
             if (ModelState.IsValid)
             {
-                var category = _context.Categories.Where(s => s.Id == model.CategoryId).SingleOrDefault();
-                var producer = _context.Producers.Where(s => s.Id == model.ProducerId).SingleOrDefault();
-
                 model.Toy.Category = _categoryRepository.GetCategoryByID(model.CategoryId);
                 model.Toy.Producer = _producerRepository.GetProducerByID(model.ProducerId);
 
