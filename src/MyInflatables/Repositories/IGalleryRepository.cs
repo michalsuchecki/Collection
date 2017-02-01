@@ -10,6 +10,7 @@ namespace MyInflatables.Repositories
     {
         IEnumerable<Gallery> GetGalleries();
         Gallery GetGalleryByID(int id);
+        IEnumerable<Gallery> GetGalleryForToy(Toy toy);
         void InsertGallery(Gallery gallery);
         void DeleteGallery(int id);
         void UpdateGallery(Gallery gallery);

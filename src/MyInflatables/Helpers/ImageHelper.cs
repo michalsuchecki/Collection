@@ -44,21 +44,13 @@ namespace MyInflatables.Helpers
             return "";
         }
 
-        //public void RemoveImages(string[] files)
-        //{
-        //    foreach(var file in files)
-        //    {
-        //        var path = Path.Combine(_workDirectory, file);
-        //        RemoveImage(path);
-        //    }
-        //}
-
-        //public void RemoveImage(string FileName)
-        //{
-        //    if (File.Exists(FileName))
-        //    {
-        //        File.Delete(FileName);
-        //    }
-        //}
+        public void RemoveImage(string filename)
+        {
+            var path = Path.Combine(_workDirectory, filename);
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+        }
     }
 }

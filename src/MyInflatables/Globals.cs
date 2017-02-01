@@ -7,6 +7,6 @@ namespace MyInflatables
 {
     public class Globals
     {
-        public static string toysDirectory = "img/toys";
+        public static string toysDirectory = "img\\toys";
     }
 }

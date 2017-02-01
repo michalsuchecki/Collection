@@ -68,19 +68,18 @@ namespace MyInflatables.Controllers
                 _toyRepository.InsertToy(model.Toy);
                 _toyRepository.Save();
 
-                var helper = new ImageHelper(_environment);
-
-                foreach(var image in model.Images)
+                if (model.Images != null)
                 {
+                    var helper = new ImageHelper(_environment);
+                    foreach (var image in model.Images)
+                    {
 
-                    var name = helper.AddImage(image);
-                    var gallery = new Gallery() { FileName = name, Toy = model.Toy };
-                    _galleryRepository.InsertGallery(gallery);
+                        var name = helper.AddImage(image);
+                        var gallery = new Gallery() { FileName = name, Toy = model.Toy };
+                        _galleryRepository.InsertGallery(gallery);
+                    }
+                    _galleryRepository.Save();
                 }
-                _galleryRepository.Save();
-
-                //_toyRepository.InsertToy(model.Toy);
-                //_toyRepository.Save();
 
                 return RedirectToAction("Index", "Toys");
             }
@@ -92,6 +91,15 @@ namespace MyInflatables.Controllers
 
         public IActionResult Remove(int id)
         {
+            var toy = _toyRepository.GetToyByID(id);
+            var images = _galleryRepository.GetGalleryForToy(toy);
+            var helper = new ImageHelper(_environment);
+
+            foreach (var image in images)
+            {
+                helper.RemoveImage(image.FileName);
+            }
+
             _toyRepository.DeleteToy(id);
             _toyRepository.Save();
             return RedirectToAction("Index");
