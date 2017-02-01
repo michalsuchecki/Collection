@@ -3,48 +3,46 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MyInflatables.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace MyInflatables.Repositories
 {
-    public class ToyRepository : IToyRepository, IDisposable
+    public class GalleryRepository : IGalleryRepository, IDisposable
     {
         private ToyContext _context;
 
-        public ToyRepository(ToyContext context)
+        public GalleryRepository(ToyContext context)
         {
             _context = context;
         }
 
-        public Toy GetToyByID(int toyId)
+        public IEnumerable<Gallery> GetGalleries()
         {
-            return _context.Toys.Find(toyId);
+            return _context.Gallery.ToList();
         }
 
-        public IEnumerable<Toy> GetToys()
+        public Gallery GetGalleryByID(int id)
         {
-            var result = _context.Toys
-                         .Include(i => i.Category)
-                         .Include(i => i.Producer)
-                         .Include(i => i.Gallery)
-                         .ToList();
-            return result;
+            return _context.Gallery.Find(id);
         }
 
-        public void DeleteToy(int toyId)
+        public IEnumerable<Gallery> GetGalleryForToy(Toy toy)
         {
-            Toy toy = _context.Toys.Include(x => x.Gallery).SingleOrDefault(p =>p.ToyID == toyId);
-            _context.Toys.Remove(toy);
+            return _context.Gallery.Where(g => g.Toy == toy).ToList();
         }
 
-        public void InsertToy(Toy toy)
+        public void InsertGallery(Gallery gallery)
         {
-            _context.Toys.Add(toy);
+            _context.Gallery.Add(gallery);
         }
 
-        public void UpdateToy(Toy toy)
+        public void UpdateGallery(Gallery gallery)
         {
-            _context.Entry(toy).State = EntityState.Modified;
+            throw new NotImplementedException();
+        }
+
+        public void DeleteGallery(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public void Save()

@@ -1,5 +1,9 @@
 ﻿{
   "ConnectionStrings": {
     "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;Database=Inflatables;Trusted_Connection=True;MultipleActiveResultSets=true"
+  },
+  "Directories": {
+    "Images": "img",
+    "Toys": "img/toys"
   }
 }

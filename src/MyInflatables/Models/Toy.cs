@@ -19,5 +19,7 @@ namespace MyInflatables.Models
         public Category Category { get; set; }
 
         public Producer Producer { get; set; }
+
+        public ICollection<Gallery> Gallery { get; set; }
     }
 }

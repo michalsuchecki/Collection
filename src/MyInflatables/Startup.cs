@@ -17,7 +17,7 @@ namespace MyInflatables
 {
     public class Startup
     {
-        public IConfigurationRoot _Configuration { get; private set; }
+        public IConfigurationRoot _Configuration { get; set; }
 
         public Startup(IHostingEnvironment env)
         {
@@ -40,6 +40,7 @@ namespace MyInflatables
             services.AddTransient<IToyRepository, ToyRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProducerRepository, ProducerRepository>();
+            services.AddTransient<IGalleryRepository, GalleryRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory log, ToyContext context)

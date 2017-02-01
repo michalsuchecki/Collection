@@ -7,6 +7,8 @@ using MyInflatables.Models;
 using MyInflatables.Repositories;
 using MyInflatables.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MyInflatables.Helpers;
+using Microsoft.AspNetCore.Hosting;
 
 namespace MyInflatables.Controllers
 {
@@ -16,12 +18,19 @@ namespace MyInflatables.Controllers
         private IToyRepository _toyRepository;
         private IProducerRepository _producerRepository;
         private ICategoryRepository _categoryRepository;
+        private IHostingEnvironment _environment;
+        private IGalleryRepository _galleryRepository;
 
-        public ToysController(IToyRepository toyRepository, IProducerRepository producerRepository, ICategoryRepository categoryRepository, ToyContext context)
+        public object ImageHelpers { get; private set; }
+
+        public ToysController(IToyRepository toyRepository, IProducerRepository producerRepository, ICategoryRepository categoryRepository,
+            IGalleryRepository galleryRepository, IHostingEnvironment environment, ToyContext context)
         {
             _toyRepository = toyRepository;
             _producerRepository = producerRepository;
             _categoryRepository = categoryRepository;
+            _galleryRepository = galleryRepository;
+            _environment = environment;
             _context = context;
         }
         public IActionResult Index()
@@ -59,7 +68,21 @@ namespace MyInflatables.Controllers
                 _toyRepository.InsertToy(model.Toy);
                 _toyRepository.Save();
 
-                return RedirectToAction("Index");
+                var helper = new ImageHelper(_environment);
+
+                foreach(var image in model.Images)
+                {
+
+                    var name = helper.AddImage(image);
+                    var gallery = new Gallery() { FileName = name, Toy = model.Toy };
+                    _galleryRepository.InsertGallery(gallery);
+                }
+                _galleryRepository.Save();
+
+                //_toyRepository.InsertToy(model.Toy);
+                //_toyRepository.Save();
+
+                return RedirectToAction("Index", "Toys");
             }
             else
             {

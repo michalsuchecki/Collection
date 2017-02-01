@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿ using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MyInflatables.Models;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace MyInflatables.ViewModels
     {
         public IEnumerable<SelectListItem> Categories { get; set; }
         public IEnumerable<SelectListItem> Producers { get; set; }
+        public ICollection<IFormFile> Images { get; set; }
         public int CategoryId { get; set; }
         public int ProducerId { get; set; }
         public Toy Toy { get; set; }
