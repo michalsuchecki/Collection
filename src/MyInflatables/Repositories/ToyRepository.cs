@@ -31,9 +31,20 @@ namespace MyInflatables.Repositories
             return result;
         }
 
+        public IEnumerable<Toy> GetToysByCategoryId(int id)
+        {
+            var result = _context.Toys
+                         .Include(i => i.Category)
+                         .Include(i => i.Producer)
+                         .Include(i => i.Gallery)
+                         .Where(s => s.Category.Id == id)
+                         .ToList();
+            return result;
+        }
+
         public void DeleteToy(int toyId)
         {
-            Toy toy = _context.Toys.Include(x => x.Gallery).SingleOrDefault(p =>p.ToyID == toyId);
+            Toy toy = _context.Toys.Include(x => x.Gallery).SingleOrDefault(p => p.ToyID == toyId);
             _context.Toys.Remove(toy);
         }
 

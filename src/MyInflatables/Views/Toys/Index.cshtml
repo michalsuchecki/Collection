@@ -1,11 +1,12 @@
-﻿@model IEnumerable<MyInflatables.Models.Toy>
+﻿@model MyInflatables.ViewModels.ToyListViewModel
 
-@{
-
-}
 
 <h2>Controller/Toys/Index</h2>
 
+
+<div class="">
+    @Html.Partial("_filter", Model)
+</div>
 
 <div class="row">
 
@@ -14,29 +15,52 @@
 
 @{
     <div class="row">
-        @if (Model.Count() > 0)
+
+        @if (Model.Toys.Count() > 0)
         {
-            foreach (var m in Model)
+            foreach (var m in Model.Toys)
             {
-                <div class="col-lg-4">
-                    <div class="row">
-                        @if (m.Gallery != null)
-                        {
-                            <a href="#" class="thumbnail">
-                                <img src="~/img/toys/@m.Gallery.Single()?.FileName" class="img-responsive" />
-                            </a>
-                        }
-                    </div>
-                    <div class="row">
-                        <p>ID: @m.ToyID - Name: @m.Name (@m.Index) <a asp-controller="toys" asp-action="remove" asp-route-id="@m.ToyID">Delete</a></p>
-                        <p>Category: @m.Category.Name Producer: @m.Producer.Name</p>
+
+                <div class="col-lg-3">
+                    <div class="card">
+                        <div class="img-container">
+                            @if (m.Gallery != null)
+                    {
+                                <img class="card-img-top" src="~/img/toys/@m.Gallery.FirstOrDefault()?.FileName" />
+                            }
+                            else
+                            {
+                                <img class="card-img-top" src="~/img/no_img.jpg" />
+                            }
+                        </div>
+                        <div class="card-block">
+                            <h5><b>@m.Name</b></h5>
+                            <p>Category: @m.Category.Name</p>
+                            <p>Producer: @m.Producer.Name</p>
+                        </div>
                     </div>
                 </div>
+                @*<div class="col-lg-2">
+                        <div class="row">
+                            @if (m.Gallery != null)
+                            {
+                                <div style="max-height:160px; min-height:160px;">
+                                    <a href="#" class="thumbnail">
+                                        <img src="~/img/toys/@m.Gallery.FirstOrDefault()?.FileName" class="img-responsive" />
+                                    </a>
+                                </div>
+                            }
+                        </div>
+                        <div class="row">
+                            <p>ID: @m.ToyID - Name: @m.Name (@m.Index) <a asp-controller="toys" asp-action="remove" asp-route-id="@m.ToyID">Delete</a></p>
+                            <p>Category: @m.Category.Name Producer: @m.Producer.Name</p>
+                        </div>
+                    </div>*@
             }
         }
         else
         {
-        <p>Sorry! - No toys :(</p>
+            <p>Sorry! - No toys :(</p>
         }
     </div>
 }

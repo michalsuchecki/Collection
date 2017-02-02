@@ -33,10 +33,23 @@ namespace MyInflatables.Controllers
             _environment = environment;
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(int? Category, ToyListViewModel model)
         {
-            var toys = _toyRepository.GetToys();
-            return View(toys);
+            var sl = new SelectList(_categoryRepository.GetCategories(), "Id", "Name", 24);
+            model.Categories = sl.ToArray();
+
+            if (Category != null && Category != 24)
+            {
+                model.Toys = _toyRepository.GetToysByCategoryId(Category.Value);
+
+            }
+            else
+            {
+                model.Toys = _toyRepository.GetToys();
+            }
+            //model.Categories = _categoryRepository.GetCategories().Select(s => new SelectListItem() { Text = s.Name, Value = s.Id.ToString() });
+            
+            return View(model);
         }
         [Route("/toys/{id}")]
         public IActionResult Details(int id)

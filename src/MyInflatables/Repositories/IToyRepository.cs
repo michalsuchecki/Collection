@@ -9,6 +9,7 @@ namespace MyInflatables.Repositories
     public interface IToyRepository : IDisposable
     {
         IEnumerable<Toy> GetToys();
+        IEnumerable<Toy> GetToysByCategoryId(int id);
         Toy GetToyByID(int toyId);
         void InsertToy(Toy toy);
         void DeleteToy(int toyId);
