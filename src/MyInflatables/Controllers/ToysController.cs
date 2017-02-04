@@ -35,10 +35,9 @@ namespace MyInflatables.Controllers
         }
         public IActionResult Index(int? Category, ToyListViewModel model)
         {
-            var sl = new SelectList(_categoryRepository.GetCategories(), "Id", "Name", 24);
-            model.Categories = sl.ToArray();
+            model.Categories = FormHelper.GetFormCategories(_categoryRepository.GetCategories());
 
-            if (Category != null && Category != 24)
+            if (Category != null && Category != 0)
             {
                 model.Toys = _toyRepository.GetToysByCategoryId(Category.Value);
 
@@ -47,8 +46,7 @@ namespace MyInflatables.Controllers
             {
                 model.Toys = _toyRepository.GetToys();
             }
-            //model.Categories = _categoryRepository.GetCategories().Select(s => new SelectListItem() { Text = s.Name, Value = s.Id.ToString() });
-            
+
             return View(model);
         }
         [Route("/toys/{id}")]

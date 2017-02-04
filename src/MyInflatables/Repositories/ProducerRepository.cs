@@ -18,7 +18,9 @@ namespace MyInflatables.Repositories
 
         public IEnumerable<Producer> GetProducers()
         {
-            return _context.Producers.OrderBy(o => o.Name).ToList();
+            return _context.Producers
+                           .OrderBy(o => o.Name)
+                           .ToList();
         }
 
         public Producer GetProducerByID(int Id)

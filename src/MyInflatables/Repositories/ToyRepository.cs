@@ -27,6 +27,7 @@ namespace MyInflatables.Repositories
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
+                         .OrderBy(i => i.Name)
                          .ToList();
             return result;
         }
@@ -38,6 +39,7 @@ namespace MyInflatables.Repositories
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
                          .Where(s => s.Category.Id == id)
+                         .OrderBy(i => i.Name)
                          .ToList();
             return result;
         }

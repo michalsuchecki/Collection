@@ -17,7 +17,6 @@ namespace MyInflatables.Models
             {
                 var producers = new Producer[]
                 {
-                    new Producer() { Name = "All" },
                     new Producer() { Name = "Bestway" },
                     new Producer() { Name = "BIG MOUTH" },
                     new Producer() { Name = "Inflatable World" },
@@ -27,10 +26,10 @@ namespace MyInflatables.Models
                     new Producer() { Name = "Sevylor" },
                     new Producer() { Name = "Swimline" },
                     new Producer() { Name = "Wehncke" },
-                    new Producer() { Name = "Other" }
+                    new Producer() { Name = "Other" },
+                    new Producer() { Name = "Simex" }
                 }.ToArray();
-                /*OrderBy(s => s.Name).ToArray();*/
-
+                
                 foreach (var prod in producers)
                 {
                     context.Producers.Add(prod);
@@ -55,7 +54,6 @@ namespace MyInflatables.Models
                     new Category() { Name = "Ride-on" },
                     new Category() { Name = "Tubes" },
                 }.ToArray();
-                //.OrderBy(s => s.Name).ToArray();
 
                 foreach (var cat in categories)
                 {
