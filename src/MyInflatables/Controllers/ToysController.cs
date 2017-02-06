@@ -33,9 +33,10 @@ namespace MyInflatables.Controllers
             _environment = environment;
             _context = context;
         }
-        public IActionResult Index(int? Category, ToyListViewModel model)
+        public IActionResult Index(int? Category, string SortBy, ToyListViewModel model)
         {
             model.Categories = FormHelper.GetFormCategories(_categoryRepository.GetCategories());
+            model.Sort = FormHelper.GetFormSortBy();
 
             if (Category != null && Category != 0)
             {
@@ -47,13 +48,42 @@ namespace MyInflatables.Controllers
                 model.Toys = _toyRepository.GetToys();
             }
 
+            if(!String.IsNullOrEmpty(SortBy))
+            {
+                FormHelper.SortBy sort = (FormHelper.SortBy) Enum.Parse(typeof(FormHelper.SortBy), SortBy);
+
+                switch (sort)
+                {
+                    default:
+                    case FormHelper.SortBy.Name:
+                        model.Toys = model.Toys.OrderBy(s => s.Name).ToList();
+                        break;
+                    case FormHelper.SortBy.Producer:
+                        model.Toys = model.Toys.OrderBy(s => s.Producer.Name).ToList();
+                        break;
+                    case FormHelper.SortBy.Category:
+                        model.Toys = model.Toys.OrderBy(s => s.Category.Name).ToList();
+                        break;
+                }
+            }
+
             return View(model);
         }
         [Route("/toys/{id}")]
-        public IActionResult Details(int id)
+        public IActionResult Details(int? id)
         {
-            var toy = _toyRepository.GetToyByID(id);
+            if (id == null)
+                return RedirectToAction("index");
+
+            var toy = _toyRepository.GetToyByID(id.Value);
             return View(toy);
+        }
+
+        public IActionResult AddImage(int? ToyId)
+        {
+
+
+            return RedirectToAction("Details", ToyId);
         }
 
         [Route("/toys/create")]

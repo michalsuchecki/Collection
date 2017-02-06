@@ -4,8 +4,26 @@
     <p>Details</p>
     if (Model != null)
     {
-        <p>Name: @Model.Name</p>
-        <p>Category: @Model.Category.Name</p>
+        @*<p>Name: @Model.Name</p>
+        <p>Category: @Model.Category.Name</p>*@
+
+        <div class="row">
+            <h4>Gallery</h4>
+            @if (Model.Gallery != null)
+            {
+                foreach(var picture in Model.Gallery)
+                {
+                    <div class="col-lg-3 img-container">
+                        <img class="card-img-top" src="~/img/toys/@picture.FileName"/>
+                    </div>
+                }
+            }
+            <div class="col-lg-3 img-container ">
+                <a class="add-image text-middle" href="#">+</a>
+            </div>
+        </div>
+
+
     }
     else
     {
