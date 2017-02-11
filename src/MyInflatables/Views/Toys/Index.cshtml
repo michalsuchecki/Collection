@@ -1,7 +1,7 @@
 ﻿@model MyInflatables.ViewModels.ToyListViewModel
 
 
-<div class="row"><div class="col-lg-12"><h2>Controller/Toys/Index</h2></div></div>
+<div class="row"><div class="col-lg-12"><h2>My Toys List</h2><p>Toys: @Model.Toys.Count()</p></div></div>
 
 
 <div class="row">
@@ -13,7 +13,6 @@
 
 @{
     <div class="row">
-
         @if (Model.Toys.Count() > 0)
         {
             foreach (var m in Model.Toys)
@@ -31,15 +30,13 @@
                                 <img class="card-img-top" src="~/img/no_img.jpg" />
                             }
                         </div>
-                        <div class="card-delete">
-                            <a asp-controller="toys" asp-action="remove" asp-route-id="@m.ToyID">X</a>
-                        </div>
                         <div class="card-block">
                             <h5><b>@m.Name</b></h5>
                             <p>Category: @m.Category.Name</p>
                             <p>Producer: @m.Producer.Name</p>
                         </div>
                         <footer class="card-block">
+                            <a asp-controller="toys" asp-action="remove" asp-route-id="@m.ToyID">Remove</a> |
                             <a asp-controller="toys" asp-action="edit" asp-route-id="@m.ToyID">Edit</a> |
                             <a asp-controller="toys" asp-action="details" asp-route-id="@m.ToyID">More</a>
                         </footer>
