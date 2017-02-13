@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 
 namespace MyInflatables.Models
 {
@@ -21,5 +22,14 @@ namespace MyInflatables.Models
         public DbSet<Toy> Toys { get; set; }
         public DbSet<Producer> Producers { get; set; }
         public DbSet<Gallery> Gallery { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Toy>()
+                .Property(o => o.Status)
+                .HasDefaultValue(ToyStatus.AlreadyHave);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

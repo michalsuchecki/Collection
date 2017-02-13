@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace MyInflatables.Models
 {
+    public enum ToyStatus
+    {
+        Wanted,
+        AlreadyHave
+    };
+
     public class Toy
     {
         public int ToyID { get; set; }
@@ -19,6 +25,8 @@ namespace MyInflatables.Models
         public Category Category { get; set; }
 
         public Producer Producer { get; set; }
+
+        public ToyStatus Status { get; set; }
 
         public ICollection<Gallery> Gallery { get; set; }
     }
