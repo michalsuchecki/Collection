@@ -1,13 +1,17 @@
 ﻿@model MyInflatables.ViewModels.ToyListViewModel
 
 
-<div class="row"><div class="col-lg-12"><h2>My Toys List</h2><p>Toys: @Model.Toys.Count()</p></div></div>
+<div class="row">
+    <div class="col-lg-12">
+        <h2>My collection (Total @Model.Toys.Count())</h2>
+    </div>
+</div>
 
 
 <div class="row">
     <div class="col-lg-6">
         @Html.Partial("_filter", Model)
-        </div>
+    </div>
     <div class="col-lg-6"><a asp-controller="toys" asp-action="create" class="btn btn-danger text-center btn-block">Add new toy</a></div>
 </div>
 
