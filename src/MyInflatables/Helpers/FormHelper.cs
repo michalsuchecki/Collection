@@ -45,5 +45,21 @@ namespace MyInflatables.Helpers
 
             return SelectedList;
         }
+
+        public static IEnumerable<SelectListItem> GetFormToyStatus()
+        {
+
+            var statusList = Enum.GetValues(typeof(ToyStatus));
+            var SelectedList = new List<SelectListItem>();
+
+            var idx = 0;
+            foreach (var item in statusList)
+            {
+                var enum_value = (ToyStatus)statusList.GetValue(idx++);
+                SelectedList.Add(new SelectListItem() { Text = item.ToString(), Value = ((int)enum_value).ToString() });
+            }
+
+            return SelectedList;
+        }
     }
 }

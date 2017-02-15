@@ -93,6 +93,7 @@ namespace MyInflatables.Controllers
             var model = new ToyAddViewModel();
             model.Producers = _producerRepository.GetProducers().Select(s => new SelectListItem() { Text = s.Name, Value = s.Id.ToString() });
             model.Categories = _categoryRepository.GetCategories().Select(s => new SelectListItem() { Text = s.Name, Value = s.Id.ToString() });
+            model.ToyStatus = FormHelper.GetFormToyStatus();
             model.Toy = new Toy();
             return View(model);
         }
@@ -105,6 +106,7 @@ namespace MyInflatables.Controllers
             {
                 model.Toy.Category = _categoryRepository.GetCategoryByID(model.CategoryId);
                 model.Toy.Producer = _producerRepository.GetProducerByID(model.ProducerId);
+                model.Toy.Status = (ToyStatus)model.StatusId;
 
                 _toyRepository.InsertToy(model.Toy);
                 _toyRepository.Save();

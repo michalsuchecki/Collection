@@ -34,6 +34,7 @@
                             <h5><b>@m.Name</b></h5>
                             <p>Category: @m.Category.Name</p>
                             <p>Producer: @m.Producer.Name</p>
+                            <p>Have it?: @m.Status</p>
                         </div>
                         <footer class="card-block">
                             <a asp-controller="toys" asp-action="remove" asp-route-id="@m.ToyID">Remove</a> |
