@@ -25,24 +25,49 @@ namespace MyInflatables.Repositories
                          .SingleOrDefault(s => s.ToyID == toyId);
         }
 
-        public IEnumerable<Toy> GetToys()
+        public IEnumerable<Toy> GetMyToys()
         {
             var result = _context.Toys
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
+                         .Where(i => i.Status == ToyStatus.AlreadyHave)
                          .OrderBy(i => i.Name)
                          .ToList();
             return result;
         }
 
-        public IEnumerable<Toy> GetToysByCategoryId(int id)
+        public IEnumerable<Toy> GetMyToysByCategory(int categoryId)
         {
             var result = _context.Toys
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
-                         .Where(s => s.Category.Id == id)
+                         .Where(i => i.Status == ToyStatus.AlreadyHave && i.Category.Id == categoryId)
+                         .OrderBy(i => i.Name)
+                         .ToList();
+            return result;
+        }
+
+        public IEnumerable<Toy> GetWantedToys()
+        {
+            var result = _context.Toys
+                         .Include(i => i.Category)
+                         .Include(i => i.Producer)
+                         .Include(i => i.Gallery)
+                         .Where(i => i.Status == ToyStatus.Wanted)
+                         .OrderBy(i => i.Name)
+                         .ToList();
+            return result;
+        }
+
+        public IEnumerable<Toy> GetWantedToysByCategory(int categoryId)
+        {
+            var result = _context.Toys
+                         .Include(i => i.Category)
+                         .Include(i => i.Producer)
+                         .Include(i => i.Gallery)
+                         .Where(i => i.Status == ToyStatus.Wanted && i.Category.Id == categoryId)
                          .OrderBy(i => i.Name)
                          .ToList();
             return result;

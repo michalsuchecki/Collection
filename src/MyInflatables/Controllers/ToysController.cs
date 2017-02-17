@@ -35,22 +35,28 @@ namespace MyInflatables.Controllers
         }
         public IActionResult Index(int? Category, string SortBy, ToyListViewModel model)
         {
+            return RedirectToAction("MyToys", new { Category = Category, SortBy = SortBy, model = model });
+        }
+
+        [Route("/mytoys/{id?}")]
+        public IActionResult MyToys(int? Category, string SortBy, ToyListViewModel model)
+        {
             model.Categories = FormHelper.GetFormCategories(_categoryRepository.GetCategories());
             model.Sort = FormHelper.GetFormSortBy();
 
             if (Category != null && Category != 0)
             {
-                model.Toys = _toyRepository.GetToysByCategoryId(Category.Value);
+                model.Toys = _toyRepository.GetMyToysByCategory(Category.Value);
 
             }
             else
             {
-                model.Toys = _toyRepository.GetToys();
+                model.Toys = _toyRepository.GetMyToys();
             }
 
-            if(!String.IsNullOrEmpty(SortBy))
+            if (!String.IsNullOrEmpty(SortBy))
             {
-                FormHelper.SortBy sort = (FormHelper.SortBy) Enum.Parse(typeof(FormHelper.SortBy), SortBy);
+                FormHelper.SortBy sort = (FormHelper.SortBy)Enum.Parse(typeof(FormHelper.SortBy), SortBy);
 
                 switch (sort)
                 {
@@ -67,8 +73,47 @@ namespace MyInflatables.Controllers
                 }
             }
 
-            return View(model);
+            return View("Index", model);
         }
+
+        [Route("/wanted/{id?}")]
+        public IActionResult Wanted(int? Category, string SortBy, ToyListViewModel model)
+        {
+            model.Categories = FormHelper.GetFormCategories(_categoryRepository.GetCategories());
+            model.Sort = FormHelper.GetFormSortBy();
+
+            if (Category != null && Category != 0)
+            {
+                model.Toys = _toyRepository.GetWantedToysByCategory(Category.Value);
+
+            }
+            else
+            {
+                model.Toys = _toyRepository.GetWantedToys();
+            }
+
+            if (!String.IsNullOrEmpty(SortBy))
+            {
+                FormHelper.SortBy sort = (FormHelper.SortBy)Enum.Parse(typeof(FormHelper.SortBy), SortBy);
+
+                switch (sort)
+                {
+                    default:
+                    case FormHelper.SortBy.Name:
+                        model.Toys = model.Toys.OrderBy(s => s.Name).ToList();
+                        break;
+                    case FormHelper.SortBy.Producer:
+                        model.Toys = model.Toys.OrderBy(s => s.Producer.Name).ToList();
+                        break;
+                    case FormHelper.SortBy.Category:
+                        model.Toys = model.Toys.OrderBy(s => s.Category.Name).ToList();
+                        break;
+                }
+            }
+
+            return View("Index", model);
+        }
+
         [Route("/toys/{id}")]
         public IActionResult Details(int? id)
         {

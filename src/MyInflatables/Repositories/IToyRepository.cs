@@ -8,8 +8,10 @@ namespace MyInflatables.Repositories
 {
     public interface IToyRepository : IDisposable
     {
-        IEnumerable<Toy> GetToys();
-        IEnumerable<Toy> GetToysByCategoryId(int id);
+        IEnumerable<Toy> GetMyToys();
+        IEnumerable<Toy> GetMyToysByCategory(int categoryId);
+        IEnumerable<Toy> GetWantedToys();
+        IEnumerable<Toy> GetWantedToysByCategory(int categoryId);
         Toy GetToyByID(int toyId);
         void InsertToy(Toy toy);
         void DeleteToy(int toyId);
