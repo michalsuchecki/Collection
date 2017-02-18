@@ -25,9 +25,10 @@ namespace MyInflatables.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Toy>()
-                .Property(o => o.Status)
-                .HasDefaultValue(ToyStatus.AlreadyHave);
+            // BUG: Overwrite value Status when adding toy to DB
+            //modelBuilder.Entity<Toy>()
+            //    .Property(o => o.Status)
+            //    .HasDefaultValue(ToyStatus.AlreadyHave);
 
             base.OnModelCreating(modelBuilder);
         }
