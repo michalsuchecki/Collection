@@ -55,7 +55,7 @@ namespace MyInflatables
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseMvc( r => r.MapRoute("default", "{controller=Toys}/{action=Index}/{id?}"));
+            app.UseMvc( r => r.MapRoute("default", "{controller=Toys}/{action=Collection}/{id?}"));
 
             ToyInitializer.Initialize(context);
         }

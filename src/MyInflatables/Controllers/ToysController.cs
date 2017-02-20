@@ -33,13 +33,8 @@ namespace MyInflatables.Controllers
             _environment = environment;
             _context = context;
         }
-        public IActionResult Index(int? Category, string SortBy, ToyListViewModel model)
-        {
-            return RedirectToAction("MyToys", new { Category = Category, SortBy = SortBy, model = model });
-        }
 
-        [Route("/mytoys/{id?}")]
-        public IActionResult MyToys(int? Category, string SortBy, ToyListViewModel model)
+        public IActionResult Collection(int? Category, string SortBy, ToyListViewModel model)
         {
             model.Categories = FormHelper.GetFormCategories(_categoryRepository.GetCategories());
             model.Sort = FormHelper.GetFormSortBy();
@@ -76,7 +71,6 @@ namespace MyInflatables.Controllers
             return View("Index", model);
         }
 
-        [Route("/wanted/{id?}")]
         public IActionResult Wanted(int? Category, string SortBy, ToyListViewModel model)
         {
             model.Categories = FormHelper.GetFormCategories(_categoryRepository.GetCategories());
@@ -114,11 +108,10 @@ namespace MyInflatables.Controllers
             return View("Index", model);
         }
 
-        [Route("/toys/{id}")]
         public IActionResult Details(int? id)
         {
             if (id == null)
-                return RedirectToAction("index");
+                return RedirectToAction("collection");
 
             var toy = _toyRepository.GetToyByID(id.Value);
             return View(toy);
@@ -126,12 +119,9 @@ namespace MyInflatables.Controllers
 
         public IActionResult AddImage(int? ToyId)
         {
-
-
             return RedirectToAction("Details", ToyId);
         }
 
-        [Route("/toys/create")]
         [HttpGet]
         public IActionResult Create()
         {
@@ -142,7 +132,7 @@ namespace MyInflatables.Controllers
             model.Toy = new Toy();
             return View(model);
         }
-        [Route("/toys/create")]
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(ToyAddViewModel model)
@@ -169,7 +159,14 @@ namespace MyInflatables.Controllers
                     _galleryRepository.Save();
                 }
 
-                return RedirectToAction("Index", "Toys");
+                switch (model.Toy.Status)
+                {
+                    case ToyStatus.Wanted:
+                        return RedirectToAction("wanted");
+                    case ToyStatus.AlreadyHave:
+                    default:
+                        return RedirectToAction("collection");
+                }
             }
             else
             {
@@ -190,7 +187,15 @@ namespace MyInflatables.Controllers
 
             _toyRepository.DeleteToy(id);
             _toyRepository.Save();
-            return RedirectToAction("Index");
+
+            switch (toy.Status)
+            {
+                case ToyStatus.Wanted:
+                    return RedirectToAction("wanted");
+                case ToyStatus.AlreadyHave:
+                default:
+                    return RedirectToAction("collection");
+            }
         }
 
 
