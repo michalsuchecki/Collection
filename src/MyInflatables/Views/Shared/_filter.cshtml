@@ -1,6 +1,6 @@
 ﻿@model MyInflatables.ViewModels.ToyListViewModel
 
-<form asp-controller="toys" asp-action="index" method="get" class="form-inline">
+<form asp-controller="toys" method="get" class="form-inline">
     <div class="form-group">
         <label class="">Show:</label>
         <select asp-for="@Model.Category" asp-items="@Model.Categories" class="form-control"></select>
