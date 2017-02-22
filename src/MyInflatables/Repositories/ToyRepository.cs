@@ -31,7 +31,7 @@ namespace MyInflatables.Repositories
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
-                         .Where(i => i.Status == ToyStatus.AlreadyHave)
+                         .Where(i => i.InCollection)
                          .OrderBy(i => i.Name)
                          .ToList();
             return result;
@@ -43,7 +43,7 @@ namespace MyInflatables.Repositories
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
-                         .Where(i => i.Status == ToyStatus.AlreadyHave && i.Category.Id == categoryId)
+                         .Where(i => i.InCollection && i.Category.Id == categoryId)
                          .OrderBy(i => i.Name)
                          .ToList();
             return result;
@@ -55,7 +55,7 @@ namespace MyInflatables.Repositories
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
-                         .Where(i => i.Status == ToyStatus.Wanted)
+                         .Where(i => !i.InCollection)
                          .OrderBy(i => i.Name)
                          .ToList();
             return result;
@@ -67,7 +67,7 @@ namespace MyInflatables.Repositories
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
-                         .Where(i => i.Status == ToyStatus.Wanted && i.Category.Id == categoryId)
+                         .Where(i => !i.InCollection && i.Category.Id == categoryId)
                          .OrderBy(i => i.Name)
                          .ToList();
             return result;

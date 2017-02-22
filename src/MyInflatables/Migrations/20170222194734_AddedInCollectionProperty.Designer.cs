@@ -8,9 +8,10 @@ using MyInflatables.Models;
 namespace MyInflatables.Migrations
 {
     [DbContext(typeof(ToyContext))]
-    partial class ToyContextModelSnapshot : ModelSnapshot
+    [Migration("20170222194734_AddedInCollectionProperty")]
+    partial class AddedInCollectionProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
@@ -73,6 +74,8 @@ namespace MyInflatables.Migrations
                         .IsRequired();
 
                     b.Property<int?>("ProducerId");
+
+                    b.Property<int>("Status");
 
                     b.HasKey("ToyID");
 
