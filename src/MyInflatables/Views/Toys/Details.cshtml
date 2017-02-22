@@ -1,26 +1,28 @@
 ﻿@model MyInflatables.Models.Toy
 
 @{
-    <p>Details</p>
+    <div class="row">
+        <div class="col-lg-12 line"><h4>Details</h4></div>
+    </div>
     if (Model != null)
     {
-        @*<p>Name: @Model.Name</p>
-        <p>Category: @Model.Category.Name</p>*@
-
         <div class="row">
-            <h4>Gallery</h4>
+            <div class="col-lg-12 line"><h4>Gallery</h4></div>
+
             @if (Model.Gallery != null)
-            {
-                foreach(var picture in Model.Gallery)
                 {
-                    <div class="col-lg-3 img-container">
-                        <img class="card-img-top" src="~/img/toys/@picture.FileName"/>
+                    foreach (var picture in Model.Gallery)
+                    {
+                    <div class="card_box">
+                        <div class="card_body">
+                            <img  src="~/img/toys/@picture.FileName" />
+                        </div>
                     </div>
+                    @*<div class="col-lg-3 img-container">
+                        <img class="card-img-top" src="~/img/toys/@picture.FileName" />
+                    </div>*@
                 }
             }
-            <div class="col-lg-3 img-container ">
-                <a class="add-image text-middle" href="#">+</a>
-            </div>
         </div>
 
 
