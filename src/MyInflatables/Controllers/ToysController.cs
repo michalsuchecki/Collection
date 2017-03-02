@@ -182,6 +182,10 @@ namespace MyInflatables.Controllers
             return RedirectToAction(toy.InCollection ? "collection" : "wanted");
         }
 
+        public IActionResult Edit(int id)
+        {
+            return View();
+        }
 
         protected override void Dispose(bool disposing)
         {
