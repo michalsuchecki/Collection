@@ -9,6 +9,7 @@
 <div class="col-lg-8 col-lg-offset-2">
     <form asp-controller="Toys" asp-action="Create" method="post" enctype="multipart/form-data">
         <div class="form-group"><label>Toy name:</label><input asp-for="Toy.Name" class="form-control" /></div>
+        <span class="text-danger" asp-validation-for="Toy.Name"></span>
         <div class="row">
             <div class="form-group col-lg-6"><label>Category:</label><select asp-for="CategoryId" asp-items="Model.Categories" class="form-control" placeholder=".col-xs-4"></select></div>
             <div class="form-group col-lg-6"><label>Producer:</label><select asp-for="ProducerId" asp-items="Model.Producers" class="form-control" placeholder=".col-xs-4"></select></div>
