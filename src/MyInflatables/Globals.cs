@@ -11,8 +11,8 @@ namespace MyInflatables
         public static string toysDirectory = "img\\toys";
         public static Size ThumbSize = new Size()
         {
-            Height = 260,
-            Width = 260
+            Height = 320,
+            Width = 400
         };
     }
 }
