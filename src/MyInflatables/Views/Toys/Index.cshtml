@@ -27,11 +27,11 @@
                         <a asp-controller="toys" asp-action="details" asp-route-id="@m.ToyID">
                             @if (m.Gallery != null && m.Gallery.Count > 0)
                             {
-                                <img src="~/img/toys/@m.Gallery.FirstOrDefault()?.FileName" />
+                                <img src="@($"/img/toys/thumb/{m.Gallery.FirstOrDefault()?.FileName}.jpg")" />
                             }
                             else
                             {
-                                <img src="~/img/no_img.jpg" />
+                                <img src="@($"/img/no_img.jpg")" />
                             }
                         </a>
                         <div class="control">

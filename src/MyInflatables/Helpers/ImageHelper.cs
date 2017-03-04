@@ -32,44 +32,35 @@ namespace MyInflatables.Helpers
         {
             if (file.Length > 0)
             {
-                // Large image
-                var filename = GenerateImageName() + "_l.jpg";
+                var filename = GenerateImageName();;
                 var FileWithPath = Path.Combine(_workDirectory, filename);
 
-                using (var stream = new FileStream(FileWithPath, FileMode.Create))
+                using (var stream = new FileStream(FileWithPath + Globals.imageSufix, FileMode.Create))
                 {
                     file.CopyTo(stream);
-                    //MakeThumbnail(stream, FileWithPath);
+                    MakeThumbnail(file, FileWithPath);
                 }
-
-                // TODO: Preview 
-                
-
                 return filename;
             }
-
-            return "";
+            return String.Empty;
         }
 
-        private void MakeThumbnail(Stream input, string path)
+        private void MakeThumbnail(IFormFile file, string path)
         {
             Configuration.Default.AddImageFormat(new JpegFormat());
-            Configuration.Default.AddImageFormat(new PngFormat());
-            Configuration.Default.AddImageFormat(new BmpFormat());
-
-            using (var output = new FileStream(path + ".jpg", FileMode.Create))
+            using (var stream = new MemoryStream())
+            using (var output = new FileStream(path + Globals.thumbnailSufix, FileMode.Create))
             {
-                var img = new Image(input);
+                file.CopyTo(stream);
+                stream.Seek(0, SeekOrigin.Begin);
+                var img = new Image(stream);
                 img.Resize(new ResizeOptions()
                 {
                     Mode = ResizeMode.Crop,
-                    Size = Globals.ThumbSize
+                    Size = Globals.ThumbSize,
                 });
 
-                img.Quality = 75;
-                img.ExifProfile = null;
                 img.Save(output);
-
             }
 
 
