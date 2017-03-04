@@ -24,11 +24,9 @@
     "Microsoft.Extensions.Configuration.Json": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
-    "ImageSharp": "1.0.0-alpha2-00038",
-    "ImageSharp.Formats.Jpeg": "1.0.0-alpha2-00038",
-    "ImageSharp.Formats.Png": "1.0.0-alpha2-00034",
-    "ImageSharp.Processing": "1.0.0-alpha2-00026",
-    "ImageSharp.Formats.Bmp": "1.0.0-alpha2-00038"
+    "ImageSharp": "1.0.0-alpha2-00117",
+    "ImageSharp.Processing": "1.0.0-alpha2-00105",
+    "ImageSharp.Formats.Jpeg": "1.0.0-alpha2-00117"
   },
 
   "tools": {
