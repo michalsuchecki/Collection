@@ -1,25 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{331B36D2-61B5-4274-869C-46F18DB5D712}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CCA3A984-7B2E-41EE-9FAF-22F52744CF47}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MyInflatables", "src\MyInflatables\MyInflatables.xproj", "{1BF64FE6-108F-4B5B-B8B1-C2E3A0496A3A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{62F53627-1C41-4E6B-A5D1-E7A782C9025B}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MyInflatables.Tests", "src\MyInflatables.Tests\MyInflatables.Tests.xproj", "{B79DD6BD-64DB-4F7E-818A-C05E84D3843A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyInflatables", "src\MyInflatables\MyInflatables.csproj", "{1BF64FE6-108F-4B5B-B8B1-C2E3A0496A3A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyInflatables.Tests", "src\MyInflatables.Tests\MyInflatables.Tests.csproj", "{B79DD6BD-64DB-4F7E-818A-C05E84D3843A}"
 	ProjectSection(ProjectDependencies) = postProject
 		{1BF64FE6-108F-4B5B-B8B1-C2E3A0496A3A} = {1BF64FE6-108F-4B5B-B8B1-C2E3A0496A3A}
 	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "MyInflatables.Data", "src\MyInflatables.Data\MyInflatables.Data.xproj", "{1E6B25D8-F573-4E07-9097-EB136921438A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{62F53627-1C41-4E6B-A5D1-E7A782C9025B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyInflatables.Data", "src\MyInflatables.Data\MyInflatables.Data.csproj", "{1E6B25D8-F573-4E07-9097-EB136921438A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageResizer", "ImageResizer\ImageResizer.csproj", "{3298F0F6-00A0-4CD4-BAA7-95B36033A35C}"
 	ProjectSection(ProjectDependencies) = postProject
