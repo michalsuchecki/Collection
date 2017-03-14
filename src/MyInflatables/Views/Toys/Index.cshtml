@@ -24,7 +24,8 @@
 
                 <div class="card_box card_shadow">
                     <div class="card_body">
-                        <a asp-controller="toys" asp-action="details" asp-route-id="@m.ToyID">
+                        @*<a asp-controller="toys" asp-action="details" asp-route-id="@m.ToyID">*@
+                        <a href="@($"/img/toys/{m.Gallery.FirstOrDefault()?.FileName}_l.jpg")" data-lightbox=@($"Toy{m.ToyID}")>
                             @if (m.Gallery != null && m.Gallery.Count > 0)
                             {
                                 <img src="@($"/img/toys/thumb/{m.Gallery.FirstOrDefault()?.FileName}.jpg")" />
@@ -34,6 +35,17 @@
                                 <img src="@($"/img/no_img.jpg")" />
                             }
                         </a>
+                        @{ 
+                            var images = m.Gallery.Skip(1).ToList();
+
+                            foreach (var img in images)
+                            {
+                                <a href="@($"/img/toys/{img.FileName}_l.jpg")" data-lightbox="@($"Toy{m.ToyID}")"></a>
+                            }
+
+                        }
+
+
                         <div class="control">
                             <a asp-controller="toys" asp-action="edit" asp-route-id="@m.ToyID">Edit</a>
                             <a asp-controller="toys" asp-action="remove" asp-route-id="@m.ToyID">Delete</a>
