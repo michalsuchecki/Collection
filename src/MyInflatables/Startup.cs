@@ -17,6 +17,8 @@ namespace MyInflatables
 {
     public class Startup
     {
+        private string _contentRootPath;
+
         public IConfigurationRoot _Configuration { get; set; }
 
         public Startup(IHostingEnvironment env)
@@ -26,12 +28,21 @@ namespace MyInflatables
                 AddJsonFile("settings.json", optional: true, reloadOnChange: true).
                 AddEnvironmentVariables();
             _Configuration = builder.Build();
+
+            _contentRootPath = env.ContentRootPath;
         }
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            string conn = _Configuration.GetConnectionString("DefaultConnection");
+            if (conn.Contains("%CONTENTROOTPATH%"))
+            {
+                conn = conn.Replace("%CONTENTROOTPATH%", _contentRootPath);
+            }
+
             // Database
-            services.AddDbContext<ToyContext>(options => options.UseSqlServer(_Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<ToyContext>(options => options.UseSqlServer(conn));
 
             // MVC
             services.AddMvc();
