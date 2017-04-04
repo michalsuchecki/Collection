@@ -47,21 +47,17 @@ namespace MyInflatables.Helpers
 
         private void MakeThumbnail(IFormFile file, string path)
         {
-            Configuration.Default.AddImageFormat(new JpegFormat());
-            using (var stream = new MemoryStream())
-            using (var output = new FileStream(path + Globals.thumbnailSufix, FileMode.Create))
-            {
-                file.CopyTo(stream);
-                stream.Seek(0, SeekOrigin.Begin);
-                var img = new Image(stream);
-                img.Resize(new ResizeOptions()
-                {
-                    Mode = ResizeMode.Crop,
-                    Size = Globals.ThumbSize,
-                });
+            //Configuration.Default.AddImageFormat(new JpegFormat());
+            //using (var stream = new MemoryStream())
+            //using (var output = new FileStream(path + Globals.thumbnailSufix, FileMode.Create))
+            //{
+            //    file.CopyTo(stream);
+            //    stream.Seek(0, SeekOrigin.Begin);
 
-                img.Save(output);
-            }
+            //    var img = Image.Load(stream);
+            //    var result = img.Crop(Globals.ThumbSize.Width, Globals.ThumbSize.Height);
+            //    result.Save(output);
+            //}
 
 
         }

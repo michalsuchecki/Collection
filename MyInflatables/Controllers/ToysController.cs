@@ -125,10 +125,12 @@ namespace MyInflatables.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var model = new ToyAddViewModel();
-            model.Producers = _producerRepository.GetProducers().Select(s => new SelectListItem() { Text = s.Name, Value = s.Id.ToString() });
-            model.Categories = _categoryRepository.GetCategories().Select(s => new SelectListItem() { Text = s.Name, Value = s.Id.ToString() });
-            model.Toy = new Toy();
+            var model = new ToyAddViewModel()
+            {
+                Producers = _producerRepository.GetProducers().Select(s => new SelectListItem() { Text = s.Name, Value = s.Id.ToString() }),
+                Categories = _categoryRepository.GetCategories().Select(s => new SelectListItem() { Text = s.Name, Value = s.Id.ToString() }),
+                Toy = new Toy()
+            };
             return View(model);
         }
 
@@ -182,9 +184,45 @@ namespace MyInflatables.Controllers
             return RedirectToAction(toy.InCollection ? "collection" : "wanted");
         }
 
-        public IActionResult Edit(int id)
+        [HttpGet]
+        public IActionResult Edit(int? id)
         {
-            return View();
+            if (id != null)
+            {
+                var toy = _toyRepository.GetToyByID(id.Value);
+                var model = new ToyAddViewModel()
+                {
+                    Toy = toy,
+                    Categories = _categoryRepository.GetCategories().Select(s => new SelectListItem() { Text = s.Name, Value = s.Id.ToString() }),
+                    Producers = _producerRepository.GetProducers().Select(s => new SelectListItem() { Text = s.Name, Value = s.Id.ToString() }),
+                    ProducerId = toy.Producer.Id,
+                    CategoryId = toy.Category.Id,
+                };
+
+                return View(model);
+            }
+
+            return View("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int? id, ToyAddViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                // TODO: Adding Images
+                model.Toy.Category = _categoryRepository.GetCategoryByID(model.CategoryId);
+                model.Toy.Producer = _producerRepository.GetProducerByID(model.ProducerId);
+                _toyRepository.UpdateToy(model.Toy);
+                _toyRepository.Save();
+
+                return RedirectToAction(model.Toy.InCollection ? "collection" : "wanted");
+            }
+            else
+            {
+                return View(model);
+            }
         }
 
         protected override void Dispose(bool disposing)
