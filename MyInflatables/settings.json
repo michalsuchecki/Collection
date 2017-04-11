@@ -1,9 +1,0 @@
-﻿{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=(localdb)\\MSSQLLocalDB;AttachDBFilename=%CONTENTROOTPATH%\\DB\\Inflatables.mdf;Trusted_Connection=True;MultipleActiveResultSets=true"
-  },
-  "Directories": {
-    "Images": "img",
-    "Toys": "img/toys"
-  }
-}

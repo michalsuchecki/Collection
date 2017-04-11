@@ -1,0 +1,11 @@
+﻿@model Collection.ViewModels.ToyListViewModel
+
+<form asp-controller="toys" method="get" class="form-inline">
+    <div class="form-group">
+        <label class="">Show:</label>
+        <select asp-for="@Model.Category" asp-items="@Model.Categories" class="form-control"></select>
+        <label>Sort by:</label>
+        <select asp-for="@Model.SortBy" asp-items="@Model.Sort" class="form-control"></select>
+        <button type="submit" class="btn btn-info">GO</button>
+    </div>
+</form>
