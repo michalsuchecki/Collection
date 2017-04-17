@@ -25,41 +25,55 @@ namespace Collection.Helpers
 
         public string GenerateImageName()
         {
-            return Guid.NewGuid().ToString().Replace("-", string.Empty);
+            return Guid.NewGuid().ToString("N");
         }
 
         public string AddImage(IFormFile file)
         {
             if (file.Length > 0)
             {
-                var filename = GenerateImageName();;
+                var filename = GenerateImageName();
+
+                if (!Directory.Exists(_workDirectory))
+                    Directory.CreateDirectory(_workDirectory);
+
                 var FileWithPath = Path.Combine(_workDirectory, filename);
 
                 using (var stream = new FileStream(FileWithPath + Globals.imageSufix, FileMode.Create))
                 {
                     file.CopyTo(stream);
-                    MakeThumbnail(file, FileWithPath);
+                    MakeThumbnail(file, _workDirectory, filename);
                 }
                 return filename;
             }
             return String.Empty;
         }
 
-        private void MakeThumbnail(IFormFile file, string path)
+        private void MakeThumbnail(IFormFile file, string path, string filename)
         {
-            //Configuration.Default.AddImageFormat(new JpegFormat());
-            //using (var stream = new MemoryStream())
-            //using (var output = new FileStream(path + Globals.thumbnailSufix, FileMode.Create))
-            //{
-            //    file.CopyTo(stream);
-            //    stream.Seek(0, SeekOrigin.Begin);
+            path = Path.Combine(path, Globals.toysThumbnailsDirectory);
 
-            //    var img = Image.Load(stream);
-            //    var result = img.Crop(Globals.ThumbSize.Width, Globals.ThumbSize.Height);
-            //    result.Save(output);
-            //}
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
 
+            var FileWithPath = Path.Combine(path, filename);
 
+            using (var memory = new MemoryStream())
+            using (var output = new FileStream(FileWithPath + Globals.thumbnailSufix, FileMode.Create))
+            {
+                file.CopyTo(memory);
+                memory.Seek(0, SeekOrigin.Begin);
+
+                var img = Image.Load(memory);
+
+                var thumb = img.Resize(new ResizeOptions
+                {
+                    Mode = ResizeMode.Crop,
+                    Size = Globals.ThumbSize,
+                });
+
+                thumb.Save(output);           
+            }
         }
 
         public void RemoveImage(string filename)

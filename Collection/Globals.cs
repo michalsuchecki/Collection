@@ -9,7 +9,7 @@ namespace Collection
     public class Globals
     {
         public static string toysDirectory = "img\\toys";
-        public static string toysThumbnailsDirectory = toysDirectory + "\\thumb";
+        public static string toysThumbnailsDirectory = "thumbs";
         public static string thumbnailSufix = ".jpg";
         public static string imageSufix = "_l.jpg";
 

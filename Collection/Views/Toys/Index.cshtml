@@ -28,7 +28,7 @@
                         <a href="@($"/img/toys/{m.Gallery.FirstOrDefault()?.FileName}_l.jpg")" data-lightbox=@($"Toy{m.ToyID}")>
                             @if (m.Gallery != null && m.Gallery.Count > 0)
                             {
-                                <img src="@($"/img/toys/thumb/{m.Gallery.FirstOrDefault()?.FileName}.jpg")" />
+                                <img src="@($"/img/toys/thumbs/{m.Gallery.FirstOrDefault()?.FileName}.jpg")" />
                             }
                             else
                             {
