@@ -9,13 +9,15 @@ namespace Collection.Models
 {
     public class ToyContext : DbContext
     {
-        public ToyContext()
+        public ToyContext(DbContextOptions options) : base(options)
         {
-
+            
         }
-        public ToyContext(DbContextOptions<ToyContext> options) : base(options)
-        {
 
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.EnableSensitiveDataLogging();
+            base.OnConfiguring(optionsBuilder);
         }
 
         public DbSet<Category> Categories { get; set; }

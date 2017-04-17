@@ -24,9 +24,9 @@ namespace Collection
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath).
-                AddJsonFile("settings.json", optional: true, reloadOnChange: true).
-                AddEnvironmentVariables();
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("settings.json", optional: true, reloadOnChange: true)
+                .AddEnvironmentVariables();
             _Configuration = builder.Build();
 
             _contentRootPath = env.ContentRootPath;
@@ -56,17 +56,21 @@ namespace Collection
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory log, ToyContext context)
         {
-            if(env.IsDevelopment())
+            if (env.IsDevelopment())
             {
                 log.AddDebug(LogLevel.Information);
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
-            
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
-            app.UseMvc( r => r.MapRoute("default", "{controller=Toys}/{action=Collection}/{id?}"));
+            app.UseMvc(r =>
+                r.MapRoute(
+                name: "default",
+                template: "{controller=Toys}/{action=Collection}/{id?}"
+                ));
 
             ToyInitializer.Initialize(context);
         }
