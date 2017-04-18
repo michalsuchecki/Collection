@@ -1,0 +1,229 @@
+﻿body {
+    padding-top: 70px;
+    background-color: #edeef0;
+    /*background-color: #171717;*/
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+nav {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    height: 70px;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+.row {
+    margin-bottom: 30px;
+}
+
+li a:hover {
+    position: relative;
+    -o-transition: all .7s ease;
+    -moz-transition: all .7s ease;
+    -webkit-transition: all .7s ease;
+}
+
+li a:hover::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    background-color: #0d0;
+    bottom: -1px;
+    left: 0;
+    -o-transition: all .7s ease;
+    -moz-transition: all .7s ease;
+    -webkit-transition: all .7s ease;
+}
+
+.line {
+    border-bottom: 1px solid #333;
+    padding-bottom: 20px;
+}
+
+.card_box {
+    margin: 0 1%;
+    margin-bottom: 1%;
+    width: 31%;
+    padding-top: 23.25%;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    /*border-radius: 10px;*/
+}
+
+.card_shadow {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.card_shadow:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card_body {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #fff;
+}
+
+.card_body img {
+    display: block;
+    max-height: 100%;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+}
+
+.card_body .info {
+    position: absolute;
+    left: 0;
+    margin: 0;
+    bottom: -40px;
+    padding: 0;
+    width: 100%;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.66);
+    transition: all 0.2s ease-out;
+}
+
+.card_body:hover .info {
+    bottom: 0;
+}
+
+.card_body p {
+    color: #dfdfdf;
+    margin: 0;
+    line-height: 20px;
+    margin-left: 10px;
+}
+
+.card_corner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 75px 75px 0;
+    border-color: transparent #007bff transparent transparent;
+}
+
+.card_body .control {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.66);
+}
+
+.control a {
+    color: #dfdfdf;
+    line-height: 40px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.control a:hover {
+    color: #dfdfdf;
+    text-decoration: none;
+}
+
+.thumbnail {
+    position:relative;
+    max-height: 199.367px;
+    max-width: 246.7px;
+    overflow:hidden;
+}
+
+.thumbnail img{
+    position:relative;
+}
+
+.test2 {
+    position:relative;
+    box-sizing:border-box;
+    display: inline-block;
+    height: 199.367px;
+    width: 246.7px;
+}
+
+.test2 span{
+    position:relative;
+    top:-6px;
+    font-size: 24px;
+    line-height: 199.367px;
+    text-transform:uppercase;
+}
+
+input[type=file]
+{
+    display: block;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:#0d0;
+    opacity:0;
+}
+
+.modal {
+    text-align: center;
+}
+
+.modal::before {
+    content: "";
+    display: inline-block;
+    height: 100%;
+    margin-right: -4px;
+    vertical-align: middle;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.img-box {
+    position: relative;
+    max-height: 199.367px;
+    max-width: 246.7px;
+    overflow:hidden;
+}
+
+.mask {
+    display: inline-block;
+    position: absolute;
+    box-sizing: border-box;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.57);
+    text-align: center;
+    transition: all 0.2s ease-out;
+}
+
+.mask span {
+    color: white;
+    font-size: 24px;
+    line-height: 199.367px;
+    cursor:pointer;
+}
+
+.thumbnail:hover .mask {
+    top: 0;
+}
