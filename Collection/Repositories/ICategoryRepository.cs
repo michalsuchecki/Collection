@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Collection.Repositories
 {
-    public interface ICategoryRepository : IDisposable
+    public interface ICategoryRepository
     {
         IEnumerable<Category> GetCategories();
-        Category GetCategoryByID(int Id);
+        Category GetCategoryById(int Id);
         void InsertCategory(Category category);
         void DeleteCategory(int Id);
         void UpdateCategory(Category category);
+
         void Save();
     }
 }

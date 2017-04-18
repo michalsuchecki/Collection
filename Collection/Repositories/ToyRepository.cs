@@ -9,14 +9,24 @@ namespace Collection.Repositories
 {
     public class ToyRepository : IToyRepository, IDisposable
     {
-        private ToyContext _context;
+        protected readonly ToyContext _context;
 
         public ToyRepository(ToyContext context)
         {
             _context = context;
         }
 
-        public Toy GetToyByID(int toyId)
+        public IEnumerable<Toy> GetAllToys()
+        {
+            return _context.Toys
+                         .Include(i => i.Category)
+                         .Include(i => i.Producer)
+                         .Include(i => i.Gallery)
+                         .OrderBy(i => i.Name)
+                         .ToList();
+        }
+
+        public Toy GetToyById(int toyId)
         {
             return _context.Toys
                          .Include(i => i.Category)
@@ -27,66 +37,62 @@ namespace Collection.Repositories
 
         public IEnumerable<Toy> GetMyToys()
         {
-            var result = _context.Toys
+            return _context.Toys
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
                          .Where(i => i.InCollection)
                          .OrderBy(i => i.Name)
                          .ToList();
-            return result;
         }
 
         public IEnumerable<Toy> GetMyToysByCategory(int categoryId)
         {
-            var result = _context.Toys
+            return _context.Toys
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
                          .Where(i => i.InCollection && i.Category.Id == categoryId)
                          .OrderBy(i => i.Name)
                          .ToList();
-            return result;
         }
 
         public IEnumerable<Toy> GetWantedToys()
         {
-            var result = _context.Toys
+            return _context.Toys
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
                          .Where(i => !i.InCollection)
                          .OrderBy(i => i.Name)
                          .ToList();
-            return result;
         }
 
         public IEnumerable<Toy> GetWantedToysByCategory(int categoryId)
         {
-            var result = _context.Toys
+            return _context.Toys
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
                          .Where(i => !i.InCollection && i.Category.Id == categoryId)
                          .OrderBy(i => i.Name)
                          .ToList();
-            return result;
         }
 
-        public void DeleteToy(int toyId)
+        public void DeleteToy(int Id)
         {
-            Toy toy = _context.Toys.Include(x => x.Gallery).SingleOrDefault(p => p.ToyID == toyId);
+            Toy toy = GetToyById(Id);
             _context.Toys.Remove(toy);
         }
 
-        public void InsertToy(Toy toy)
+        public void AddToy(Toy toy)
         {
-            _context.Toys.Add(toy);
+             _context.Toys.Add(toy);
         }
 
         public void UpdateToy(Toy toy)
         {
-            _context.Entry(toy).State = EntityState.Modified;
+            _context.Update(toy);
         }
 
         public void Save()
@@ -113,5 +119,6 @@ namespace Collection.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
     }
 }

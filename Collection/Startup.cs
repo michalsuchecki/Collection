@@ -73,7 +73,7 @@ namespace Collection
             app.UseMvc(r =>
                 r.MapRoute(
                 name: "default",
-                template: "{controller=Toys}/{action=Collection}/{id?}"
+                template: "{controller=Item}/{action=Index}/{id?}"
                 ));
 
             ToyInitializer.Initialize(context);

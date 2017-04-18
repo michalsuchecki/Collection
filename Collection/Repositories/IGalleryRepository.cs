@@ -1,19 +1,20 @@
 ﻿using Collection.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Collection.Repositories
 {
-    public interface IGalleryRepository : IDisposable
+    public interface IGalleryRepository
     {
-        IEnumerable<Gallery> GetGalleries();
-        Gallery GetGalleryByID(int id);
-        IEnumerable<Gallery> GetGalleryForToy(Toy toy);
-        void InsertGallery(Gallery gallery);
-        void DeleteGallery(int id);
-        void UpdateGallery(Gallery gallery);
+        IEnumerable<Gallery> GetAllImages();
+        Gallery GetImageById(int id);
+        Gallery GetImageByName(string name);
+        IEnumerable<Gallery> GetImagesForToy(Toy toy);
+        void AddImage(Gallery gallery);
+        void RemoveImageById(int id);
+        void RemoveImageByName(string name);
+        void UpdateImage(Gallery gallery);
+
         void Save();
     }
 }

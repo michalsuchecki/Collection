@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Collection.Repositories
 {
-    public interface IProducerRepository : IDisposable
+    public interface IProducerRepository
     {
         IEnumerable<Producer> GetProducers();
         Producer GetProducerByID(int Id);
-        void InsertProducer(Producer producer);
+        void AddProducer(Producer producer);
         void DeleteProducer(int Id);
         void UpdateProducer(Producer producer);
+
         void Save();
     }
 }

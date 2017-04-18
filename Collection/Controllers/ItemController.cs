@@ -7,6 +7,8 @@ using Collection.Models;
 using Collection.ViewModels;
 using Collection.Helpers;
 using Microsoft.AspNetCore.Hosting;
+using Collection.Repositories;
+using System.Collections.Generic;
 
 namespace Collection.Controllers
 {
@@ -14,36 +16,58 @@ namespace Collection.Controllers
     {
         private readonly ToyContext _context;
         private readonly IHostingEnvironment _environment;
+        private readonly IToyRepository _toyRepository;
+        private readonly IProducerRepository _producerRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IGalleryRepository _galleryRepository;
 
-        public ItemController(IHostingEnvironment environment, ToyContext context)
+        public ItemController(IToyRepository toyRepository,
+            IProducerRepository producerRepository,
+            ICategoryRepository categoryRepository,
+            IGalleryRepository galleryRepository,
+            IHostingEnvironment environment, ToyContext context)
         {
+            _toyRepository = toyRepository;
+            _producerRepository = producerRepository;
+            _categoryRepository = categoryRepository;
+            _galleryRepository = galleryRepository;
             _environment = environment;
             _context = context;
         }
 
         // GET: Item
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string display)
         {
-            return View(await _context.Toys
-                .Include(m => m.Producer)
-                .Include(m => m.Category)
-                .ToListAsync());
+            IEnumerable<Toy> toys;
+            if (String.IsNullOrEmpty(display))
+            {
+                toys = _toyRepository.GetAllToys();
+            }
+            else
+            {
+                switch (display)
+                {
+                    case "collection":
+                        toys = _toyRepository.GetMyToys();
+                        break;
+                    case "wanted":
+                        toys = _toyRepository.GetWantedToys();
+                        break;
+                    default:
+                        toys = _toyRepository.GetAllToys();
+                        break;
+                }
+            }
+
+            return View(toys);
         }
 
         // GET: Item/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public IActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var toy = await _context.Toys
-                .SingleOrDefaultAsync(m => m.ToyID == id);
-            if (toy == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
+            var toy = _toyRepository.GetToyById(id.Value);
+            if (toy == null) return NotFound();
 
             return View(toy);
         }
@@ -64,14 +88,14 @@ namespace Collection.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(ToyViewModel model)
+        public IActionResult Create(ToyViewModel model)
         {
             if (ModelState.IsValid)
             {
-                model.Toy.Producer = await _context.Producers.SingleOrDefaultAsync(s => s.Id == model.Producer);
-                model.Toy.Category = await _context.Categories.SingleOrDefaultAsync(s => s.Id == model.Category);
+                model.Toy.Producer = _producerRepository.GetProducerByID(model.Producer);
+                model.Toy.Category = _categoryRepository.GetCategoryById(model.Category);
 
-                _context.Add(model.Toy);
+                _toyRepository.AddToy(model.Toy);
 
                 if (model.Images != null)
                 {
@@ -81,11 +105,12 @@ namespace Collection.Controllers
                     {
                         var imageName = helper.AddImage(image);
                         var gallery = new Gallery() { FileName = imageName, Toy = model.Toy };
-                        _context.Add(gallery);
+
+                        _galleryRepository.AddImage(gallery);
                     }
                 }
 
-                await _context.SaveChangesAsync();
+                _toyRepository.Save();
                 return RedirectToAction("Index");
             }
             else
@@ -97,21 +122,17 @@ namespace Collection.Controllers
         }
 
         // GET: Item/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public IActionResult Edit(int? id)
         {
             if (id == null) return NotFound();
 
-            var _toy = await _context.Toys
-                                .Include(m => m.Producer)
-                                .Include(m => m.Category)
-                                .Include(m => m.Gallery)
-                                .SingleOrDefaultAsync(m => m.ToyID == id);
+            var _toy = _toyRepository.GetToyById(id.Value);
 
             var model = new ToyViewModel()
             {
                 Toy = _toy,
-                Producers = FormHelper.GetFormProducers(_context.Producers.ToArray()),
-                Categories = FormHelper.GetFormCategories(_context.Categories.ToArray()),
+                Producers = FormHelper.GetFormProducers(_producerRepository.GetProducers()),
+                Categories = FormHelper.GetFormCategories(_categoryRepository.GetCategories()),
                 Producer = _toy.Producer.Id,
                 Category = _toy.Category.Id,
             };
@@ -121,14 +142,14 @@ namespace Collection.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, ToyViewModel model)
+        public IActionResult Edit(int id, ToyViewModel model)
         {
             if (id != model.Toy.ToyID) return NotFound();
 
             if (ModelState.IsValid)
             {
-                model.Toy.Producer = await _context.Producers.SingleOrDefaultAsync(s => s.Id == model.Producer);
-                model.Toy.Category = await _context.Categories.SingleOrDefaultAsync(s => s.Id == model.Category);
+                model.Toy.Producer = _producerRepository.GetProducerByID(model.Producer);
+                model.Toy.Category = _categoryRepository.GetCategoryById(model.Category);
 
                 _context.Update(model.Toy);
 
@@ -140,11 +161,12 @@ namespace Collection.Controllers
                     {
                         var imageName = helper.AddImage(image);
                         var gallery = new Gallery() { FileName = imageName, Toy = model.Toy };
-                        _context.Add(gallery);
+
+                        _galleryRepository.AddImage(gallery);
                     }
                 }
 
-                await _context.SaveChangesAsync();
+                _toyRepository.Save();
 
                 return RedirectToAction("Index");
             }
@@ -152,19 +174,11 @@ namespace Collection.Controllers
         }
 
         // GET: Item/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public IActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var toy = await _context.Toys
-                .SingleOrDefaultAsync(m => m.ToyID == id);
-            if (toy == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
+            var toy = _toyRepository.GetToyById(id.Value);
+            if (toy == null) return NotFound();
 
             return View(toy);
         }
@@ -172,34 +186,41 @@ namespace Collection.Controllers
         // POST: Item/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
-            var toy = await _context.Toys.SingleOrDefaultAsync(m => m.ToyID == id);
-            _context.Toys.Remove(toy);
-            await _context.SaveChangesAsync();
+            var toy = _toyRepository.GetToyById(id);
+
+            if (toy != null)
+            {
+                var images = _galleryRepository.GetImagesForToy(toy);
+
+                if (images != null)
+                {
+                    var helper = new ImageHelper(_environment);
+                    foreach (var img in images)
+                    {
+                        helper.RemoveImage(img.FileName);
+                    }
+                }
+            }
+
+            _toyRepository.DeleteToy(id);
+            _toyRepository.Save();
+
             return RedirectToAction("Index");
         }
 
-        private bool ToyExists(int id)
-        {
-            return _context.Toys.Any(e => e.ToyID == id);
-        }
-
         [HttpGet]
-        [Route("delete/image/{image?}")]
-        public async Task<IActionResult> DeleteImage(string image, string id)
+        [Route("delete/image/{name?}")]
+        public IActionResult DeleteImage(string name, string id)
         {
             id = (String)TempData["id"] ?? String.Empty;
 
-            var record = _context.Gallery.Where(m => m.FileName == image).FirstOrDefault();
-            if (record != null)
-            {
-               _context.Remove(record);
-               await _context.SaveChangesAsync();
-            }
+            _galleryRepository.RemoveImageByName(name);
+            _galleryRepository.Save();
 
             var helper = new ImageHelper(_environment);
-            helper.RemoveImage(image);
+            helper.RemoveImage(name);
 
             if (String.IsNullOrEmpty(id))
             {
@@ -209,7 +230,11 @@ namespace Collection.Controllers
             {
                 return RedirectToAction("edit", new { id = id });
             }
+        }
 
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
         }
     }
 }

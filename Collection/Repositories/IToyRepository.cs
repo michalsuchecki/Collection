@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace Collection.Repositories
 {
-    public interface IToyRepository : IDisposable
+    public interface IToyRepository
     {
+        IEnumerable<Toy> GetAllToys();
         IEnumerable<Toy> GetMyToys();
         IEnumerable<Toy> GetMyToysByCategory(int categoryId);
         IEnumerable<Toy> GetWantedToys();
         IEnumerable<Toy> GetWantedToysByCategory(int categoryId);
-        Toy GetToyByID(int toyId);
-        void InsertToy(Toy toy);
+        Toy GetToyById(int toyId);
+        void AddToy(Toy toy);
         void DeleteToy(int toyId);
         void UpdateToy(Toy toy);
+
         void Save();
     }
 }

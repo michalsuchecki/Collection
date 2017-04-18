@@ -9,7 +9,7 @@ namespace Collection.Repositories
 {
     public class ProducerRepository : IProducerRepository, IDisposable
     {
-        private ToyContext _context;
+        protected readonly ToyContext _context;
 
         public ProducerRepository(ToyContext context)
         {
@@ -28,14 +28,14 @@ namespace Collection.Repositories
             return _context.Producers.Find(Id);
         }
 
-        public void InsertProducer(Producer producer)
+        public void AddProducer(Producer producer)
         {
             _context.Producers.Add(producer);
         }
 
         public void UpdateProducer(Producer producer)
         {
-            _context.Entry(producer).State = EntityState.Modified;
+            _context.Update(producer);
         }
 
         public void DeleteProducer(int Id)

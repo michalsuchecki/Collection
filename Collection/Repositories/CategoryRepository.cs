@@ -9,7 +9,7 @@ namespace Collection.Repositories
 {
     public class CategoryRepository : ICategoryRepository, IDisposable
     {
-        private ToyContext _context;
+        protected readonly ToyContext _context;
 
         public CategoryRepository(ToyContext context)
         {
@@ -21,7 +21,7 @@ namespace Collection.Repositories
             return _context.Categories.OrderBy(o => o.Name).ToList();
         }
 
-        public Category GetCategoryByID(int Id)
+        public  Category GetCategoryById(int Id)
         {
             return _context.Categories.Find(Id);
         }
