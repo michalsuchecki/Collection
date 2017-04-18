@@ -32,14 +32,13 @@
                             <li class=""><a href="#">My Clips</a></li>
                             <li class=""><a href="#">About me</a></li>
                         </ul>
-
+                        <form class="navbar-form navbar-right" method="get" action="~/item/index/">
+                            <div class="form-group">
+                                <input class="form-control" name="search" placeholder="Search for..." />
+                            </div>
+                            <button type="submit" class="btn btn-success">SEARCH</button>
+                        </form>
                     </div>
-                    <form class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Search for toy..."/>
-                        </div>
-                        <button type="submit" class="btn btn-success">SEARCH</button>
-                    </form>
                 </div>
             </nav>
         </header>
@@ -49,11 +48,11 @@
     <script src="~/js/bootstrap.js"></script>
     <script src="~/js/lightbox.js"></script>
     <script>
-    lightbox.option({
-      'resizeDuration': 200,
-      'wrapAround': true,
-      'showImageNumberLabel':true
-    })
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'showImageNumberLabel': true
+        })
     </script>
 
     @RenderSection("Scripts", required: false)

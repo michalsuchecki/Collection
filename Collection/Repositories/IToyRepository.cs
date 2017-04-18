@@ -13,11 +13,14 @@ namespace Collection.Repositories
         IEnumerable<Toy> GetMyToysByCategory(int categoryId);
         IEnumerable<Toy> GetWantedToys();
         IEnumerable<Toy> GetWantedToysByCategory(int categoryId);
+        IEnumerable<Toy> GetToysContaining(string search);
+
         Toy GetToyById(int toyId);
         void AddToy(Toy toy);
         void DeleteToy(int toyId);
         void UpdateToy(Toy toy);
 
         void Save();
+        
     }
 }

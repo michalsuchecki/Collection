@@ -16,6 +16,18 @@ namespace Collection.Repositories
             _context = context;
         }
 
+        public IEnumerable<Toy> GetToysContaining(string search)
+        {
+            return _context.Toys
+                          .Where(x => x.Name.ToLower().Contains(search.ToLower()))
+                         .Include(i => i.Category)
+                         .Include(i => i.Producer)
+                         .Include(i => i.Gallery)
+                         .OrderBy(i => i.Name)
+                         .ToList();
+                         
+        }
+
         public IEnumerable<Toy> GetAllToys()
         {
             return _context.Toys

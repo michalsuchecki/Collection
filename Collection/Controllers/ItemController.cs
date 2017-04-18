@@ -36,29 +36,37 @@ namespace Collection.Controllers
         }
 
         // GET: Item
-        public IActionResult Index(string display)
+        public IActionResult Index(string display, string search)
         {
-            IEnumerable<Toy> toys;
-            if (String.IsNullOrEmpty(display))
+            IEnumerable<Toy> toys = new List<Toy>();
+
+            if (!String.IsNullOrEmpty(search))
             {
-                toys = _toyRepository.GetAllToys();
+                toys = _toyRepository.GetToysContaining(search);
             }
             else
             {
-                switch (display)
+
+                if (String.IsNullOrEmpty(display))
                 {
-                    case "collection":
-                        toys = _toyRepository.GetMyToys();
-                        break;
-                    case "wanted":
-                        toys = _toyRepository.GetWantedToys();
-                        break;
-                    default:
-                        toys = _toyRepository.GetAllToys();
-                        break;
+                    toys = _toyRepository.GetAllToys();
+                }
+                else
+                {
+                    switch (display)
+                    {
+                        case "collection":
+                            toys = _toyRepository.GetMyToys();
+                            break;
+                        case "wanted":
+                            toys = _toyRepository.GetWantedToys();
+                            break;
+                        default:
+                            toys = _toyRepository.GetAllToys();
+                            break;
+                    }
                 }
             }
-
             return View(toys);
         }
 

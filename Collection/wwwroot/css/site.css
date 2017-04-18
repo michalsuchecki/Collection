@@ -6,21 +6,22 @@
     font-size: 14px;
 }
 
+
 nav {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    height: 70px;
 }
 
+/*
 a, a:hover {
     text-decoration: none;
 }
 
 .row {
     margin-bottom: 30px;
-}
+}*/
 
-li a:hover {
+/*li a:hover {
     position: relative;
     -o-transition: all .7s ease;
     -moz-transition: all .7s ease;
@@ -38,7 +39,7 @@ li a:hover::after {
     -o-transition: all .7s ease;
     -moz-transition: all .7s ease;
     -webkit-transition: all .7s ease;
-}
+}*/
 
 .line {
     border-bottom: 1px solid #333;
