@@ -36,7 +36,7 @@ namespace Collection.Controllers
 
         public IActionResult Collection(int? Category, string SortBy, ToyListViewModel model)
         {
-            model.Categories = FormHelper.GetFormCategories(_categoryRepository.GetCategories());
+            model.Categories = FormHelper.GetFilterFormCategories(_categoryRepository.GetCategories());
             model.Sort = FormHelper.GetFormSortBy();
 
             if (Category != null && Category != 0)
@@ -73,7 +73,7 @@ namespace Collection.Controllers
 
         public IActionResult Wanted(int? Category, string SortBy, ToyListViewModel model)
         {
-            model.Categories = FormHelper.GetFormCategories(_categoryRepository.GetCategories());
+            model.Categories = FormHelper.GetFilterFormCategories(_categoryRepository.GetCategories());
             model.Sort = FormHelper.GetFormSortBy();
 
             if (Category != null && Category != 0)

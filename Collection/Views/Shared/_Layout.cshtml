@@ -26,7 +26,7 @@
                     </div>
                     <div>
                         <ul class="nav navbar-nav">
-                            <li class="@*active*@"><a href="#">Home</a></li>
+                            <li class="active"><a asp-controller="item" asp-action="index">Home</a></li>
                             <li class=""><a asp-controller="toys" asp-action="collection">My collection</a></li>
                             <li class=""><a asp-controller="toys" asp-action="wanted">Wanted toys</a></li>
                             <li class=""><a href="#">My Clips</a></li>
@@ -45,7 +45,6 @@
         </header>
         @RenderBody()
     </div>
-
     <script src="~/js/jquery.js"></script>
     <script src="~/js/bootstrap.js"></script>
     <script src="~/js/lightbox.js"></script>
@@ -56,5 +55,7 @@
       'showImageNumberLabel':true
     })
     </script>
+
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

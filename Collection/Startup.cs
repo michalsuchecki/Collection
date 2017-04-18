@@ -47,6 +47,9 @@ namespace Collection
             // MVC
             services.AddMvc();
 
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
             // Services - Dependency Injection
             services.AddTransient<IToyRepository, ToyRepository>();
             services.AddTransient<ICategoryRepository, CategoryRepository>();
@@ -65,6 +68,7 @@ namespace Collection
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(r =>
                 r.MapRoute(

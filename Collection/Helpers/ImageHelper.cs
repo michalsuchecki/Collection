@@ -1,12 +1,8 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using ImageSharp;
-using ImageSharp.Formats;
 using ImageSharp.Processing;
 
 
@@ -78,11 +74,15 @@ namespace Collection.Helpers
 
         public void RemoveImage(string filename)
         {
-            var path = Path.Combine(_workDirectory, filename);
+            var path = Path.Combine(_workDirectory, filename + "_l.jpg");
+            var thumb = Path.Combine(_workDirectory, Globals.toysThumbnailsDirectory);
+            thumb = Path.Combine(thumb, filename + ".jpg");
+
             if (File.Exists(path))
-            {
                 File.Delete(path);
-            }
+
+            if (File.Exists(thumb))
+                File.Delete(thumb);
         }
     }
 }

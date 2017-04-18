@@ -1,0 +1,103 @@
+@model Collection.ViewModels.ToyViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    TempData["id"] = $"{Model.Toy.ToyID}";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit" enctype="multipart/form-data">
+    <div class="form-horizontal">
+        <h4>Toy</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Toy.ToyID" />
+        <div class="form-group">
+            <label asp-for="Toy.Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Toy.Name" class="form-control" />
+                <span asp-validation-for="Toy.Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Toy.Index" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Toy.Index" class="form-control" />
+                <span asp-validation-for="Toy.Index" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Producer" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Producer" asp-items="Model.Producers" class="form-control"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Category" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="Category" asp-items="Model.Categories" class="form-control"></select>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="checkbox">
+                    <input asp-for="Toy.InCollection" />
+                    <label asp-for="Toy.InCollection"></label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+
+        <div class="form-group">
+
+
+            @{
+                if (Model.Toy.Gallery != null)
+                {
+                    foreach (var image in Model.Toy.Gallery)
+                    {
+                            <div class="col-md-3">
+                                <div class="thumbnail">
+                                    <div class="img-box">
+                                        <img src=@($"/img/toys/thumbs/{image.FileName}.jpg") class="img-responsive" />
+                                        <div class="mask">
+                                            <a class="confirm-delete" href=@($"/delete/image/{image.FileName}")><span class="glyphicon glyphicon-trash"  data-toggle="modal"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    }
+                }
+            }
+
+            <div class="col-md-3">
+                <p class="btn btn-default test2">
+                    <span>Add image</span><input type="file" asp-for="@Model.Images" multiple hidden />
+                </p>
+            </div>
+        </div>
+
+    </div>
+</form>
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/confirm-bootstrap.js"></script>
+    <script>
+        $('.confirm-delete').confirmModal();
+    </script>
+}
