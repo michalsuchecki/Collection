@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-<h2>Index</h2>
+<h2>Index - Total: @Model.Count()</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -12,6 +12,8 @@
 <table class="table">
     <thead>
         <tr>
+            <th>
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -30,6 +32,17 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>
+                    <div class="list_img">
+                        @{
+                            var name = item.Gallery.FirstOrDefault()?.FileName;
+                            if (!String.IsNullOrEmpty(name))
+                            {
+                                <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
+                            }
+                        }
+                    </div>
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -63,6 +76,6 @@
                     <a asp-action="Delete" asp-route-id="@item.ToyID">Delete</a>
                 </td>
             </tr>
-        }
+                        }
     </tbody>
 </table>
