@@ -1,35 +1,49 @@
-@model IEnumerable<Collection.Models.Toy>
+@*@model IEnumerable<Collection.Models.Toy>*@
+@model Collection.ViewModels.ToyListViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h2>Index - Total: @Model.Count()</h2>
+<div class="row">
+    <div class="col-md-6">
+        <h2>Total items: @Model.Toys.Count()</h2>
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    </div>
+    <div class="col-md-6 text-right">
+        <form action="~/item/index/" method="get" class="form-inline" style="margin-top:20px">
+            <div class="form-group">
+                <label class="">Show:</label>
+                <select name="filterBy" asp-items="@Model.Categories" class="form-control"></select>
+                <label>Sort by:</label>
+                <select name="sortBy" asp-items="@Model.Sort" class="form-control"></select>
+                <button type="submit" class="btn btn-info">Filter</button>
+            </div>
+        </form>
+    </div>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="row">
+
+</div>
+
 <table class="table">
     <thead>
         <tr>
             <th>
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Index)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.InCollection)
-            </th>
+            <th>Name</th>
+            <th>Index</th>
+            <th>In Collection</th>
             <th>Producer</th>
             <th>Category</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+        @foreach (var item in Model.Toys)
         {
             <tr>
                 <td>
@@ -38,13 +52,15 @@
                             var name = item.Gallery.FirstOrDefault()?.FileName;
                             if (!String.IsNullOrEmpty(name))
                             {
-                                <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
+                                <a asp-action="Details" asp-route-id="@item.ToyID">
+                                    <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
+                                </a>
                             }
                         }
                     </div>
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    <a asp-action="Details" asp-route-id="@item.ToyID">@item.Name</a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Index)
@@ -61,8 +77,6 @@
 
                         }
                     }
-
-                    @*@Html.DisplayFor(modelItem => item.InCollection)*@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Producer.Name)
@@ -71,9 +85,8 @@
                     @Html.DisplayFor(modelItem => item.Category.Name)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.ToyID">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ToyID">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ToyID">Delete</a>
+                    <p><a asp-action="Edit" asp-route-id="@item.ToyID">Edit</a></p>
+                    <p><a asp-action="Delete" asp-route-id="@item.ToyID">Delete</a></p>
                 </td>
             </tr>
                         }

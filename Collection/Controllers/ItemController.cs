@@ -36,38 +36,64 @@ namespace Collection.Controllers
         }
 
         // GET: Item
-        public IActionResult Index(string display, string search)
+        public IActionResult Index(ToyListViewModel model, string display, string search, string sortBy, int? filterBy)
         {
-            IEnumerable<Toy> toys = new List<Toy>();
+            model.Categories = FormHelper.GetFilterFormCategories(_categoryRepository.GetCategories());
+            model.Sort = FormHelper.GetFormSortBy();
 
             if (!String.IsNullOrEmpty(search))
             {
-                toys = _toyRepository.GetToysContaining(search);
+                model.Toys = _toyRepository.GetToysContaining(search);
             }
             else
             {
-
                 if (String.IsNullOrEmpty(display))
                 {
-                    toys = _toyRepository.GetAllToys();
+                    model.Toys = _toyRepository.GetAllToys();
                 }
                 else
                 {
                     switch (display)
                     {
                         case "collection":
-                            toys = _toyRepository.GetMyToys();
+                            model.Toys = _toyRepository.GetMyToys();
                             break;
                         case "wanted":
-                            toys = _toyRepository.GetWantedToys();
+                            model.Toys = _toyRepository.GetWantedToys();
                             break;
                         default:
-                            toys = _toyRepository.GetAllToys();
+                            model.Toys = _toyRepository.GetAllToys();
                             break;
                     }
                 }
             }
-            return View(toys);
+
+            if (filterBy != null && filterBy != 0)
+            {
+                model.Toys = model.Toys.Where(x => x.Category.Id == filterBy).ToList();
+            }
+
+            if (!String.IsNullOrEmpty(sortBy))
+            {
+                FormHelper.SortBy sort = (FormHelper.SortBy)Enum.Parse(typeof(FormHelper.SortBy), sortBy);
+
+                switch (sort)
+                {
+                    default:
+                    case FormHelper.SortBy.Name:
+                        model.Toys = model.Toys.OrderBy(s => s.Name).ToList();
+                        break;
+                    case FormHelper.SortBy.Producer:
+                        model.Toys = model.Toys.OrderBy(s => s.Producer.Name).ToList();
+                        break;
+                    case FormHelper.SortBy.Category:
+                        model.Toys = model.Toys.OrderBy(s => s.Category.Name).ToList();
+                        break;
+
+                }
+            }
+
+            return View(model);
         }
 
         // GET: Item/Details/5
