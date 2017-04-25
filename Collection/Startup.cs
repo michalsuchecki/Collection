@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Collection.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 using Collection.Repositories;
+using Collection.Models;
 
 namespace Collection
 {
@@ -44,6 +42,26 @@ namespace Collection
             // Database
             services.AddDbContext<ToyContext>(options => options.UseSqlServer(conn));
 
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<ToyContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(o =>
+            {
+                o.Password.RequireDigit = false;
+                o.Password.RequiredLength = 8;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+
+                o.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(30);
+                o.Cookies.ApplicationCookie.LoginPath = "/Account/Login";
+                o.Cookies.ApplicationCookie.LogoutPath = "/Account/Logout";
+
+                o.User.RequireUniqueEmail = true;
+
+            });
+
             // MVC
             services.AddMvc();
 
@@ -66,6 +84,7 @@ namespace Collection
                 app.UseDatabaseErrorPage();
             }
 
+            app.UseIdentity();
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseSession();

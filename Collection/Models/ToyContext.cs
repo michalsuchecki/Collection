@@ -1,13 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using JetBrains.Annotations;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Collection.Models
 {
-    public class ToyContext : DbContext
+    public class ToyContext : IdentityDbContext<User>
     {
         public ToyContext(DbContextOptions options) : base(options)
         {
@@ -24,15 +20,5 @@ namespace Collection.Models
         public DbSet<Toy> Toys { get; set; }
         public DbSet<Producer> Producers { get; set; }
         public DbSet<Gallery> Gallery { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            // BUG: Overwrite value Status when adding toy to DB
-            //modelBuilder.Entity<Toy>()
-            //    .Property(o => o.Status)
-            //    .HasDefaultValue(ToyStatus.AlreadyHave);
-
-            base.OnModelCreating(modelBuilder);
-        }
     }
 }
