@@ -12,9 +12,9 @@
 <body>
     <div class="container">
         <header>
-            <nav class="navbar navbar-fixed-top @*navbar-inverse*@">
+            <nav class="navbar navbar-fixed-top">
                 <div class="container">
-                    <div class="navbar-header">
+                    <div class="navbar-header col-md-2">
                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
@@ -23,7 +23,7 @@
                         </button>
                         <a class="navbar-brand" href="#">Haru Collection</a>
                     </div>
-                    <div>
+                    <div class="col-md-9">
                         <ul class="nav navbar-nav">
                             <li class="active"><a asp-controller="item" asp-action="index">Home</a></li>
                             <li class=""><a asp-controller="item" asp-action="index" asp-route-display="collection">My collection</a></li>
@@ -38,6 +38,7 @@
                             <button type="submit" class="btn btn-success">SEARCH</button>
                         </form>
                     </div>
+                    <div class="col-md-1"><a asp-controller="account" asp-action="login" class="btn btn-danger nav-margin">Login</a></div>
                 </div>
             </nav>
         </header>

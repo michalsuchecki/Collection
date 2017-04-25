@@ -1,0 +1,27 @@
+@model Collection.ViewModels.LoginViewModel
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="modal" id="login-modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h1>Login to Your Account</h1><br>
+                    <form>
+                        <input type="text" asp-for="Email" placeholder="Username">
+                        <input type="password" asp-for="Password" placeholder="Password">
+
+                        <div class="checkbox">
+                            <label asp-for="RememberMe"><input asp-for="RememberMe" />Remember Me</label>
+                        </div>
+
+                        <input type="submit" name="login" class="login loginmodal-submit" value="Login">
+                    </form>
+
+                    <div class="login-help">
+                        <a asp-action="Register" asp-controllre="Account">Register</a> @*- <a href="#">Forgot Password</a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -50,12 +50,16 @@
                     <div class="list_img">
                         @{
                             var name = item.Gallery.FirstOrDefault()?.FileName;
-                            if (!String.IsNullOrEmpty(name))
-                            {
-                                <a asp-action="Details" asp-route-id="@item.ToyID">
-                                    <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
-                                </a>
-                            }
+                            <a asp-action="Details" asp-route-id="@item.ToyID">
+                                @if (!String.IsNullOrEmpty(name))
+                                {
+                                <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
+                                }
+                                else
+                                {
+                                <img src=@("/img/no_img.jpg") class="responsive" />
+                                }
+                            </a>
                         }
                     </div>
                 </td>
