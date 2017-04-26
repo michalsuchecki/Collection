@@ -42,7 +42,7 @@ namespace Collection
             // Database
             services.AddDbContext<ToyContext>(options => options.UseSqlServer(conn));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ToyContext>()
                 .AddDefaultTokenProviders();
 
