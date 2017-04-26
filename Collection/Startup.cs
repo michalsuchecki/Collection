@@ -65,6 +65,11 @@ namespace Collection
             // MVC
             services.AddMvc();
 
+            // Identities
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<ToyContext>()
+                .AddDefaultTokenProviders();
+
             services.AddDistributedMemoryCache();
             services.AddSession();
 

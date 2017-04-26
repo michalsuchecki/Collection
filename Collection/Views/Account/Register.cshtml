@@ -1,4 +1,4 @@
-@model Collection.ViewModels.LoginViewModel
+@model Collection.ViewModels.RegisterViewModel
 
 <div class="row">
 
@@ -7,10 +7,13 @@
             <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h1>Register new Account</h1><br>
-                    <form>
+                    <form method="post" asp-controller="account" asp-action="register">
                         <input type="text" asp-for="Email" placeholder="Username">
+                        <span asp-validation-for="Email" class="text-danger"></span>
                         <input type="password" asp-for="Password" placeholder="Password">
-                        <input type="password" asp-for="Password" placeholder="Confirm Password">
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <input type="password" asp-for="ConfirmPassword" placeholder="Confirm Password">
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         <input type="submit" name="login" class="login loginmodal-submit" value="Register">
                     </form>
                 </div>
@@ -18,3 +21,8 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

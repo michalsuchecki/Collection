@@ -6,7 +6,7 @@
             <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h1>Login to Your Account</h1><br>
-                    <form>
+                    <form method="post" asp-controller="account" asp-action="login">
                         <input type="text" asp-for="Email" placeholder="Username">
                         <input type="password" asp-for="Password" placeholder="Password">
 
@@ -25,3 +25,8 @@
         </div>
     </div>
 </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

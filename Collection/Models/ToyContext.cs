@@ -5,9 +5,8 @@ namespace Collection.Models
 {
     public class ToyContext : IdentityDbContext<User>
     {
-        public ToyContext(DbContextOptions options) : base(options)
+        public ToyContext(DbContextOptions<ToyContext> options) : base(options)
         {
-            
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

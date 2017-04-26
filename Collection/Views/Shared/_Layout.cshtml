@@ -38,7 +38,19 @@
                             <button type="submit" class="btn btn-success">SEARCH</button>
                         </form>
                     </div>
-                    <div class="col-md-1"><a asp-controller="account" asp-action="login" class="btn btn-danger nav-margin">Login</a></div>
+
+                    <div class="col-md-1">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <p>@User.Identity.Name</p>
+                            <a asp-controller="account" asp-action="logout">Log out</a>
+                        }
+                        else
+                        {
+                            <a asp-controller="account" asp-action="login" class="btn btn-danger nav-margin">Login</a>
+                        }
+                    </div>
+
                 </div>
             </nav>
         </header>
