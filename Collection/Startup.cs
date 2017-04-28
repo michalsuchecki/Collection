@@ -7,6 +7,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
+
 
 using Collection.Repositories;
 using Collection.Models;
@@ -42,6 +44,7 @@ namespace Collection
             // Database
             services.AddDbContext<ToyContext>(options => options.UseSqlServer(conn));
 
+            // Identities
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ToyContext>()
                 .AddDefaultTokenProviders();
@@ -65,10 +68,7 @@ namespace Collection
             // MVC
             services.AddMvc();
 
-            // Identities
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<ToyContext>()
-                .AddDefaultTokenProviders();
+            services.AddAuthorization(options => options.AddPolicy("modify", policy => policy.RequireRole("Administrator")));
 
             services.AddDistributedMemoryCache();
             services.AddSession();

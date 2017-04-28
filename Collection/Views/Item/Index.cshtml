@@ -1,4 +1,6 @@
 @*@model IEnumerable<Collection.Models.Toy>*@
+
+@using Microsoft.AspNetCore.Authorization
 @model Collection.ViewModels.ToyListViewModel
 
 @{
@@ -39,7 +41,10 @@
             <th>In Collection</th>
             <th>Producer</th>
             <th>Category</th>
-            <th></th>
+            @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
+            {
+                <th></th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -53,11 +58,11 @@
                             <a asp-action="Details" asp-route-id="@item.ToyID">
                                 @if (!String.IsNullOrEmpty(name))
                                 {
-                                <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
+                                    <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
                                 }
                                 else
                                 {
-                                <img src=@("/img/no_img.jpg") class="responsive" />
+                                    <img src=@("/img/no_img.jpg") class="responsive" />
                                 }
                             </a>
                         }
@@ -88,11 +93,15 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Category.Name)
                 </td>
+
+                @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
+                {
                 <td>
                     <p><a asp-action="Edit" asp-route-id="@item.ToyID">Edit</a></p>
                     <p><a asp-action="Delete" asp-route-id="@item.ToyID">Delete</a></p>
                 </td>
+                }
             </tr>
-                        }
+            }
     </tbody>
 </table>

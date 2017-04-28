@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 using Collection.ViewModels;
 using Collection.Models;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace Collection.Controllers
 {
@@ -14,13 +15,15 @@ namespace Collection.Controllers
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IOptions<IdentityCookieOptions> _identityCookieOptions;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
         public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,
-            IOptions<IdentityCookieOptions> identityCookieOptions
+            RoleManager<IdentityRole> roleManager, IOptions<IdentityCookieOptions> identityCookieOptions
             )
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _identityCookieOptions = identityCookieOptions;
         }
 
@@ -86,6 +89,46 @@ namespace Collection.Controllers
 
             }
             return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles="Administrator")]
+        public async Task<IActionResult> AddRole(string roleName)
+        {
+            if (!string.IsNullOrEmpty(roleName))
+            {
+                var role = new IdentityRole()
+                {
+                    Name = roleName
+                };
+
+                var result = await _roleManager.CreateAsync(role);
+                if(result.Succeeded)
+                {
+
+                }
+            }
+                
+            return RedirectToAction("index", "item");
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "Administrator")]
+        public async Task<IActionResult> AddRoleToAccount(string roleName)
+        {
+            if (!string.IsNullOrEmpty(roleName))
+            {
+                var username = User.Identity.Name;
+
+                var model = await _userManager.FindByNameAsync(username);
+
+                if (model != null)
+                {
+                    await _userManager.AddToRoleAsync(model, roleName);
+                }
+            }
+
+            return RedirectToAction("index", "item");
         }
     }
 }
