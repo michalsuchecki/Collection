@@ -1,107 +1,46 @@
-@*@model IEnumerable<Collection.Models.Toy>*@
-
 @using Microsoft.AspNetCore.Authorization
 @model Collection.ViewModels.ToyListViewModel
 
 @{
     ViewData["Title"] = "Index";
+
 }
 
 <div class="row">
-    <div class="col-md-6">
-        <h2>Total items: @Model.Toys.Count()</h2>
-        <p>
-            <a asp-action="Create">Create New</a>
-        </p>
+    <div class="col-md-3">
+        <p class="navbar-text">Total items: @Model.Toys.Count() <a asp-action="Create">Add New</a></p>
     </div>
-    <div class="col-md-6 text-right">
-        <form action="~/item/index/" method="get" class="form-inline" style="margin-top:20px">
-            <div class="form-group">
-                <label class="">Show:</label>
-                <select name="filterBy" asp-items="@Model.Categories" class="form-control"></select>
-                <label>Sort by:</label>
-                <select name="sortBy" asp-items="@Model.Sort" class="form-control"></select>
+    <div class="col-md-4 text-right">    
+        <span>Show as: </span>
+        <a asp-action="index" asp-controller="item" asp-route-showAs="list" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-list"></span></a>
+        <a asp-action="index" asp-controller="item" asp-route-showAs="gallery" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-picture"></span></a>
+    </div>
+    <div class="col-md-5 text-right">
+            <form asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" method="get" class="form-inline">
+                <div class="form-group">
+                    <label class="">Show:</label>
+                    <select name="filterBy" asp-items="@Model.Categories" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                    <label>Sort by:</label>
+                    <select name="sortBy" asp-items="@Model.Sort" class="form-control"></select>
+                </div>
                 <button type="submit" class="btn btn-info">Filter</button>
-            </div>
-        </form>
+            </form>
     </div>
 </div>
+
+<hr />
 
 <div class="row">
-
-</div>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-            </th>
-            <th>Name</th>
-            <th>Index</th>
-            <th>In Collection</th>
-            <th>Producer</th>
-            <th>Category</th>
-            @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
-            {
-                <th></th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Toys)
+    @{
+        if((string)ViewData["showAs"] == "gallery")
         {
-            <tr>
-                <td>
-                    <div class="list_img">
-                        @{
-                            var name = item.Gallery.FirstOrDefault()?.FileName;
-                            <a asp-action="Details" asp-route-id="@item.ToyID">
-                                @if (!String.IsNullOrEmpty(name))
-                                {
-                                    <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
-                                }
-                                else
-                                {
-                                    <img src=@("/img/no_img.jpg") class="responsive" />
-                                }
-                            </a>
-                        }
-                    </div>
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.ToyID">@item.Name</a>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Index)
-                </td>
-                <td>
-                    @{
-                        if (item.InCollection)
-                        {
-                            <p>Yes</p>
-                        }
-                        else
-                        {
-                            <p>No</p>
-
-                        }
-                    }
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Producer.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Name)
-                </td>
-
-                @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
-                {
-                <td>
-                    <p><a asp-action="Edit" asp-route-id="@item.ToyID">Edit</a></p>
-                    <p><a asp-action="Delete" asp-route-id="@item.ToyID">Delete</a></p>
-                </td>
-                }
-            </tr>
-            }
-    </tbody>
-</table>
+            await Html.RenderPartialAsync("_ToyGalleryPartial", Model.Toys);
+        }
+        else
+        {
+            await Html.RenderPartialAsync("_ToyListPartial", Model.Toys);
+        }
+    }
+</div>

@@ -36,10 +36,15 @@ namespace Collection.Controllers
         }
 
         // GET: Item
-        public IActionResult Index(ToyListViewModel model, string display, string search, string sortBy, int? filterBy)
+        [HttpGet]
+        public IActionResult Index(ToyListViewModel model, string showAs, string display ,string search, string sortBy, int? filterBy)
         {
             model.Categories = FormHelper.GetFilterFormCategories(_categoryRepository.GetCategories());
             model.Sort = FormHelper.GetFormSortBy();
+
+            ViewData["showAs"] = showAs;
+            ViewData["search"] = search;
+            ViewData["display"] = display;
 
             if (!String.IsNullOrEmpty(search))
             {

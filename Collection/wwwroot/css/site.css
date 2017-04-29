@@ -10,19 +10,9 @@
     border-radius: 0;
 }
 
-
 nav {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.nav-margin {
-    margin: 8px 0;
-}
-
-.line {
-    border-bottom: 1px solid #333;
-    padding-bottom: 20px;
 }
 
 .card_box {
@@ -51,6 +41,9 @@ nav {
     bottom: 0;
     right: 0;
     background-color: #fff;
+
+    display:flex;
+    align-items:center;
 }
 
 .card_body img {
@@ -81,7 +74,7 @@ nav {
 .card_body p {
     color: #dfdfdf;
     margin: 0;
-    line-height: 20px;
+    line-height: 40px;
     margin-left: 10px;
 }
 
@@ -321,4 +314,22 @@ td{
 
 .login-help {
     font-size: 12px;
+}
+
+/*------------------*/
+
+.showAs a {
+    line-height:93px;
+
+}
+
+.vertical-center{
+    height:54px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.form-inline{
+    margin:8px 0;
 }
