@@ -10,7 +10,7 @@ namespace Collection.Repositories
     {
         IEnumerable<Category> GetCategories();
         Category GetCategoryById(int Id);
-        void InsertCategory(Category category);
+        void AddCategory(Category category);
         void DeleteCategory(int Id);
         void UpdateCategory(Category category);
 

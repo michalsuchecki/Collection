@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-md-2">
+        <p class="text-center text-uppercase">Panel</p>
+        <div class="bhoechie-tab-menu">
+            <div class="list-group">
+                <a asp-controller="panel" asp-action="index" class="list-group-item text-center">Overview</a>
+                <a asp-controller="panel" asp-action="producers" class="list-group-item text-center">Producers</a>
+                <a asp-controller="panel" asp-action="categories" class="list-group-item text-center">Categories</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-10">
+        @RenderBody()
+    </div>
+</div>

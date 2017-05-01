@@ -8,9 +8,10 @@ using Collection.Models;
 namespace Collection.Migrations
 {
     [DbContext(typeof(ToyContext))]
-    partial class ToyContextModelSnapshot : ModelSnapshot
+    [Migration("20170429175827_RequiredNames")]
+    partial class RequiredNames
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")
@@ -53,8 +54,6 @@ namespace Collection.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired();
-
-                    b.Property<string>("URL");
 
                     b.HasKey("Id");
 

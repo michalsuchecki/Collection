@@ -11,6 +11,13 @@
                 <img src=@src />
             }
             <div class="info"><p>@item.Name</p></div>
+            @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
+            {
+                <div class="control">
+                    <a asp-action="Edit" asp-route-id="@item.ToyID">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.ToyID">Delete</a>
+                </div>
+            }
         </div>
     </div>
     }

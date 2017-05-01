@@ -8,9 +8,10 @@ using Collection.Models;
 namespace Collection.Migrations
 {
     [DbContext(typeof(ToyContext))]
-    partial class ToyContextModelSnapshot : ModelSnapshot
+    [Migration("20170501155718_ProducerURLAdded")]
+    partial class ProducerURLAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

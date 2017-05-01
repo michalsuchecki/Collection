@@ -42,7 +42,7 @@
                     <div class="col-md-1">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <p>@User.Identity.Name</p>
+                            <a asp-action="index" asp-controller="manage">@User.Identity.Name</a>
                             <a asp-controller="account" asp-action="logout">Log out</a>
                         }
                         else

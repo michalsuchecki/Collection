@@ -26,7 +26,7 @@ namespace Collection.Repositories
             return _context.Categories.Find(Id);
         }
 
-        public void InsertCategory(Category category)
+        public void AddCategory(Category category)
         {
             _context.Categories.Add(category);
         }

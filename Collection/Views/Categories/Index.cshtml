@@ -1,0 +1,47 @@
+@model IEnumerable<Collection.Models.Category>
+
+@{
+    Layout = "~/Views/Shared/_PanelLayout.cshtml";
+}
+
+<div class="row">
+    <p class="text-center text-uppercase">Categories</p>
+    <p>
+        <a asp-action="Create" class="btn btn-success">Create New</a>
+    </p>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                    <tr>
+                        <td class="col-md-1">
+                            @item.Id
+                        </td>
+                        <td class="col-md-10">
+                            @item.Name
+                        </td>
+                        <td class="col-md-1">
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
