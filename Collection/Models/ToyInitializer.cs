@@ -17,18 +17,9 @@ namespace Collection.Models
             {
                 var producers = new Producer[]
                 {
-                    new Producer() { Name = "Bestway" },
-                    new Producer() { Name = "BIG MOUTH" },
-                    new Producer() { Name = "Inflatable World" },
-                    new Producer() { Name = "Intex" },
-                    new Producer() { Name = "Puffypaws" },
-                    new Producer() { Name = "RoyalBeach" },
-                    new Producer() { Name = "Sevylor" },
-                    new Producer() { Name = "Swimline" },
-                    new Producer() { Name = "Wehncke" },
-                    new Producer() { Name = "Other" },
-                    new Producer() { Name = "Simex" }
-                }.ToArray();
+                    new Producer() { Name = "Other", URL = String.Empty },
+                }
+                .ToArray();
                 
                 foreach (var prod in producers)
                 {
@@ -42,18 +33,9 @@ namespace Collection.Models
             {
                 var categories = new Category[]
                 {
-                    new Category() { Name = "Air mattress" },
-                    new Category() { Name = "Animals" },
-                    new Category() { Name = "Beach balls" },
-                    new Category() { Name = "Clothes" },
-                    new Category() { Name = "Furniture" },
-                    new Category() { Name = "Islands" },
                     new Category() { Name = "Other" },
-                    new Category() { Name = "Pools" },
-                    new Category() { Name = "Rafts" },
-                    new Category() { Name = "Ride-on" },
-                    new Category() { Name = "Tubes" },
-                }.ToArray();
+                }
+                .ToArray();
 
                 foreach (var cat in categories)
                 {
