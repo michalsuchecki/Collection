@@ -2,7 +2,7 @@
     padding-top: 70px;
     background-color: #edeef0;
     /*background-color: #171717;*/
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', Helvetica, sans-serif;
     font-size: 14px;
 }
 
@@ -208,13 +208,12 @@ td{
     vertical-align:middle !important;
 }
 
-/* modal login */
+/* modal */
 
-.modal {
-    text-align: center;
-    z-index: 0;
-    display: inline-block;
+.modal{
+    text-align:center;
 }
+
 
 .modal::before {
     content: "";
@@ -229,6 +228,8 @@ td{
     text-align: left;
     vertical-align: middle;
 }
+
+/* login modal */
 
 .loginmodal-container {
     padding: 30px;
@@ -316,7 +317,7 @@ td{
     font-size: 12px;
 }
 
-/*------------------*/
+/* filtering bar */
 
 .showAs a {
     line-height:93px;
@@ -332,64 +333,4 @@ td{
 
 .form-inline{
     margin:8px 0;
-}
-
-/*--------------------*/
-
-div.bhoechie-tab-menu {
-    padding-right: 0;
-    padding-left: 0;
-    padding-bottom: 0;
-}
-
-div.bhoechie-tab-menu div.list-group {
-    margin-bottom: 0;
-}
-
-div.bhoechie-tab-menu div.list-group > a {
-    margin-bottom: 0;
-}
-
-div.bhoechie-tab-menu div.list-group > a .glyphicon,
-div.bhoechie-tab-menu div.list-group > a .fa {
-    color: #5A55A3;
-}
-
-div.bhoechie-tab-menu div.list-group > a:first-child {
-    border-top-right-radius: 0;
-    -moz-border-top-right-radius: 0;
-}
-
-div.bhoechie-tab-menu div.list-group > a:last-child {
-    border-bottom-right-radius: 0;
-    -moz-border-bottom-right-radius: 0;
-}
-
-div.bhoechie-tab-menu div.list-group > a.active,
-div.bhoechie-tab-menu div.list-group > a.active .glyphicon,
-div.bhoechie-tab-menu div.list-group > a.active .fa {
-    background-color: #5A55A3;
-    color: #ffffff;
-}
-
-div.bhoechie-tab-menu div.list-group > a.active:after {
-    content: '';
-    position: absolute;
-    left: 100%;
-    top: 50%;
-    margin-top: -13px;
-    border-left: 0;
-    border-bottom: 13px solid transparent;
-    border-top: 13px solid transparent;
-    border-left: 10px solid #5A55A3;
-}
-
-div.bhoechie-tab-content {
-    background-color: #ffffff;
-    padding-left: 20px;
-    padding-top: 10px;
-}
-
-div.bhoechie-tab div.bhoechie-tab-content:not(.active) {
-    display: none;
 }
