@@ -26,11 +26,10 @@
                     </div>
                     <div class="col-md-9">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a asp-controller="item" asp-action="index">Home</a></li>
+                            <li class="active"><a asp-controller="home" asp-action="index">Home</a></li>
                             <li class=""><a asp-controller="item" asp-action="index" asp-route-display="collection">My collection</a></li>
                             <li class=""><a asp-controller="item" asp-action="index" asp-route-display="wanted">Wanted toys</a></li>
-                            <li class=""><a href="#">My Clips</a></li>
-                            <li class=""><a href="#">About me</a></li>
+                            <li class=""><a asp-controller="home" asp-action="about">About me</a></li>
                         </ul>
                         <form class="navbar-form navbar-right" method="get" action="~/item/index/">
                             <div class="form-group">

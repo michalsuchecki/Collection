@@ -60,24 +60,15 @@ namespace Collection.Controllers
             }
             else
             {
-                if (String.IsNullOrEmpty(display))
+                switch (display)
                 {
-                    Toys = _toyRepository.GetAllToys();
-                }
-                else
-                {
-                    switch (display)
-                    {
-                        case "collection":
-                            Toys = _toyRepository.GetMyToys();
-                            break;
-                        case "wanted":
-                            Toys = _toyRepository.GetWantedToys();
-                            break;
-                        default:
-                            Toys = _toyRepository.GetAllToys();
-                            break;
-                    }
+                    case "wanted":
+                        Toys = _toyRepository.GetWantedToys();
+                        break;
+                    case "collection":
+                    default:
+                        Toys = _toyRepository.GetMyToys();
+                        break;
                 }
             }
 
