@@ -16,26 +16,23 @@ namespace Collection.Repositories
             _context = context;
         }
 
-        public IEnumerable<Toy> GetToysContaining(string search)
+        public IQueryable<Toy> GetToysContaining(string search)
         {
             return _context.Toys
                           .Where(x => x.Name.ToLower().Contains(search.ToLower()))
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
-                         .OrderBy(i => i.Name)
-                         .ToList();
-                         
+                         .OrderBy(i => i.Name);
         }
 
-        public IEnumerable<Toy> GetAllToys()
+        public IQueryable<Toy> GetAllToys()
         {
             return _context.Toys
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
-                         .OrderBy(i => i.Name)
-                         .ToList();
+                         .OrderBy(i => i.Name);
         }
 
         public Toy GetToyById(int toyId)
@@ -47,48 +44,44 @@ namespace Collection.Repositories
                          .SingleOrDefault(s => s.ToyID == toyId);
         }
 
-        public IEnumerable<Toy> GetMyToys()
+        public IQueryable<Toy> GetMyToys()
         {
             return _context.Toys
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
                          .Where(i => i.InCollection)
-                         .OrderBy(i => i.Name)
-                         .ToList();
+                         .OrderBy(i => i.Name);
         }
 
-        public IEnumerable<Toy> GetMyToysByCategory(int categoryId)
+        public IQueryable<Toy> GetMyToysByCategory(int categoryId)
         {
             return _context.Toys
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
                          .Where(i => i.InCollection && i.Category.Id == categoryId)
-                         .OrderBy(i => i.Name)
-                         .ToList();
+                         .OrderBy(i => i.Name);
         }
 
-        public IEnumerable<Toy> GetWantedToys()
+        public IQueryable<Toy> GetWantedToys()
         {
             return _context.Toys
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
                          .Where(i => !i.InCollection)
-                         .OrderBy(i => i.Name)
-                         .ToList();
+                         .OrderBy(i => i.Name);
         }
 
-        public IEnumerable<Toy> GetWantedToysByCategory(int categoryId)
+        public IQueryable<Toy> GetWantedToysByCategory(int categoryId)
         {
             return _context.Toys
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
                          .Where(i => !i.InCollection && i.Category.Id == categoryId)
-                         .OrderBy(i => i.Name)
-                         .ToList();
+                         .OrderBy(i => i.Name);
         }
 
         public void DeleteToy(int Id)

@@ -8,12 +8,12 @@ namespace Collection.Repositories
 {
     public interface IToyRepository
     {
-        IEnumerable<Toy> GetAllToys();
-        IEnumerable<Toy> GetMyToys();
-        IEnumerable<Toy> GetMyToysByCategory(int categoryId);
-        IEnumerable<Toy> GetWantedToys();
-        IEnumerable<Toy> GetWantedToysByCategory(int categoryId);
-        IEnumerable<Toy> GetToysContaining(string search);
+        IQueryable<Toy> GetAllToys();
+        IQueryable<Toy> GetMyToys();
+        IQueryable<Toy> GetMyToysByCategory(int categoryId);
+        IQueryable<Toy> GetWantedToys();
+        IQueryable<Toy> GetWantedToysByCategory(int categoryId);
+        IQueryable<Toy> GetToysContaining(string search);
 
         Toy GetToyById(int toyId);
         void AddToy(Toy toy);

@@ -1,14 +1,16 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
 using Collection.Models;
 using Collection.ViewModels;
 using Collection.Helpers;
-using Microsoft.AspNetCore.Hosting;
 using Collection.Repositories;
-using System.Collections.Generic;
+using Collection.Infrastructure;
+
 
 namespace Collection.Controllers
 {
@@ -36,8 +38,9 @@ namespace Collection.Controllers
         }
 
         // GET: Item
-        [HttpGet]
-        public IActionResult Index(ToyListViewModel model, string showAs, string display ,string search, string sortBy, int? filterBy)
+        //[HttpGet]
+        public IActionResult Index(ToyListViewModel model, string showAs, string display, string search, string sortBy,
+                                   int? filterBy, int? page)
         {
             model.Categories = FormHelper.GetFilterFormCategories(_categoryRepository.GetCategories());
             model.Sort = FormHelper.GetFormSortBy();
@@ -45,29 +48,34 @@ namespace Collection.Controllers
             ViewData["showAs"] = showAs;
             ViewData["search"] = search;
             ViewData["display"] = display;
+            ViewData["filterBy"] = filterBy;
+            ViewData["sortBy"] = sortBy;
+
+            IQueryable<Toy> Toys;
 
             if (!String.IsNullOrEmpty(search))
             {
-                model.Toys = _toyRepository.GetToysContaining(search);
+                page = 1;
+                Toys = _toyRepository.GetToysContaining(search);
             }
             else
             {
                 if (String.IsNullOrEmpty(display))
                 {
-                    model.Toys = _toyRepository.GetAllToys();
+                    Toys = _toyRepository.GetAllToys();
                 }
                 else
                 {
                     switch (display)
                     {
                         case "collection":
-                            model.Toys = _toyRepository.GetMyToys();
+                            Toys = _toyRepository.GetMyToys();
                             break;
                         case "wanted":
-                            model.Toys = _toyRepository.GetWantedToys();
+                            Toys = _toyRepository.GetWantedToys();
                             break;
                         default:
-                            model.Toys = _toyRepository.GetAllToys();
+                            Toys = _toyRepository.GetAllToys();
                             break;
                     }
                 }
@@ -75,28 +83,42 @@ namespace Collection.Controllers
 
             if (filterBy != null && filterBy != 0)
             {
-                model.Toys = model.Toys.Where(x => x.Category.Id == filterBy).ToList();
+                Toys = Toys.Where(x => x.Category.Id == filterBy);
+
+                if (HttpContext.Request.Method == "POST")
+                {
+                    page = 1;
+                }
             }
 
             if (!String.IsNullOrEmpty(sortBy))
             {
                 FormHelper.SortBy sort = (FormHelper.SortBy)Enum.Parse(typeof(FormHelper.SortBy), sortBy);
-
                 switch (sort)
                 {
                     default:
                     case FormHelper.SortBy.Name:
-                        model.Toys = model.Toys.OrderBy(s => s.Name).ToList();
+                        Toys = Toys.OrderBy(s => s.Name);
                         break;
                     case FormHelper.SortBy.Producer:
-                        model.Toys = model.Toys.OrderBy(s => s.Producer.Name).ToList();
+                        Toys = Toys.OrderBy(s => s.Producer.Name);
                         break;
                     case FormHelper.SortBy.Category:
-                        model.Toys = model.Toys.OrderBy(s => s.Category.Name).ToList();
+                        Toys = Toys.OrderBy(s => s.Category.Name);
                         break;
-
+                }
+                if (HttpContext.Request.Method == "POST")
+                {
+                    page = 1;
                 }
             }
+
+            ViewData["Page"] = page;
+            ViewData["TotalItems"] = Toys.Count();
+
+            page = (page - 1) ?? 0;
+
+            model.Toys = new PaginatedList<Toy>(Toys, page.Value);
 
             return View(model);
         }

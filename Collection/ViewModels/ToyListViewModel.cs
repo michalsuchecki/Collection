@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Collection.Infrastructure;
 
 namespace Collection.ViewModels
 {
@@ -13,6 +14,6 @@ namespace Collection.ViewModels
         public int Category { get; set; }
         public IEnumerable<SelectListItem> Sort { get; set; }
         public IEnumerable<SelectListItem> Categories { get; set; }
-        public IEnumerable<Toy> Toys { get; set; }
+        public PaginatedList<Toy> Toys { get; set; }
     }
 }
