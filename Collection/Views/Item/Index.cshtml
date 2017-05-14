@@ -63,7 +63,7 @@
                 <ul class="pagination">
                     <li><a asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@(page - 1)" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" aria-label="Previous" class="@prevDisabled"><span aria-hidden="true">&laquo;</span></a></li>
 
-                    <li><span>Page @(page) from @(Model.Toys.TotalPages())</span></li>
+                    <li><span>Page @(page) of @(Model.Toys.TotalPages())</span></li>
 
                     <li><a asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@(page + 1)" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" aria-label="Next" class="@nextDisabled"><span aria-hidden="true">&raquo;</span> </a></li>
                 </ul>
