@@ -2,7 +2,8 @@
     padding-top: 70px;
     background-color: #edeef0;
     /*background-color: #171717;*/
-    font-family: 'Roboto', Helvetica, sans-serif;
+    /*font-family: 'Roboto', Helvetica, sans-serif;*/
+    font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
 
@@ -14,6 +15,13 @@ nav {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index:1060 !important;
+}
+
+ul.nav{
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:11px;
+    text-transform:uppercase;
 }
 
 .card_box {

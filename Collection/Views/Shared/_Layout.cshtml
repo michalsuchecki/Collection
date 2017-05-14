@@ -4,8 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>@ViewBag.Title</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-    @*<link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">*@
+    @*<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">*@
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/lightbox.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
@@ -22,7 +21,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Haru Collection</a>
+                        <a class="navbar-brand" href="#">Collection</a>
                     </div>
                     <div class="col-md-9">
                         <ul class="nav navbar-nav">
@@ -32,10 +31,12 @@
                             <li class=""><a asp-controller="home" asp-action="about">About me</a></li>
                         </ul>
                         <form class="navbar-form navbar-right" method="get" action="~/item/index/">
-                            <div class="form-group">
+                            <div class="input-group">
                                 <input class="form-control" name="search" placeholder="Search for..." />
+                                <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-success">Search</button>
+                                </span>
                             </div>
-                            <button type="submit" class="btn btn-success">SEARCH</button>
                         </form>
                     </div>
 
