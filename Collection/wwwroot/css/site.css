@@ -339,3 +339,45 @@ td{
 .form-inline{
     margin:8px 0;
 }
+.bio{
+    margin-bottom:20px;
+    margin-top:5px;
+}
+
+/* contact form */
+
+.contact-form {
+    margin-top: 15px;
+    margin-bottom:30px;
+}
+
+.contact-form .textarea {
+    min-height: 220px;
+    resize: none;
+}
+
+.contact-form .form-control {
+    box-shadow: none;
+    border-color: #eee;
+    height: 49px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: rgba(0, 0, 0, 0.31);
+}
+
+.contact-form .form-control-feedback {
+    line-height: 50px;
+}
+
+.main-btn {
+    background: #00a1ff;
+    border-color: rgba(0, 0, 0, 0.31);
+    color: #fff;
+}
+
+.main-btn:hover {
+    background: #007bff;
+    color: #fff;
+}
