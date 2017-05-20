@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <AssemblyName>Collection.Infrastructure</AssemblyName>
+    <PackageId>Collection.Infrastructure</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Collection.Core/Collection.Core.csproj" />
+  </ItemGroup>
+
+</Project>
