@@ -170,6 +170,11 @@
     <Content Include="wwwroot\lib\jquery-validation\src\localization\methods_pt.js" />
     <Content Include="wwwroot\lib\jquery-validation\validation.jquery.json" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Collection.Core/Collection.Core.csproj" />
+  </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="Google.Apis.Auth" Version="1.26.2" />
     <PackageReference Include="ImageSharp" Version="1.0.0-alpha5-00047" />
