@@ -386,3 +386,13 @@ td{
     background: #007bff;
     color: #fff;
 }
+
+/**/
+
+.navbar-text{
+    margin-left: 0;
+}
+
+.login{
+    padding-right:0;
+}

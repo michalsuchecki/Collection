@@ -8,7 +8,6 @@
             </th>
             <th>Name</th>
             <th>Index</th>
-            <th>In Collection</th>
             <th>Producer</th>
             <th>Category</th>
             @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
@@ -47,19 +46,6 @@
                         @Html.DisplayFor(modelItem => item.Index)
                     </td>
                     <td>
-                        @{
-                            if (item.InCollection)
-                            {
-                                <p>Yes</p>
-                            }
-                            else
-                            {
-                                <p>No</p>
-
-                            }
-                        }
-                    </td>
-                    <td>
                         @Html.DisplayFor(modelItem => item.Producer.Name)
                     </td>
                     <td>
@@ -69,8 +55,9 @@
                     @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
                     {
                         <td>
-                            <p><a asp-action="Edit" asp-route-id="@item.ToyID">Edit</a></p>
-                            <p><a asp-action="Delete" asp-route-id="@item.ToyID">Delete</a></p>
+                            <a asp-action="Edit" asp-route-id="@item.ToyID" class="btn btn-primary col-md-12">Edit</a>
+                            <hr />
+                            <a asp-action="Delete" asp-route-id="@item.ToyID" class="btn btn-danger col-md-12">Delete</a>
                         </td>
                     }
                 </tr>

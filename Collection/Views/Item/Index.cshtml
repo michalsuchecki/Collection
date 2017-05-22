@@ -10,22 +10,23 @@
 }
 
 <div class="row">
-    <div class="col-md-3">
-        <p class="navbar-text">Total items: @ViewData["TotalItems"] 
+
+    <div class="col-md-2">
+        <p class="navbar-text">Items: @ViewData["TotalItems"]</p>
         @{
             if (await AuthorizationService.AuthorizeAsync(User, "modify"))
             {
-                <a asp-action="Create" class="btn btn-danger">Add New</a>
+                <a asp-action="Create" class="btn btn-danger navbar-btn pull-right">Add New</a>
             }
         }
-        
-        </p>
     </div>
-    <div class="col-md-4 text-right">
+
+    <div class="col-md-2 text-right">
         <span>Show as: </span>
         <a asp-action="index" asp-controller="item" asp-route-showAs="list" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@ViewData["page"]" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-list"></span></a>
         <a asp-action="index" asp-controller="item" asp-route-showAs="gallery" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@ViewData["page"]" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-picture"></span></a>
     </div>
+
     <div class="col-md-5 text-right">
         <form asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@ViewData["page"]" method="post" class="form-inline">
             <div class="form-group">
@@ -38,6 +39,24 @@
             </div>
             <button type="submit" class="btn btn-info">Filter</button>
         </form>
+    </div>
+
+    <div class="col-md-3 pull-right">
+        <form class="navbar-form navbar-right" method="get" action="~/item/index/">
+            <div class="input-group">
+                <input class="form-control" name="search" placeholder="Search for..." />
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success">Search</button>
+                </span>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+
     </div>
 </div>
 
