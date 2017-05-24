@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-namespace Collection.Models
+namespace Collection.Core.Domain
 {
     public class User : IdentityUser
     {

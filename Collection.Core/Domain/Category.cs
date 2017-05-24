@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Collection.Core
+namespace Collection.Core.Domain
 {
     public class Category
     {
-        public int Id { get; set; }
-        [Required]
+        public int CategoryId { get; set; }
         public string Name { get; set; }
     }
 }
