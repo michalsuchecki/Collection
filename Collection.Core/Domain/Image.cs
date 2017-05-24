@@ -1,13 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Collection.Core
+namespace Collection.Core.Domain
 {
-    public class Gallery
+    public class Image
     {
         public int GalleryId { get; set; }
-        [Required]
         public string FileName { get; set; }
-        [Required]
-        public Toy Toy { get; set; }
+        public Item Item { get; set; }
     }
 }
