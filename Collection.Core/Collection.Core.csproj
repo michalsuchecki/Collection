@@ -6,7 +6,4 @@
     <PackageId>Collection.Core</PackageId>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="1.1.1" />
-  </ItemGroup>
 </Project>
