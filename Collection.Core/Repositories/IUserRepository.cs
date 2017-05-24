@@ -7,11 +7,11 @@ namespace Collection.Core.Repositories
 {
     public interface IUserRepository : IRepository
     {
-        Task<User> GetUserAsync(Guid id);
+        Task<User> GetUserAsync(int id);
         Task<User> GetUserAsync(string email);
         Task<IEnumerable<User>> GetAllAsync();
         Task AddAsync(User user);
         Task UpdateAsync(User user);
-        Task RemoveAsync(Guid id);
+        Task RemoveAsync(int id);
     }
 }
