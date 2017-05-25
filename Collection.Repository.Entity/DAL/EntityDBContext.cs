@@ -1,11 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Collection.Core.Domain;
 using System.Linq;
-using System;
 
-namespace Collection.Infrastructure.DAL
+namespace Collection.Repository.Entity.DAL
 {
-    class EntityDBContext : DbContext, IDBContext
+    public class EntityDBContext : DbContext, IDBContext
     {
         private readonly string _connectionString;
 
@@ -26,40 +25,12 @@ namespace Collection.Infrastructure.DAL
             base.OnConfiguring(builder);
         }
 
-        public IQueryable<User> GetUsers()
-        {
-            return Users;
-        }
-
-        public IQueryable<Producer> GetProducers()
-        {
-            return Producers;
-        }
-
-        public IQueryable<Category> GetCategories()
-        {
-            return Categories;
-        }
-
-        public IQueryable<Image> GetImages()
-        {
-            return Images;
-        }
-
-        public IQueryable<Item> GetItems()
-        {
-            return Items;
-        }
-
-        public IQueryable<Post> GetPosts()
-        {
-            return Posts;
-        }
-
-        //public void UpdateEntity<T>(T entity) where T : class
-        //{
-        //    Update(entity);
-        //}
+        public IQueryable<User> GetUsers() => Users;
+        public IQueryable<Producer> GetProducers() => Producers;
+        public IQueryable<Category> GetCategories() => Categories;
+        public IQueryable<Image> GetImages() => Images;
+        public IQueryable<Item> GetItems() => Items;
+        public IQueryable<Post> GetPosts() => Posts;
 
         protected DbSet<Category> Categories { get; set; }
         protected DbSet<Item> Items { get; set; }
