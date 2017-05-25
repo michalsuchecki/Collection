@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Collection.Infrastructure.Migrations
+namespace Collection.Repository.Entity.Migrations
 {
     public partial class database_init : Migration
     {

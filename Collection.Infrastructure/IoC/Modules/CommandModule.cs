@@ -18,7 +18,7 @@ namespace Collection.Infrastructure.IoC.Modules
 
             build.RegisterType<CommandDispatcher>()
                 .As<ICommandDispatcher>()
-                .InstancePerMatchingLifetimeScope();
+                .InstancePerLifetimeScope();
         }
     }
 }
