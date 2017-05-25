@@ -1,7 +1,7 @@
 ﻿using Collection.Core.Domain;
 using System.Linq;
 
-namespace Collection.Infrastructure.DAL
+namespace Collection.Repository.Entity.DAL
 {
     public interface IDBContext
     {
@@ -11,7 +11,5 @@ namespace Collection.Infrastructure.DAL
         IQueryable<Image> GetImages();
         IQueryable<Item> GetItems();
         IQueryable<Post> GetPosts();
-
-        //void UpdateEntity<T>(T entity) where T : class;
     }
 }

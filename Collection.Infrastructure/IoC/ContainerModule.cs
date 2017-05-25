@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Collection.Infrastructure.IoC.Modules;
+using Collection.Infrastructure.IoC.Modules.Repositories;
 using Autofac;
+using Collection.Infrastructure.Mappers;
 
 namespace Collection.Infrastructure.IoC
 {
@@ -15,9 +17,14 @@ namespace Collection.Infrastructure.IoC
 
         protected override void Load(ContainerBuilder builder)
         {
+            // Register Instance
+            builder.RegisterInstance(AutoMapperConfig.Initialize());
+
             // Register Modules
             builder.RegisterModule<CommandModule>();
             builder.RegisterModule<ServiceModule>();
+
+            builder.RegisterModule<EntityRepositoryModule>();
 
         }
     }

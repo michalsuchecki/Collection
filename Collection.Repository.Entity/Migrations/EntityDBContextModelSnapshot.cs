@@ -3,15 +3,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Collection.Infrastructure.DAL;
+using Collection.Repository.Entity.DAL;
 
-namespace Collection.Infrastructure.Migrations
+namespace Collection.Repository.Entity.Migrations
 {
     [DbContext(typeof(EntityDBContext))]
-    [Migration("20170524201454_item_fix")]
-    partial class item_fix
+    partial class EntityDBContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "1.1.1")

@@ -3,13 +3,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Collection.Infrastructure.DAL;
+using Collection.Repository.Entity.DAL;
 
-namespace Collection.Infrastructure.Migrations
+namespace Collection.Repository.Entity.Migrations
 {
     [DbContext(typeof(EntityDBContext))]
-    [Migration("20170524200211_database_init")]
-    partial class database_init
+    [Migration("20170524201454_item_fix")]
+    partial class item_fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,7 +50,7 @@ namespace Collection.Infrastructure.Migrations
                     b.Property<int>("ItemId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("CategoryProducerId");
+                    b.Property<int?>("CategoryId");
 
                     b.Property<bool>("InCollection");
 
@@ -62,7 +62,7 @@ namespace Collection.Infrastructure.Migrations
 
                     b.HasKey("ItemId");
 
-                    b.HasIndex("CategoryProducerId");
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("ProducerId");
 
@@ -94,15 +94,11 @@ namespace Collection.Infrastructure.Migrations
                     b.Property<int>("ProducerId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int?>("ItemId");
-
                     b.Property<string>("Name");
 
                     b.Property<string>("URL");
 
                     b.HasKey("ProducerId");
-
-                    b.HasIndex("ItemId");
 
                     b.ToTable("Producers");
                 });
@@ -128,15 +124,15 @@ namespace Collection.Infrastructure.Migrations
             modelBuilder.Entity("Collection.Core.Domain.Image", b =>
                 {
                     b.HasOne("Collection.Core.Domain.Item", "Item")
-                        .WithMany()
+                        .WithMany("Images")
                         .HasForeignKey("ItemId");
                 });
 
             modelBuilder.Entity("Collection.Core.Domain.Item", b =>
                 {
-                    b.HasOne("Collection.Core.Domain.Producer", "Category")
+                    b.HasOne("Collection.Core.Domain.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryProducerId");
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("Collection.Core.Domain.Producer", "Producer")
                         .WithMany()
@@ -148,13 +144,6 @@ namespace Collection.Infrastructure.Migrations
                     b.HasOne("Collection.Core.Domain.User", "Author")
                         .WithMany()
                         .HasForeignKey("AuthorUserId");
-                });
-
-            modelBuilder.Entity("Collection.Core.Domain.Producer", b =>
-                {
-                    b.HasOne("Collection.Core.Domain.Item")
-                        .WithMany("Gallery")
-                        .HasForeignKey("ItemId");
                 });
         }
     }

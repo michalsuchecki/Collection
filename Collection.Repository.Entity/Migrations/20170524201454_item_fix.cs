@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Collection.Infrastructure.Migrations
+namespace Collection.Repository.Entity.Migrations
 {
     public partial class item_fix : Migration
     {
