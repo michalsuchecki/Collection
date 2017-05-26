@@ -18,6 +18,13 @@ namespace Collection.Api.Controllers
             _itemService = itemService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var items = await _itemService.GetAllAsync();
+            return Json(items);
+        }
+
         [HttpGet("{id?}")]
         public async Task<IActionResult> Get(int? id)
         {
