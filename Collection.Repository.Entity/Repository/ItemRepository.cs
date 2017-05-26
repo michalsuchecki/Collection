@@ -23,9 +23,13 @@ namespace ollection.Repository.Entity.Repositories
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Item>> GetAllAsync()
+        public async Task<IEnumerable<Item>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var query = await _context.GetItems()
+                .Include(x => x.Category)
+                .Include(x => x.Producer)
+                .Include(x => x.Images).ToListAsync();
+            return query;
         }
 
         public async Task<Item> GetItemAsync(int id)

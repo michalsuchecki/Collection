@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Collection.Infrastructure.DTO;
 using Collection.Core.Repositories;
-using AutoMapper;
 using Collection.Core.Domain;
+using AutoMapper;
+
 
 namespace Collection.Infrastructure.Services
 {
@@ -19,6 +18,13 @@ namespace Collection.Infrastructure.Services
             _itemRepository = itemRepository;
             _mapper = mapper;
         }
+
+        public async Task<IEnumerable<ItemDto>> GetAllAsync()
+        {
+            var items = await _itemRepository.GetAllAsync();
+            return _mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(items);
+        }
+
         public async Task<ItemDto> GetAsync(int id)
         {
             var item = await _itemRepository.GetItemAsync(id);
