@@ -1,0 +1,29 @@
+﻿@using Collection.Helpers;
+
+@model Collection.Models.Post
+
+@{
+    <div class="col-md-12">
+        <header>
+            <div class="row">
+                <h3 class="col-md-11 post-title">@Model.Topic</h3>
+
+@if (await AuthorizationService.AuthorizeAsync(User, "modify"))
+{
+                <form asp-controller="blog" asp-action="removepost" method="post">
+                    <input asp-for="Id" type="hidden" />
+                    <input name="userId" id="userId" type="hidden" value="@User.GetUserId()"/>
+                    <button class="col-md-1 btn btn-danger delete-btn-post">Delete</button>
+                </form>
+}
+            </div>
+            <div class="row">
+                <p><small>@Model.PublishDate.ToString("dd MMMM yyyy") by @Model.Author.UserName</small></p>
+                <hr />
+            </div>
+        </header>
+        <section>
+            <p>@Model.Message</p>
+        </section>
+    </div>
+}

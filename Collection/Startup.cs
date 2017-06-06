@@ -12,9 +12,17 @@ using Microsoft.AspNetCore.Authorization;
 
 using Collection.Repositories;
 using Collection.Models;
+using Collection.Services;
+
+
 
 namespace Collection
 {
+    public class Usr
+    {
+
+    }
+
     public class Startup
     {
         private string _contentRootPath;
@@ -78,6 +86,12 @@ namespace Collection
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IProducerRepository, ProducerRepository>();
             services.AddTransient<IGalleryRepository, GalleryRepository>();
+            services.AddTransient<IPostRepository, PostRepository>();
+
+            services.AddScoped<IMailService, MailService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IBlogService, BlogService>();
+            
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory log, ToyContext context)
@@ -97,7 +111,7 @@ namespace Collection
             app.UseMvc(r =>
                 r.MapRoute(
                 name: "default",
-                template: "{controller=Item}/{action=Index}/{id?}"
+                template: "{controller}/{action}/{id?}"
                 ));
 
             ToyInitializer.Initialize(context);

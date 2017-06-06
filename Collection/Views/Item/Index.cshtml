@@ -7,86 +7,89 @@
     var prevDisabled = !Model.Toys.HasPreviousPage() ? "hidden" : "";
     var nextDisabled = !Model.Toys.HasNextPage() ? "hidden" : "";
     var page = ((int?)ViewData["Page"]) ?? 1;
+
+    //ViewBag.Section = "Collection";
 }
-
 <div class="row">
-
-    <div class="col-md-2">
-        <p class="navbar-text">Items: @ViewData["TotalItems"]</p>
-        @{
-            if (await AuthorizationService.AuthorizeAsync(User, "modify"))
-            {
-                <a asp-action="Create" class="btn btn-danger navbar-btn pull-right">Add New</a>
-            }
-        }
-    </div>
-
-    <div class="col-md-2 text-right">
-        <span>Show as: </span>
-        <a asp-action="index" asp-controller="item" asp-route-showAs="list" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@ViewData["page"]" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-list"></span></a>
-        <a asp-action="index" asp-controller="item" asp-route-showAs="gallery" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@ViewData["page"]" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-picture"></span></a>
-    </div>
-
-    <div class="col-md-5 text-right">
-        <form asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@ViewData["page"]" method="post" class="form-inline">
-            <div class="form-group">
-                <label class="">Show:</label>
-                <select name="filterBy" asp-for="@ViewData["filterBy"]" asp-items="@Model.Categories" class="form-control"></select>
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-2">
+                <p class="navbar-text">Items: @ViewData["TotalItems"]</p>
+                @{
+                    if (await AuthorizationService.AuthorizeAsync(User, "modify"))
+                    {
+                        <a asp-action="Create" class="btn btn-danger navbar-btn pull-right">Add New</a>
+                    }
+                }
             </div>
-            <div class="form-group">
-                <label>Sort by:</label>
-                <select name="sortBy" asp-for="@ViewData["sortBy"]" asp-items="@Model.Sort" class="form-control"></select>
+
+            <div class="col-md-2 text-right">
+                <span>Show as: </span>
+                <a asp-action="index" asp-controller="item" asp-route-showAs="list" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@ViewData["page"]" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-list"></span></a>
+                <a asp-action="index" asp-controller="item" asp-route-showAs="gallery" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@ViewData["page"]" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" class="btn btn-default navbar-btn"><span class="glyphicon glyphicon-picture"></span></a>
             </div>
-            <button type="submit" class="btn btn-info">Filter</button>
-        </form>
-    </div>
 
-    <div class="col-md-3 pull-right">
-        <form class="navbar-form navbar-right" method="get" action="~/item/index/">
-            <div class="input-group">
-                <input class="form-control" name="search" placeholder="Search for..." />
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-success">Search</button>
-                </span>
+            <div class="col-md-5 text-right">
+                <form asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@ViewData["page"]" method="post" class="form-inline">
+                    <div class="form-group">
+                        <label class="">Show:</label>
+                        <select name="filterBy" asp-for="@ViewData["filterBy"]" asp-items="@Model.Categories" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Sort by:</label>
+                        <select name="sortBy" asp-for="@ViewData["sortBy"]" asp-items="@Model.Sort" class="form-control"></select>
+                    </div>
+                    <button type="submit" class="btn btn-info">Filter</button>
+                </form>
             </div>
-        </form>
-    </div>
 
-</div>
-
-<div class="row">
-    <div class="col-md-2">
-
-    </div>
-</div>
-
-<hr />
-
-<div class="row">
-    @{
-        if ((string)ViewData["showAs"] == "gallery")
-        {
-            await Html.RenderPartialAsync("_ToyGalleryPartial", Model.Toys);
-        }
-        else
-        {
-            await Html.RenderPartialAsync("_ToyListPartial", Model.Toys);
-        }
-    }
-</div>
-
-<div class="row">
-    @{
-        <div class="col-md-12 text-center">
-            <nav class="">
-                <ul class="pagination">
-                    <li><a asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@(page - 1)" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" aria-label="Previous" class="@prevDisabled"><span aria-hidden="true">&laquo;</span></a></li>
-
-                    <li><span>Page @(page) of @(Model.Toys.TotalPages())</span></li>
-
-                    <li><a asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@(page + 1)" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" aria-label="Next" class="@nextDisabled"><span aria-hidden="true">&raquo;</span> </a></li>
-                </ul>
-            </nav>
+            <div class="col-md-3 pull-right">
+                <form class="navbar-form navbar-right" method="get" action="~/item/index/">
+                    <div class="input-group">
+                        <input class="form-control" name="search" placeholder="Search for..." />
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-success">Search</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
         </div>
-    }
+
+        <div class="row">
+            <div class="col-md-2">
+
+            </div>
+        </div>
+
+        <hr />
+
+        <div class="row">
+            @{
+                if ((string)ViewData["showAs"] == "gallery")
+                {
+                    await Html.RenderPartialAsync("_ToyGalleryPartial", Model.Toys);
+                }
+                else
+                {
+                    await Html.RenderPartialAsync("_ToyListPartial", Model.Toys);
+                }
+            }
+        </div>
+
+        <div class="row">
+            @{
+                <div class="col-md-12 text-center strech_full  bg-collection">
+                    <div class="">
+                        <ul class="pagination">
+                            <li><a asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@(page - 1)" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" aria-label="Previous" class="@prevDisabled"><span aria-hidden="true">&laquo;</span></a></li>
+
+                            <li><span>Page @(page) of @(Model.Toys.TotalPages())</span></li>
+
+                            <li><a asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@(page + 1)" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" aria-label="Next" class="@nextDisabled"><span aria-hidden="true">&raquo;</span> </a></li>
+                        </ul>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>

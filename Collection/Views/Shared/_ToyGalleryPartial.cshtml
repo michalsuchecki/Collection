@@ -3,14 +3,14 @@
 @{
     foreach (var item in Model)
     {
-    <div class="card_box card_shadow">
+    <div class="card_box @*card_shadow*@">
         <div class="card_body">
             @{
                 var name = item.Gallery.FirstOrDefault()?.FileName;
                 var src = !String.IsNullOrEmpty(name) ? $"/img/toys/thumbs/{name}.jpg" : "/img/no_img.jpg";
                 <img src=@src />
             }
-            <div class="info"><p>@item.Name</p></div>
+            
             @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
             {
                 <div class="control">
@@ -19,6 +19,7 @@
                 </div>
             }
         </div>
+        <div class="info"><p>@item.Name</p></div>
     </div>
     }
 }

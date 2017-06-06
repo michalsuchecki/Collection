@@ -6,25 +6,24 @@ using System.Threading.Tasks;
 using Collection.ViewModels;
 using Collection.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Collection.Services;
 
 namespace Collection.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
         private readonly IOptions<IdentityCookieOptions> _identityCookieOptions;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        //private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly IUserService _userService;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager,
-            RoleManager<IdentityRole> roleManager, IOptions<IdentityCookieOptions> identityCookieOptions
-            )
+        public AccountController(IUserService userService,
+                                 IOptions<IdentityCookieOptions> identityCookieOptions)
+                                 //RoleManager<IdentityRole> roleManager)
         {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _roleManager = roleManager;
+            //_roleManager = roleManager;
             _identityCookieOptions = identityCookieOptions;
+            _userService = userService;
         }
 
         [HttpGet]
@@ -44,18 +43,15 @@ namespace Collection.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-                if(result.Succeeded)
-                {
-                    return RedirectToAction("index", "item");
-                }
+                await _userService.LoginAsync(model.Email, model.Password);
+                return RedirectToAction("index", "item");
             }
             return View(model);
         }
 
         public async Task<IActionResult> Logout()
         {
-            await _signInManager.SignOutAsync();
+            await _userService.LogoutAsync();
             return RedirectToAction("Index","item");
         }
 
@@ -73,62 +69,50 @@ namespace Collection.Controllers
         {
             if(ModelState.IsValid)
             {
-                var user = new User()
-                {
-                    UserName = model.Email,
-                    Email = model.Email
-                };
-
-                var result = await _userManager.CreateAsync(user, model.Password);
-
-                if(result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("index", "item");
-                }
-
+                await _userService.RegisterAsync(model.Username, model.Password, model.Email);
+                return RedirectToAction("index", "blog");
             }
             return View(model);
         }
 
-        [HttpGet]
-        [Authorize(Roles="Administrator")]
-        public async Task<IActionResult> AddRole(string roleName)
-        {
-            if (!string.IsNullOrEmpty(roleName))
-            {
-                var role = new IdentityRole()
-                {
-                    Name = roleName
-                };
+        //[HttpGet]
+        //[Authorize(Roles="Administrator")]
+        //public async Task<IActionResult> AddRole(string roleName)
+        //{
+        //    if (!string.IsNullOrEmpty(roleName))
+        //    {
+        //        var role = new IdentityRole()
+        //        {
+        //            Name = roleName
+        //        };
 
-                var result = await _roleManager.CreateAsync(role);
-                if(result.Succeeded)
-                {
+        //        var result = await _roleManager.CreateAsync(role);
+        //        if(result.Succeeded)
+        //        {
 
-                }
-            }
+        //        }
+        //    }
                 
-            return RedirectToAction("index", "item");
-        }
+        //    return RedirectToAction("index", "item");
+        //}
 
-        [HttpGet]
-        [Authorize(Roles = "Administrator")]
-        public async Task<IActionResult> AddRoleToAccount(string roleName)
-        {
-            if (!string.IsNullOrEmpty(roleName))
-            {
-                var username = User.Identity.Name;
+        //[HttpGet]
+        //[Authorize(Roles = "Administrator")]
+        //public async Task<IActionResult> AddRoleToAccount(string roleName)
+        //{
+            //if (!string.IsNullOrEmpty(roleName))
+            //{
+            //    var username = User.Identity.Name;
 
-                var model = await _userManager.FindByNameAsync(username);
+            //    var model = await _userManager.FindByNameAsync(username);
 
-                if (model != null)
-                {
-                    await _userManager.AddToRoleAsync(model, roleName);
-                }
-            }
+            //    if (model != null)
+            //    {
+            //        await _userManager.AddToRoleAsync(model, roleName);
+            //    }
+            //}
 
-            return RedirectToAction("index", "item");
-        }
+            //return RedirectToAction("index", "item");
+        //}
     }
 }

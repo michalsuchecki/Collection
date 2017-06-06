@@ -1,0 +1,59 @@
+﻿@using System.Security.Claims;
+@using Collection.Helpers;
+
+@model IEnumerable<Collection.Models.Post>
+
+@{ 
+    ViewBag.Section = "Blog";
+}
+
+@if (await AuthorizationService.AuthorizeAsync(User, "modify"))
+{
+    <div class="row bottom_margin">
+        <div class="col-md-12">
+            <button class="btn btn-primary navbar-btn" type="button" data-toggle="collapse" data-target="#formCollapse">Write post...</button>
+        </div>
+    </div>
+    <div class="row collapse bottom_margin" id="formCollapse">
+        <header class="text-center">
+            <h3 class="text-uppercase"><strong>Add New Post</strong></h3>
+        </header>
+        <div class="col-md-12">
+            <form asp-action="AddPost" asp-controller="Blog" method="post">
+                <div class="form-group">
+                    <input name="id" id="id" class="hidden col-md-12" value="@User.GetUserId()" />
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-1">Title</label>
+                    <div class="col-md-11"><input name="title" id="title" class="form-control col-md-10" /></div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-1">Message</label>
+                    <div class="col-md-11">
+                        <textarea name="message" id="message" rows="10" class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-2 col-md-offset-10">
+                        <button type="submit" class="form-control btn btn-default">Post</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            
+            @{ 
+                foreach (var post in Model)
+                {
+                    await Html.RenderPartialAsync("_Post", post);
+                }
+            }
+        </div>
+    </div>
+</div>
