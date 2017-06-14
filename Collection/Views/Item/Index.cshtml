@@ -7,14 +7,17 @@
     var prevDisabled = !Model.Toys.HasPreviousPage() ? "hidden" : "";
     var nextDisabled = !Model.Toys.HasNextPage() ? "hidden" : "";
     var page = ((int?)ViewData["Page"]) ?? 1;
-
-    //ViewBag.Section = "Collection";
 }
+
+@section Styles {
+    <link href="~/css/card.css" rel="stylesheet" />
+}
+
 <div class="row">
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-2">
-                <p class="navbar-text">Items: @ViewData["TotalItems"]</p>
+                <p class="filterbar-text pull-left">Items: @ViewData["TotalItems"]</p>
                 @{
                     if (await AuthorizationService.AuthorizeAsync(User, "modify"))
                     {

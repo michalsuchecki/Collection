@@ -4,9 +4,11 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet"> 
     <link href="~/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/css/lightbox.min.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
 </head>
 <body>
     <header class="container-fluid">
@@ -54,9 +56,9 @@
         </div>
     </div>
 
-    <div class="container">
+    <main class="container">
         @RenderBody()
-    </div>
+    </main>
 
     @RenderSection("Scripts", required: false)
     <script src="~/js/jquery.min.js"></script>

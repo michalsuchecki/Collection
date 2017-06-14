@@ -1,5 +1,13 @@
 @model Collection.ViewModels.LoginViewModel
 
+@{ 
+    ViewBag.Section = "Login";
+}
+
+@section Styles {
+<link href="~/css/modal.css" rel="stylesheet" />
+}
+
 <div class="row">
     <div class="col-md-12">
         <div class="modal modal-login" id="login-modal" role="dialog">
