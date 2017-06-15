@@ -1,7 +1,9 @@
 ﻿using Collection.Infrastructure.Commands;
 using Collection.Infrastructure.Services;
+using Collection.Infrastructure.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+
 
 namespace Collection.Api.Controllers
 {
@@ -19,9 +21,10 @@ namespace Collection.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery]ItemFilter filter)
         {
-            var items = await _itemService.GetAllAsync();
+            var items = await _itemService.GetFilteredAsync(filter);
+            //var items = await _itemService.GetAllAsync();
             return Json(items);
         }
 

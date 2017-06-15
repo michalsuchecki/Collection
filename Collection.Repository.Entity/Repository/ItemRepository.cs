@@ -25,11 +25,18 @@ namespace ollection.Repository.Entity.Repositories
 
         public async Task<IEnumerable<Item>> GetAllAsync()
         {
-            var query = await _context.GetItems()
+            return await _context.GetItems()
                 .Include(x => x.Category)
                 .Include(x => x.Producer)
                 .Include(x => x.Images).ToListAsync();
-            return query;
+        }
+
+        public IQueryable<Item> GetAll()
+        {
+            return _context.GetItems()
+                .Include(x => x.Category)
+                .Include(x => x.Producer)
+                .Include(x => x.Images);
         }
 
         public async Task<Item> GetItemAsync(int id)
