@@ -33,7 +33,6 @@ namespace Collection.Infrastructure.Services
             var item = await _itemRepository.GetItemAsync(id);
             return _mapper.Map<Item,ItemDto>(item);
         }
-
         public async Task<IEnumerable<ItemDto>> GetFilteredAsync(ItemFilter filter)
         {
             var items = _itemRepository.GetAll();
@@ -70,7 +69,7 @@ namespace Collection.Infrastructure.Services
 
             items = items.Skip((filter.Page - 1) * 12).Take(12);
 
-var result = await items.ToListAsync();
+            var result = await items.ToListAsync();
 
             return _mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(result);
         }
