@@ -6,8 +6,6 @@
 
 @{
     ViewData["Title"] = "Index";
-    var prevDisabled = !Model.Toys.HasPreviousPage() ? "hidden" : "";
-    var nextDisabled = !Model.Toys.HasNextPage() ? "hidden" : "";
     var page = ((int?)ViewData["Page"]) ?? 1;
 }
 
@@ -15,9 +13,9 @@
     <link href="~/css/card.css" rel="stylesheet" />
 }
 
-<div class="row">
+<div class="row ">
     <div class="col-md-12">
-        <div class="row">
+        <div class="row filter-container">
             <div class="col-md-2">
                 <p class="filterbar-text pull-left">Items: @ViewData["TotalItems"]</p>
                 @{
@@ -59,16 +57,7 @@
                 </form>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-2">
-
-            </div>
-        </div>
-
-        <hr />
-
-        <div class="row">
+        <div class="row main-container">
             @{
                 if ((string)ViewData["showAs"] == "gallery")
                 {
@@ -80,13 +69,10 @@
                 }
             }
         </div>
-
         <div class="row">
-            @{
                 <div class="col-md-12 text-center strech_full bg-collection">
                     <pagination pg-current-page="@page" pg-total-pages="@(Model.Toys.TotalPages())" asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@page" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]"></pagination>
                 </div>
-            }
         </div>
     </div>
 </div>

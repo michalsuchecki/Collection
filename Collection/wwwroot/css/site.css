@@ -4,16 +4,10 @@
 
 body {
     padding-top: 51px;
-    /*font-family: Arial, Helvetica, sans-serif;*/
     font-family: "Open Sans",Arial,sans-serif;
     font-size: 14px;
     line-height: 26px;
     color: rgb(96,101,105);
-}
-
-main.container {
-    /*background-color: rgb(96,101,105);*/
-    /*rgba(56,​ 66,​ 75,​ 0.97);*/
 }
 
 textarea {
@@ -24,8 +18,18 @@ a, a:hover {
     text-decoration: none;
 }
 
+.main-container {
+    padding-top: 15px;
+    background-color: rgb(245,245,245);
+}
+
 .btn, .form-control {
     border-radius: 0;
+}
+
+.content-space{
+    margin-top:15px;
+    margin-bottom:15px;
 }
 
 nav {
@@ -152,6 +156,13 @@ td {
 
 /* filtering bar */
 
+.filter-container {
+    background-color: rgb(225,225,225);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: bold;
+}
+
 .showAs a {
     line-height: 93px;
 }
@@ -238,14 +249,12 @@ td {
 
 .post-title {
     color: #262626;
-    /*text-transform:capitalize;*/
 }
 
 .strech_full {
     position: relative;
     left: 0;
     right: 0;
-    margin-bottom: 15px;
 }
 
 .bg-collection {
@@ -262,7 +271,7 @@ td {
     padding-left: 15px;
 }
 
-/* pagination test */
+/* pagination */
 
 .pg-btn {
     display: inline-block;
@@ -283,10 +292,10 @@ td {
 }
 
 a.pg-btn:hover {
-        text-decoration: none;
-        color: #fff;
-        background-color: rgba(255, 255, 255, 0.3);
-    }
+    text-decoration: none;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+}
 
 .pg-active {
     background-color: rgba(255, 255, 255, 0.3);

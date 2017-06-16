@@ -45,16 +45,23 @@ namespace Collection.Helpers.Tags
             uri += "?" + String.Join("&", uriParams);
             uri += "&page=";
 
-
-
             if (TotalPages <= 0)
-                throw new ArgumentException($"'TotalPages' must be greater then 0. Current value is {TotalPages}.");
+                TotalPages = 1;
 
             if (CurrentPage <= 0)
-                throw new ArgumentException($"'CurrentPage' must be greater then 0. Current value is {CurrentPage}.");
+                CurrentPage = 1;
 
             if (CurrentPage > TotalPages)
-                throw new ArgumentException($"'CurrentPage' must be within the range of 1 and {TotalPages}. Current value is {CurrentPage}.");
+                CurrentPage = TotalPages;
+
+            //if (TotalPages <= 0)
+            //    throw new ArgumentException($"'TotalPages' must be greater then 0. Current value is {TotalPages}.");
+
+            //if (CurrentPage <= 0)
+            //    throw new ArgumentException($"'CurrentPage' must be greater then 0. Current value is {CurrentPage}.");
+
+            //if (CurrentPage > TotalPages)
+            //    throw new ArgumentException($"'CurrentPage' must be within the range of 1 and {TotalPages}. Current value is {CurrentPage}.");
 
             output.TagName = "div";
 
@@ -94,15 +101,17 @@ namespace Collection.Helpers.Tags
                 output.Content.AppendHtml(CreateDots(btnClass));
             }
 
-
-            if (CurrentPage == TotalPages)
+            if (TotalPages > 1)
             {
-                output.Content.AppendHtml(CreateButton($"{TotalPages}", activeBtnStyle, uri + TotalPages));
-            }
-            else
-            {
-                output.Content.AppendHtml(CreateButton($"{TotalPages}", btnClass, uri + TotalPages));
-                output.Content.AppendHtml(CreateButton("Next", btnClass, uri + (CurrentPage + 1)));
+                if (CurrentPage == TotalPages)
+                {
+                    output.Content.AppendHtml(CreateButton($"{TotalPages}", activeBtnStyle, uri + TotalPages));
+                }
+                else
+                {
+                    output.Content.AppendHtml(CreateButton($"{TotalPages}", btnClass, uri + TotalPages));
+                    output.Content.AppendHtml(CreateButton("Next", btnClass, uri + (CurrentPage + 1)));
+                }
             }
 
             base.Process(context, output);
