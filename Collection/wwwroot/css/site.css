@@ -16,8 +16,6 @@ main.container {
     /*rgba(56,​ 66,​ 75,​ 0.97);*/
 }
 
-}
-
 textarea {
     resize: none;
 }
@@ -52,9 +50,9 @@ h2 {
     margin-left: 10px;
 }
 
-.control a:hover {
-    color: #dfdfdf;
-}
+    .control a:hover {
+        color: #dfdfdf;
+    }
 
 .thumbnail {
     position: relative;
@@ -63,9 +61,9 @@ h2 {
     overflow: hidden;
 }
 
-.thumbnail img {
-    position: relative;
-}
+    .thumbnail img {
+        position: relative;
+    }
 
 .test2 {
     position: relative;
@@ -75,13 +73,13 @@ h2 {
     width: 246.7px;
 }
 
-.test2 span {
-    position: relative;
-    top: -6px;
-    font-size: 24px;
-    line-height: 199.367px;
-    text-transform: uppercase;
-}
+    .test2 span {
+        position: relative;
+        top: -6px;
+        font-size: 24px;
+        line-height: 199.367px;
+        text-transform: uppercase;
+    }
 
 input[type=file] {
     display: block;
@@ -115,12 +113,12 @@ input[type=file] {
     transition: all 0.2s ease-out;
 }
 
-.mask span {
-    color: white;
-    font-size: 24px;
-    line-height: 199.367px;
-    cursor: pointer;
-}
+    .mask span {
+        color: white;
+        font-size: 24px;
+        line-height: 199.367px;
+        cursor: pointer;
+    }
 
 .thumbnail:hover .mask {
     top: 0;
@@ -181,16 +179,16 @@ td {
     margin-bottom: 30px;
 }
 
-.contact-form .textarea {
-    min-height: 220px;
-    resize: none;
-}
+    .contact-form .textarea {
+        min-height: 220px;
+        resize: none;
+    }
 
-.contact-form .form-control {
-    box-shadow: none;
-    border-color: #eee;
-    height: 49px;
-}
+    .contact-form .form-control {
+        box-shadow: none;
+        border-color: #eee;
+        height: 49px;
+    }
 
 .form-control:focus {
     box-shadow: none;
@@ -209,10 +207,10 @@ td {
     color: #fff;
 }
 
-.main-btn:hover {
-    background: #007bff;
-    color: #fff;
-}
+    .main-btn:hover {
+        background: #007bff;
+        color: #fff;
+    }
 
 /**/
 
@@ -262,4 +260,34 @@ td {
 
 .publish_date {
     padding-left: 15px;
+}
+
+/* pagination test */
+
+.pg-btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin: 20px 5px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    user-select: none;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+a.pg-btn:hover {
+        text-decoration: none;
+        color: #fff;
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+
+.pg-active {
+    background-color: rgba(255, 255, 255, 0.3);
 }

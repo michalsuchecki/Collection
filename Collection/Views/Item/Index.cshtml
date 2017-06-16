@@ -1,5 +1,7 @@
 @using Microsoft.AspNetCore.Authorization
 @using Collection.Infrastructure
+@using Collection.Helpers.Tags
+
 @model Collection.ViewModels.ToyListViewModel
 
 @{
@@ -81,16 +83,8 @@
 
         <div class="row">
             @{
-                <div class="col-md-12 text-center strech_full  bg-collection">
-                    <div class="">
-                        <ul class="pagination">
-                            <li><a asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@(page - 1)" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" aria-label="Previous" class="@prevDisabled"><span aria-hidden="true">&laquo;</span></a></li>
-
-                            <li><span>Page @(page) of @(Model.Toys.TotalPages())</span></li>
-
-                            <li><a asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@(page + 1)" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]" aria-label="Next" class="@nextDisabled"><span aria-hidden="true">&raquo;</span> </a></li>
-                        </ul>
-                    </div>
+                <div class="col-md-12 text-center strech_full bg-collection">
+                    <pagination pg-current-page="@page" pg-total-pages="@(Model.Toys.TotalPages())" asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@page" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]"></pagination>
                 </div>
             }
         </div>
