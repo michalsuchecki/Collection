@@ -16,7 +16,9 @@
                     <h1>Login to Your Account</h1><br>
                     <form method="post" asp-controller="account" asp-action="login">
                         <input type="text" asp-for="Email" placeholder="Username">
+                        <span asp-validation-for="Email" class="text-danger"></span>
                         <input type="password" asp-for="Password" placeholder="Password">
+                        <span asp-validation-for="Password" class="text-danger"></span>
 
                         <div class="checkbox">
                             <label asp-for="RememberMe"><input asp-for="RememberMe" />Remember Me</label>
