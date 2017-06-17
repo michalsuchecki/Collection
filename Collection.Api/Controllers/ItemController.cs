@@ -4,7 +4,6 @@ using Collection.Infrastructure.Filters;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-
 namespace Collection.Api.Controllers
 {
     [Route("api/[controller]")]
@@ -24,7 +23,6 @@ namespace Collection.Api.Controllers
         public async Task<IActionResult> Get([FromQuery]ItemFilter filter)
         {
             var items = await _itemService.GetFilteredAsync(filter);
-            //var items = await _itemService.GetAllAsync();
             return Json(items);
         }
 
