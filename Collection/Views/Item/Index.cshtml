@@ -70,9 +70,31 @@
             }
         </div>
         <div class="row">
-                <div class="col-md-12 text-center strech_full bg-collection">
-                    <pagination pg-current-page="@page" pg-total-pages="@(Model.Toys.TotalPages())" asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@page" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]"></pagination>
-                </div>
+            <div class="col-md-12 text-center strech_full bg-collection">
+                <pagination pg-current-page="@page" pg-total-pages="@(Model.Toys.TotalPages())" asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@page" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]"></pagination>
+            </div>
         </div>
     </div>
 </div>
+
+@section Scripts{
+    <script>
+        $('body').on('keyup', function (e) {
+            switch (e.keyCode) {
+                case 37: // <<
+                    var prev = $('body').find('#btn-prev').attr('href');
+                    if (prev != null)
+                        window.location.href = prev;
+                    break;
+                case 39: // >>
+                    var next = $('body').find('#btn-next').attr('href');
+                    if (next != null)
+                        window.location.href = next;
+                    break;
+                default:
+                    break;
+            }
+            e.preventDefault();
+        });
+    </script>
+}
