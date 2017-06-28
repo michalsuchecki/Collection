@@ -7,9 +7,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Authorization;
-
-
 using Collection.Repositories;
 using Collection.Models;
 using Collection.Services;
@@ -18,11 +15,6 @@ using Collection.Services;
 
 namespace Collection
 {
-    public class Usr
-    {
-
-    }
-
     public class Startup
     {
         private string _contentRootPath;
@@ -111,7 +103,7 @@ namespace Collection
             app.UseMvc(r =>
                 r.MapRoute(
                 name: "default",
-                template: "{controller}/{action}/{id?}"
+                template: "{controller=blog}/{action=index}/{id?}"
                 ));
 
             ToyInitializer.Initialize(context);

@@ -1,10 +1,8 @@
 ﻿using Collection.Models;
 using Collection.Repositories;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+using Collection.Infrastructure;
 
 namespace Collection.Services
 {
@@ -19,17 +17,14 @@ namespace Collection.Services
             _postRepository = postRepository;
         }
 
-        public IEnumerable<Post> GetMessages(int page = 1)
+        public PaginatedList<Post> GetMessages(int page = 1)
         {
             if (page < 1)
                 page = 1;
 
-            var posts = _postRepository.GetAllPosts()
-                        .OrderByDescending(x => x.PublishDate)
-                        .Skip((page - 1) * 10)
-                        .Take(10);
+            page = (page - 1);
 
-            return posts;
+            return new PaginatedList<Post>(_postRepository.GetAllPosts(), page, 10);
         }
 
         public async Task PostMessage(string title, string message, Guid userId)

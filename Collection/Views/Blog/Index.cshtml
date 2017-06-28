@@ -1,10 +1,12 @@
 ﻿@using System.Security.Claims;
+@using Collection.Infrastructure;
 @using Collection.Helpers;
 
-@model IEnumerable<Collection.Models.Post>
+@model PaginatedList<Collection.Models.Post>
 
 @{ 
     ViewBag.Section = "Blog";
+    var page = ((int?)ViewData["Page"]) ?? 1;
 }
 
 @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
@@ -54,6 +56,11 @@
                     await Html.RenderPartialAsync("_Post", post);
                 }
             }
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center strech_full bg-collection">
+                <pagination pg-current-page="@page" pg-total-pages="@Model.TotalPages()" asp-action="index" asp-controller="blog" asp-route-page="@page"></pagination>
+            </div>
         </div>
     </div>
 </div>

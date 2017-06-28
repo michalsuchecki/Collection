@@ -7,6 +7,7 @@ using Collection.Services;
 
 namespace Collection.Controllers
 {
+
     public class BlogController : Controller
     {
         private readonly IBlogService _blogService;
@@ -16,9 +17,10 @@ namespace Collection.Controllers
             _blogService = blogService;
         }
         [HttpGet]
-        [Route("{page?}")]
+        //[Route("{page?}")]
         public IActionResult Index(int page = 1)
         {
+            ViewData["Page"] = page;
             var posts = _blogService.GetMessages(page);
             return View(posts);
         }
