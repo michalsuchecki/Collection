@@ -26,7 +26,7 @@
                         <div class="list_img">
                             @{
                                 var name = item.Gallery.FirstOrDefault()?.FileName;
-                                <a asp-action="Details" asp-route-id="@item.ToyID">
+                                //<a asp-action="Details" asp-route-id="@item.ToyID">
                                     @if (!String.IsNullOrEmpty(name))
                                     {
                                         <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
@@ -35,12 +35,13 @@
                                     {
                                         <img src=@("/img/no_img.jpg") class="responsive" />
                                     }
-                                </a>
+                                //</a>
                             }
                         </div>
                     </td>
                     <td>
-                        <a asp-action="Details" asp-route-id="@item.ToyID">@item.Name</a>
+                        @*<a asp-action="Details" asp-route-id="@item.ToyID">@item.Name</a>*@
+                        <strong>@item.Name</strong>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Index)

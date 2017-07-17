@@ -3,7 +3,7 @@
 @model Collection.Models.Post
 
 @{
-    <div class="col-md-12">
+    <div class="col-md-12 post">
         <header>
             <div class="row">
                 <h3 class="col-md-11 post-title">@Model.Topic</h3>
@@ -18,12 +18,16 @@
 }
             </div>
             <div class="row">
-                <p class="publish_date"><small>@Model.PublishDate.ToString("dd MMMM yyyy") by @Model.Author.UserName</small></p>
-                <hr />
+                <div class="post-photo">
+                    <img src="http://via.placeholder.com/1170x300" />
+                </div>
             </div>
         </header>
-        <section>
-            <p>@Model.Message</p>
+        <section class="row">
+                <p>@Model.Message</p>
         </section>
+        <footer class="row">
+                <p class="publish_date"><small>@Model.PublishDate.ToString("dd MMMM yyyy") by @Model.Author.UserName</small></p>
+        </footer>
     </div>
 }
