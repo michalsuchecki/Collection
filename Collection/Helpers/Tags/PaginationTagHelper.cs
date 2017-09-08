@@ -73,7 +73,7 @@ namespace Collection.Helpers.Tags
             }
             else
             {
-                output.Content.AppendHtml(CreateButton("Prev", btnClass, uri + (CurrentPage - 1)));
+                output.Content.AppendHtml(CreateButton("Prev", btnClass, uri + (CurrentPage - 1), "btn-prev"));
                 output.Content.AppendHtml(CreateButton("1", btnClass, uri + "1"));
             }
 
@@ -110,20 +110,25 @@ namespace Collection.Helpers.Tags
                 else
                 {
                     output.Content.AppendHtml(CreateButton($"{TotalPages}", btnClass, uri + TotalPages));
-                    output.Content.AppendHtml(CreateButton("Next", btnClass, uri + (CurrentPage + 1)));
+                    output.Content.AppendHtml(CreateButton("Next", btnClass, uri + (CurrentPage + 1), "btn-next"));
                 }
             }
 
             base.Process(context, output);
         }
 
-        private TagBuilder CreateButton(string innerText, string style, string href)
+        private TagBuilder CreateButton(string innerText, string style, string href, string id = "")
         {
             TagBuilder anchor = new TagBuilder("a");
 
             anchor.AddCssClass(style);
             anchor.InnerHtml.Append(innerText);
             anchor.Attributes.Add("href", href);
+
+            if (!String.IsNullOrEmpty(id))
+            {
+                anchor.Attributes.Add("id", id);
+            }
 
             return anchor;
         }

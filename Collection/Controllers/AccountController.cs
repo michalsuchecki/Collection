@@ -44,7 +44,7 @@ namespace Collection.Controllers
             if (ModelState.IsValid)
             {
                 await _userService.LoginAsync(model.Email, model.Password);
-                return RedirectToAction("index", "item");
+                return RedirectToAction("index", "blog");
             }
             return View(model);
         }
@@ -52,7 +52,7 @@ namespace Collection.Controllers
         public async Task<IActionResult> Logout()
         {
             await _userService.LogoutAsync();
-            return RedirectToAction("Index","item");
+            return RedirectToAction("Index","blog");
         }
 
         [HttpGet]

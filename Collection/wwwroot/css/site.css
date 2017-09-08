@@ -27,9 +27,9 @@ a, a:hover {
     border-radius: 0;
 }
 
-.content-space{
-    margin-top:15px;
-    margin-bottom:15px;
+.content-space {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 nav {
@@ -54,9 +54,9 @@ h2 {
     margin-left: 10px;
 }
 
-    .control a:hover {
-        color: #dfdfdf;
-    }
+.control a:hover {
+    color: #dfdfdf;
+}
 
 .thumbnail {
     position: relative;
@@ -65,11 +65,11 @@ h2 {
     overflow: hidden;
 }
 
-    .thumbnail img {
-        position: relative;
-    }
+.thumbnail img {
+    position: relative;
+}
 
-.test2 {
+.preview-image {
     position: relative;
     box-sizing: border-box;
     display: inline-block;
@@ -77,13 +77,21 @@ h2 {
     width: 246.7px;
 }
 
-    .test2 span {
-        position: relative;
-        top: -6px;
-        font-size: 24px;
-        line-height: 199.367px;
-        text-transform: uppercase;
-    }
+.preview-image span {
+    position: relative;
+    top: -6px;
+    font-size: 24px;
+    line-height: 199.367px;
+    text-transform: uppercase;
+}
+
+.thumb .thumbnail {
+    position: relative;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 199.367px;
+    width: 246.7px;
+}
 
 input[type=file] {
     display: block;
@@ -117,12 +125,12 @@ input[type=file] {
     transition: all 0.2s ease-out;
 }
 
-    .mask span {
-        color: white;
-        font-size: 24px;
-        line-height: 199.367px;
-        cursor: pointer;
-    }
+.mask span {
+    color: white;
+    font-size: 24px;
+    line-height: 199.367px;
+    cursor: pointer;
+}
 
 .thumbnail:hover .mask {
     top: 0;
@@ -190,16 +198,16 @@ td {
     margin-bottom: 30px;
 }
 
-    .contact-form .textarea {
-        min-height: 220px;
-        resize: none;
-    }
+.contact-form .textarea {
+    min-height: 220px;
+    resize: none;
+}
 
-    .contact-form .form-control {
-        box-shadow: none;
-        border-color: #eee;
-        height: 49px;
-    }
+.contact-form .form-control {
+    box-shadow: none;
+    border-color: #eee;
+    height: 49px;
+}
 
 .form-control:focus {
     box-shadow: none;
@@ -218,10 +226,10 @@ td {
     color: #fff;
 }
 
-    .main-btn:hover {
-        background: #007bff;
-        color: #fff;
-    }
+.main-btn:hover {
+    background: #007bff;
+    color: #fff;
+}
 
 /**/
 
@@ -299,4 +307,37 @@ a.pg-btn:hover {
 
 .pg-active {
     background-color: rgba(255, 255, 255, 0.3);
+}
+
+.post {
+    margin: 15px 0;
+}
+
+.post header h3 {
+    margin-bottom: 20px;
+}
+
+.post footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+.post footer p {
+    padding-left: 0;
+    line-height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+    color: black;
+}
+
+.post-photo {
+    max-height: 300px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.post-photo img {
+    width: 1170px;
+    height: 300px;
+    max-height: 100%;
+    max-width: 100%;
 }
