@@ -16,6 +16,8 @@ namespace Collection.Infrastructure.IoC.Modules
                 .Where(x => x.IsAssignableTo<IServices>())
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
+
+            builder.RegisterModule<ImageModule>();
         }
     }
 }

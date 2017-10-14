@@ -19,6 +19,7 @@ namespace Collection.Api
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("settings.json")
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
         }
@@ -42,6 +43,8 @@ namespace Collection.Api
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            app.UseDeveloperExceptionPage();
 
             app.UseMvc();
             appLifetime.ApplicationStopped.Register(() => ApplicationContainer.Dispose());
