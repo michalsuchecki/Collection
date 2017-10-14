@@ -17,6 +17,10 @@ namespace Collection.Infrastructure.IoC.Modules
                 .AsImplementedInterfaces()
                 .InstancePerLifetimeScope();
 
+            builder.RegisterType<CategoryService>()
+                .As<ICategoryService>()
+                .SingleInstance();
+
             builder.RegisterModule<ImageModule>();
         }
     }

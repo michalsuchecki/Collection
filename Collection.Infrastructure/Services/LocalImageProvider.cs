@@ -7,9 +7,9 @@ namespace Collection.Infrastructure.Services
 {
     public class LocalImageProvider : IImageProvider
     {
-        private readonly LocalImages _settings;
+        private readonly LocalImagesSettings _settings;
 
-        public LocalImageProvider(LocalImages settings)
+        public LocalImageProvider(LocalImagesSettings settings)
         {
             _settings = settings;
         }

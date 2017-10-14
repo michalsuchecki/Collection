@@ -17,8 +17,11 @@ namespace Collection.Infrastructure.IoC.Modules
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterInstance(_configuration.GetSettings<LocalImages>())
+            builder.RegisterInstance(_configuration.GetSettings<LocalImagesSettings>())
                    .SingleInstance();
+
+            builder.RegisterInstance(_configuration.GetSettings<GeneralSettings>())
+            .SingleInstance();
         }
 
     }

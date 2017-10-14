@@ -11,8 +11,8 @@ namespace ollection.Repository.Entity.Repositories
 {
     public class ItemRepository : IItemRepository
     {
-        private readonly IDBContext _context;
-        public ItemRepository(IDBContext context)
+        private readonly EntityDBContext _context;
+        public ItemRepository(EntityDBContext context)
         {
             _context = context;
         }
@@ -25,7 +25,7 @@ namespace ollection.Repository.Entity.Repositories
 
         public async Task<IEnumerable<Item>> GetAllAsync()
         {
-            return await _context.GetItems()
+            return await _context.Items
                 .Include(x => x.Category)
                 .Include(x => x.Producer)
                 .Include(x => x.Images).ToListAsync();
@@ -33,7 +33,7 @@ namespace ollection.Repository.Entity.Repositories
 
         public IQueryable<Item> GetAll()
         {
-            return _context.GetItems()
+            return _context.Items
                 .Include(x => x.Category)
                 .Include(x => x.Producer)
                 .Include(x => x.Images);
@@ -41,7 +41,7 @@ namespace ollection.Repository.Entity.Repositories
 
         public async Task<Item> GetItemAsync(int id)
         {
-            var query = _context.GetItems()
+            var query = _context.Items
                 .Include(x => x.Category)
                 .Include(x => x.Producer)
                 .Include(x => x.Images)

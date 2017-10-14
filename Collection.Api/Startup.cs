@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Collection.Infrastructure.IoC;
+using Collection.Repository.Entity.DAL;
 
 namespace Collection.Api
 {
@@ -27,6 +28,7 @@ namespace Collection.Api
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<EntityDBContext>();
 
             var builder = new ContainerBuilder();
 

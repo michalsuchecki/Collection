@@ -2,6 +2,7 @@
 using Collection.Repository.Entity.DAL;
 using Collection.Core.Repositories;
 using Autofac;
+using Microsoft.EntityFrameworkCore;
 
 namespace Collection.Infrastructure.IoC.Modules.Repositories
 {
@@ -16,10 +17,6 @@ namespace Collection.Infrastructure.IoC.Modules.Repositories
             builder.RegisterAssemblyTypes(assembly)
                 .Where(x => x.IsAssignableTo<IRepository>())
                 .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();
-
-            builder.RegisterType<EntityDBContext>()
-                .As<IDBContext>()
                 .InstancePerLifetimeScope();
         }
     }
