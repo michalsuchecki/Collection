@@ -1,0 +1,8 @@
+﻿{
+  "images": {
+    "local": {
+      "source": "img/",
+      "thumbs": "img/toys/"
+    }
+  }
+}
