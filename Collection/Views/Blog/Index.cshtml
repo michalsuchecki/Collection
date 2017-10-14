@@ -6,10 +6,10 @@
 
 @{ 
     ViewBag.Section = "Blog";
-    var page = ((int?)ViewData["Page"]) ?? 1;
+    var currentPage = ((int?)ViewData["Page"]) ?? 1;
 }
 
-@if (await AuthorizationService.AuthorizeAsync(User, "modify"))
+@if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
 {
     <div class="row bottom_margin">
         <div class="col-md-12">
@@ -59,7 +59,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center strech_full bg-collection">
-                <pagination pg-current-page="@page" pg-total-pages="@Model.TotalPages()" asp-action="index" asp-controller="blog" asp-route-page="@page"></pagination>
+                <pagination pg-current-page="@currentPage" pg-total-pages="@Model.TotalPages()" asp-action="index" asp-controller="blog" asp-route-page="@currentPage"> </pagination>
             </div>
         </div>
     </div>

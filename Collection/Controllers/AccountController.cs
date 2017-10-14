@@ -7,22 +7,17 @@ using Collection.ViewModels;
 using Collection.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Collection.Services;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Collection.Controllers
 {
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly IOptions<IdentityCookieOptions> _identityCookieOptions;
-        //private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUserService _userService;
 
-        public AccountController(IUserService userService,
-                                 IOptions<IdentityCookieOptions> identityCookieOptions)
-                                 //RoleManager<IdentityRole> roleManager)
+        public AccountController(IUserService userService)
         {
-            //_roleManager = roleManager;
-            _identityCookieOptions = identityCookieOptions;
             _userService = userService;
         }
 
@@ -30,7 +25,7 @@ namespace Collection.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login(string returnUrl = null)
         {
-            await HttpContext.Authentication.SignOutAsync(_identityCookieOptions.Value.ExternalCookieAuthenticationScheme);
+            await _userService.LogoutAsync();
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }

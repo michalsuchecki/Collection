@@ -6,7 +6,7 @@
 
 @{
     ViewData["Title"] = "Index";
-    var page = ((int?)ViewData["Page"]) ?? 1;
+    var currentPage = ((int?)ViewData["Page"]) ?? 1;
 }
 
 @section Styles {
@@ -19,7 +19,7 @@
             <div class="col-md-2">
                 <p class="filterbar-text pull-left">Items: @ViewData["TotalItems"]</p>
                 @{
-                    if (await AuthorizationService.AuthorizeAsync(User, "modify"))
+                    if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
                     {
                         <a asp-action="Create" class="btn btn-danger navbar-btn pull-right">Add New</a>
                     }
@@ -71,7 +71,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center strech_full bg-collection">
-                <pagination pg-current-page="@page" pg-total-pages="@(Model.Toys.TotalPages())" asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@page" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]"></pagination>
+                <pagination pg-current-page="@currentPage" pg-total-pages="@Model.Toys.TotalPages()" asp-action="index" asp-controller="item" asp-route-showAs="@ViewData["showAs"]" asp-route-search="@ViewData["search"]" asp-route-display="@ViewData["display"]" asp-route-page="@currentPage" asp-route-filterBy="@ViewData["filterBy"]" asp-route-sortBy="@ViewData["sortBy"]"></pagination>
             </div>
         </div>
     </div>

@@ -7,6 +7,7 @@ namespace Collection.Models
     {
         public ToyContext(DbContextOptions<ToyContext> options) : base(options)
         {
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

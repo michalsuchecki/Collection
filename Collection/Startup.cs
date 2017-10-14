@@ -10,8 +10,9 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Collection.Repositories;
 using Collection.Models;
 using Collection.Services;
-
-
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 
 namespace Collection
 {
@@ -46,8 +47,8 @@ namespace Collection
 
             // Identities
             services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<ToyContext>()
-                .AddDefaultTokenProviders();
+                    .AddEntityFrameworkStores<ToyContext>()
+                    .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(o =>
             {
@@ -57,12 +58,16 @@ namespace Collection
                 o.Password.RequireUppercase = false;
                 o.Password.RequireNonAlphanumeric = false;
 
-                o.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(30);
-                o.Cookies.ApplicationCookie.LoginPath = "/Account/Login";
-                o.Cookies.ApplicationCookie.LogoutPath = "/Account/Logout";
-
                 o.User.RequireUniqueEmail = true;
+            });
 
+            services.ConfigureApplicationCookie(o => {
+                o.Cookie.HttpOnly=true;
+                o.Cookie.Expiration = TimeSpan.FromDays(150);
+                o.LoginPath = "/Account/Login";
+                o.LogoutPath = "/Account/Logout";
+                o.AccessDeniedPath = "/Account/AccessDenied";
+                o.SlidingExpiration = true;
             });
 
             // MVC
@@ -95,7 +100,9 @@ namespace Collection
                 app.UseDatabaseErrorPage();
             }
 
-            app.UseIdentity();
+            //app.UseIdentity();
+            app.UseAuthentication();
+
             app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseSession();
