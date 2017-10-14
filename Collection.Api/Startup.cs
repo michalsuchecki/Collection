@@ -8,6 +8,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Collection.Infrastructure.IoC;
 using Collection.Repository.Entity.DAL;
+using NLog.Web.AspNetCore;
+using NLog.Web;
+using NLog.Extensions.Logging;
 
 namespace Collection.Api
 {
@@ -18,6 +21,8 @@ namespace Collection.Api
 
         public Startup(IHostingEnvironment env)
         {
+            env.ConfigureNLog("nlog.config");
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("settings.json")
@@ -43,8 +48,12 @@ namespace Collection.Api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
                     ILoggerFactory loggerFactory, IApplicationLifetime appLifetime)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
+            //loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            //loggerFactory.AddDebug();
+            
+            // Nlog
+            loggerFactory.AddNLog();
+            app.AddNLogWeb();
 
             app.UseDeveloperExceptionPage();
 
