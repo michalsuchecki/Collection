@@ -12,6 +12,7 @@ namespace Collection.Infrastructure.Mappers
             {
                 c.CreateMap<Item, ItemDto>().ForMember(x => x.Images, m => m.MapFrom(src => src.Images));
                 c.CreateMap<Image, ImageDto>();
+                c.CreateMap<Image, ImageThumbDto>();
                 
             });
 

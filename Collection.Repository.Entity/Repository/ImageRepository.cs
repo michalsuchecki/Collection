@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Collection.Core.Domain;
 using Collection.Repository.Entity.DAL;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace Collection.Repository.Entity.Repositories
 {
@@ -15,32 +17,33 @@ namespace Collection.Repository.Entity.Repositories
         {
             _context = context;
         }
-        public Task AddAsync(Image image)
+        public async Task AddAsync(Image image)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Image>> GetAllAsync()
+        public async Task<IEnumerable<Image>> GetAllAsync()
+        {
+            return await _context.GetImages().ToListAsync();
+        }
+
+        public async Task<Image> GetImageAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Image> GetImageAsync(int id)
+        public async Task<Image> GetImagesAsync(Item item)
+        {
+            //return await _context.GetImages().Where(x => x.Item.ItemId == item.ItemId).To
+            throw new NotImplementedException();
+        }
+
+        public async Task RemoveAsync(int id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Image> GetImagesAsync(Item item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task RemoveAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task UpdateAsync(Image image)
+        public async Task UpdateAsync(Image image)
         {
             throw new NotImplementedException();
         }

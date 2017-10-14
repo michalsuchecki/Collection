@@ -23,6 +23,7 @@ namespace Collection.Infrastructure.IoC
             // Register Modules
             builder.RegisterModule<CommandModule>();
             builder.RegisterModule<ServiceModule>();
+            builder.RegisterModule(new SettingModule(_configuration));
 
             builder.RegisterModule<EntityRepositoryModule>();
 

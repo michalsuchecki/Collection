@@ -36,15 +36,18 @@ namespace Collection.Infrastructure.Services
 
                 var filenames = images.Select(x => x.FileName);
 
-                //var result = await _imageProvider.GetImagesAsync(filenames);
-                return await _imageProvider.GetImagesAsync(filenames);;
+                return await _imageProvider.GetImagesAsync(filenames);
             }
             else
             {
-                //var images = await _repository.GetAllAsync();
-                //return _mapper.Map<IEnumerable<ImageDto>>(images);
+                var images = await _repository.GetAllAsync();
+                var filenames = images.Select(x => x.FileName);
+
+                return await _imageProvider.GetImagesAsync(filenames);
+
+                //return _mapper.Map<IEnumerable<ImageThumbDto>>(images);
             }
-            throw new System.NotImplementedException();
+
         }
 
 

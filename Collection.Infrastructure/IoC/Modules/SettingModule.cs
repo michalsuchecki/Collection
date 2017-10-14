@@ -11,17 +11,14 @@ namespace Collection.Infrastructure.IoC.Modules
 
         public SettingModule(IConfiguration configuration)
         {
+
             _configuration = configuration;
         }
 
         protected override void Load(ContainerBuilder builder)
         {
-            var localImages = new LocalImages();
-            _configuration.GetSection("images:local").Bind(localImages);
-
-            builder.RegisterInstance(localImages)
-                    .SingleInstance();
-
+            builder.RegisterInstance(_configuration.GetSettings<LocalImages>())
+                   .SingleInstance();
         }
 
     }
