@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Collection.Core.Domain
+﻿namespace Collection.Core.Domain
 {
     public class Producer
     {

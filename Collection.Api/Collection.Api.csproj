@@ -1,16 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup Label="Configuration" Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputType>exe</OutputType>
-  </PropertyGroup>
+
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
-    <PreserveCompilationContext>true</PreserveCompilationContext>
-    <AssemblyName>Collection.Api</AssemblyName>
-    <OutputTypeEx>exe</OutputTypeEx>
-    <PackageId>Collection.Api</PackageId>
-    <PackageTargetFallback>$(PackageTargetFallback);dotnet5.6;portable-net45+win8</PackageTargetFallback>
-    <ApplicationIcon />
-    <StartupObject />
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,22 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="4.6.0" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.0.0" />
+    <PackageReference Include="Autofac" Version="4.6.0" />
     <PackageReference Include="AutoMapper" Version="6.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="1.1.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.CommandLine" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="1.1.1" />
   </ItemGroup>  
 </Project>

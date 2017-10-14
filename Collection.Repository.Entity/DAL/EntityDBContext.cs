@@ -9,12 +9,12 @@ namespace Collection.Repository.Entity.DAL
     {
         private readonly string _connectionString;
 
-        public EntityDBContext() : this("Server=(localdb)\\MSSQLLocalDB;Database=Collection_new;Trusted_Connection=True;MultipleActiveResultSets=true")
+        public EntityDBContext(DbContextOptions<EntityDBContext> options) : this(options, "Server=(localdb)\\MSSQLLocalDB;Database=Collection_new;Trusted_Connection=True;MultipleActiveResultSets=true")
         {
-
+            Database.EnsureCreated();
         }
 
-        public EntityDBContext(string connectionString)
+        public EntityDBContext(DbContextOptions<EntityDBContext> options, string connectionString) : base(options)
         {
             _connectionString = connectionString;
         }
