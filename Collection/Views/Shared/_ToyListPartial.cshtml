@@ -8,6 +8,7 @@
             </th>
             <th>Name</th>
             <th>Index</th>
+            <th>Price</th>
             <th>Producer</th>
             <th>Category</th>
             @if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
@@ -39,19 +40,11 @@
                             }
                         </div>
                     </td>
-                    <td>
-                        @*<a asp-action="Details" asp-route-id="@item.ToyID">@item.Name</a>*@
-                        <strong>@item.Name</strong>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Index)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Producer.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category.Name)
-                    </td>
+                    <td><strong>@item.Name</strong></td>
+                    <td>@item.Index</td>
+                    <td class="text-right">@String.Format("{0:C}", item.Price)</td>
+                    <td>@item.Producer.Name</td>
+                    <td>@item.Category.Name</td>
 
                     @if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
                     {

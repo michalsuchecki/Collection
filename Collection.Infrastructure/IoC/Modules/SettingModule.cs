@@ -21,8 +21,12 @@ namespace Collection.Infrastructure.IoC.Modules
                    .SingleInstance();
 
             builder.RegisterInstance(_configuration.GetSettings<GeneralSettings>())
-            .SingleInstance();
+                   .SingleInstance();
+
+            //builder.RegisterInstance(_configuration.GetSettings<DatabaseSettings>())
+            //       .SingleInstance();
         }
+
 
     }
 }

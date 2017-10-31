@@ -15,5 +15,6 @@ namespace Collection.ViewModels
         public IEnumerable<SelectListItem> Sort { get; set; }
         public IEnumerable<SelectListItem> Categories { get; set; }
         public PaginatedList<Toy> Toys { get; set; }
+        public decimal TotalPrice { get; set; }
     }
 }

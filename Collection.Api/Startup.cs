@@ -11,6 +11,7 @@ using Collection.Repository.Entity.DAL;
 using NLog.Web.AspNetCore;
 using NLog.Web;
 using NLog.Extensions.Logging;
+using Collection.Infrastructure.Settings;
 
 namespace Collection.Api
 {

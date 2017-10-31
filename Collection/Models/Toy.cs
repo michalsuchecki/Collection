@@ -13,6 +13,7 @@ namespace Collection.Models
         public string Name { get; set; }
         [MaxLength(10)]
         public string Index { get; set; }
+        public decimal Price { get; set; }
         public Category Category { get; set; }
         public Producer Producer { get; set; }
         public bool InCollection { get; set; }

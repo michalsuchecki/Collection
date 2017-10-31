@@ -3,7 +3,10 @@
     "source": "img/toys/",
     "thumbs": "img/toys/thumbs"
   },
-  "general" :{
+  "general": {
     "itemsperpage": 12
+  },
+  "database": {
+    "connectionString": "Server=(localdb)\\MSSQLLocalDB;Database=Collection;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
 }

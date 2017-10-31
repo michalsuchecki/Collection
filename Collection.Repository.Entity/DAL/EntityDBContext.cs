@@ -8,15 +8,14 @@ namespace Collection.Repository.Entity.DAL
     public class EntityDBContext : DbContext
     {
         private readonly string _connectionString;
-
-        public EntityDBContext(DbContextOptions<EntityDBContext> options) : this(options, "Server=(localdb)\\MSSQLLocalDB;Database=Collection_new;Trusted_Connection=True;MultipleActiveResultSets=true")
+        public EntityDBContext(DbContextOptions<EntityDBContext> options) : this(options, "Server=(localdb)\\MSSQLLocalDB;Database=Collection;Trusted_Connection=True;MultipleActiveResultSets=true")
         {
-            Database.EnsureCreated();
         }
 
         public EntityDBContext(DbContextOptions<EntityDBContext> options, string connectionString) : base(options)
         {
             _connectionString = connectionString;
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)

@@ -112,7 +112,7 @@ namespace Collection.Controllers
             page = (page - 1) ?? 0;
 
             model.Toys = new PaginatedList<Toy>(Toys, page.Value);
-
+            model.TotalPrice = Toys.Sum(x => x.Price);
             return View(model);
         }
 
