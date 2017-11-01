@@ -1,5 +1,13 @@
 @model Collection.ViewModels.LoginViewModel
 
+@{ 
+    ViewBag.Section = "Login";
+}
+
+@section Styles {
+<link href="~/css/modal.css" rel="stylesheet" />
+}
+
 <div class="row">
     <div class="col-md-12">
         <div class="modal modal-login" id="login-modal" role="dialog">
@@ -8,7 +16,9 @@
                     <h1>Login to Your Account</h1><br>
                     <form method="post" asp-controller="account" asp-action="login">
                         <input type="text" asp-for="Email" placeholder="Username">
+                        <span asp-validation-for="Email" class="text-danger"></span>
                         <input type="password" asp-for="Password" placeholder="Password">
+                        <span asp-validation-for="Password" class="text-danger"></span>
 
                         <div class="checkbox">
                             <label asp-for="RememberMe"><input asp-for="RememberMe" />Remember Me</label>

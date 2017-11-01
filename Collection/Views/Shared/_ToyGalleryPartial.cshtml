@@ -3,22 +3,37 @@
 @{
     foreach (var item in Model)
     {
-    <div class="card_box card_shadow">
-        <div class="card_body">
-            @{
-                var name = item.Gallery.FirstOrDefault()?.FileName;
-                var src = !String.IsNullOrEmpty(name) ? $"/img/toys/thumbs/{name}.jpg" : "/img/no_img.jpg";
-                <img src=@src />
-            }
-            <div class="info"><p>@item.Name</p></div>
-            @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
-            {
-                <div class="control">
-                    <a asp-action="Edit" asp-route-id="@item.ToyID">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@item.ToyID">Delete</a>
+
+        <div class="col-sm-4">
+            <article class="card">
+                <a class="img-card" href="#">
+                    @{
+                        var name = item.Gallery.FirstOrDefault()?.FileName;
+                        var src = !String.IsNullOrEmpty(name) ? $"/img/toys/thumbs/{name}.jpg" : "/img/no_img.jpg";
+                        <img src=@src />
+                    }
+                </a>
+                <br />
+                <div class="card-content">
+                    <header>
+                        <h2 class="card-title">
+                            @item.Name
+                        </h2>
+                    </header>
+                    <div class="">
+                        by @item.Producer.Name
+                    </div>
                 </div>
-            }
+
+                @if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
+                {
+                    <footer class="admin">
+                        <a asp-action="Edit" asp-route-id="@item.ToyID" class="btn ">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.ToyID" class="btn">Delete</a>
+                    </footer>
+                }
+
+            </article>
         </div>
-    </div>
     }
 }

@@ -63,10 +63,12 @@ namespace Collection.Controllers
                 switch (display)
                 {
                     case "wanted":
+                        ViewBag.Section = "Wanted toys";
                         Toys = _toyRepository.GetWantedToys();
                         break;
                     case "collection":
                     default:
+                        ViewBag.Section = "My collection";
                         Toys = _toyRepository.GetMyToys();
                         break;
                 }
@@ -110,7 +112,7 @@ namespace Collection.Controllers
             page = (page - 1) ?? 0;
 
             model.Toys = new PaginatedList<Toy>(Toys, page.Value);
-
+            model.TotalPrice = Toys.Sum(x => x.Price);
             return View(model);
         }
 

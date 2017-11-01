@@ -7,6 +7,7 @@ namespace Collection.Models
     {
         public ToyContext(DbContextOptions<ToyContext> options) : base(options)
         {
+            Database.EnsureCreated();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -19,5 +20,6 @@ namespace Collection.Models
         public DbSet<Toy> Toys { get; set; }
         public DbSet<Producer> Producers { get; set; }
         public DbSet<Gallery> Gallery { get; set; }
+        public DbSet<Post> Posts { get; set; }
     }
 }

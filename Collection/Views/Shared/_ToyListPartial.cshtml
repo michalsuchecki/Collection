@@ -8,10 +8,10 @@
             </th>
             <th>Name</th>
             <th>Index</th>
-            <th>In Collection</th>
+            <th>Price</th>
             <th>Producer</th>
             <th>Category</th>
-            @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
+            @if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
             {
                 <th></th>
             }
@@ -27,7 +27,7 @@
                         <div class="list_img">
                             @{
                                 var name = item.Gallery.FirstOrDefault()?.FileName;
-                                <a asp-action="Details" asp-route-id="@item.ToyID">
+                                //<a asp-action="Details" asp-route-id="@item.ToyID">
                                     @if (!String.IsNullOrEmpty(name))
                                     {
                                         <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
@@ -36,45 +36,26 @@
                                     {
                                         <img src=@("/img/no_img.jpg") class="responsive" />
                                     }
-                                </a>
+                                //</a>
                             }
                         </div>
                     </td>
-                    <td>
-                        <a asp-action="Details" asp-route-id="@item.ToyID">@item.Name</a>
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Index)
-                    </td>
-                    <td>
-                        @{
-                            if (item.InCollection)
-                            {
-                                <p>Yes</p>
-                            }
-                            else
-                            {
-                                <p>No</p>
+                    <td><strong>@item.Name</strong></td>
+                    <td>@item.Index</td>
+                    <td class="text-right">@String.Format("{0:C}", item.Price)</td>
+                    <td>@item.Producer.Name</td>
+                    <td>@item.Category.Name</td>
 
-                            }
-                        }
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Producer.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category.Name)
-                    </td>
-
-                    @if (await AuthorizationService.AuthorizeAsync(User, "modify"))
+                    @if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
                     {
                         <td>
-                            <p><a asp-action="Edit" asp-route-id="@item.ToyID">Edit</a></p>
-                            <p><a asp-action="Delete" asp-route-id="@item.ToyID">Delete</a></p>
+                            <a asp-action="Edit" asp-route-id="@item.ToyID" class="btn btn-primary col-md-12">Edit</a>
+                            <hr />
+                            <a asp-action="Delete" asp-route-id="@item.ToyID" class="btn btn-danger col-md-12">Delete</a>
                         </td>
                     }
                 </tr>
-                            }
+                                }
         }
     </tbody>
 </table>

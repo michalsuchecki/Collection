@@ -1,15 +1,25 @@
 @model Collection.ViewModels.RegisterViewModel
 
+@{
+    ViewBag.Section = "Register";
+}
+
+@section Styles {
+    <link href="~/css/modal.css" rel="stylesheet" />
+}
+
 <div class="row">
 
     <div class="col-md-12">
-        <div class="modal" id="login-modal" role="dialog">
+        <div class="modal modal-login" id="login-modal" role="dialog">
             <div class="modal-dialog">
                 <div class="loginmodal-container">
                     <h1>Register new Account</h1><br>
                     <form method="post" asp-controller="account" asp-action="register">
-                        <input type="text" asp-for="Email" placeholder="Username">
+                        <input type="text" asp-for="Email" placeholder="Email">
                         <span asp-validation-for="Email" class="text-danger"></span>
+                        <input type="text" asp-for="Username" placeholder="Username">
+                        <span asp-validation-for="Username" class="text-danger"></span>
                         <input type="password" asp-for="Password" placeholder="Password">
                         <span asp-validation-for="Password" class="text-danger"></span>
                         <input type="password" asp-for="ConfirmPassword" placeholder="Confirm Password">
