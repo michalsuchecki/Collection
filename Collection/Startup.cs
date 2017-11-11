@@ -84,8 +84,6 @@ namespace Collection
             services.AddTransient<IProducerRepository, ProducerRepository>();
             services.AddTransient<IGalleryRepository, GalleryRepository>();
             services.AddTransient<IPostRepository, PostRepository>();
-
-            services.AddScoped<IMailService, MailService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IBlogService, BlogService>();
             

@@ -2,12 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <!-- <PackageTargetFallback>portable-net45+win8</PackageTargetFallback> -->
   </PropertyGroup>
+
+ <ItemGroup>
+    <ProjectReference Include="../Collection.Infrastructure/Collection.Infrastructure.csproj" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="ImageSharp" Version="1.0.0-alpha5-00047" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Autofac" Version="4.6.0" />
+    <PackageReference Include="AutoMapper" Version="6.0.2" />
   </ItemGroup>
 
   <ItemGroup>
