@@ -12,9 +12,10 @@ using System;
 namespace Collection.Repository.Entity.Migrations
 {
     [DbContext(typeof(EntityDBContext))]
-    partial class EntityDBContextModelSnapshot : ModelSnapshot
+    [Migration("20171101143040_CondtitionDamagedForSaleProperty")]
+    partial class CondtitionDamagedForSaleProperty
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

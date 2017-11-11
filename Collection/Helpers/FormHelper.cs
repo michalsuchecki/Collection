@@ -42,6 +42,20 @@ namespace Collection.Helpers
             return SelectedList;
         }
 
+        public static List<SelectListItem> GetFormCondition()
+        {
+            var conditionList = Enum.GetValues(typeof(Condition)).Cast<Condition>().ToList();
+            var SelectedList = new List<SelectListItem>();
+
+            foreach (var item in conditionList)
+            {
+                int index = conditionList.IndexOf(item);
+                SelectedList.Add(new SelectListItem() { Text = item.ToString(), Value = index.ToString() });
+            }
+            return SelectedList;
+        }
+
+
         public static List<SelectListItem> GetFormProducers(IEnumerable<Producer> producers)
         {
             var SelectedList = new List<SelectListItem>();

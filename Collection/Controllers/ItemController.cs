@@ -135,7 +135,8 @@ namespace Collection.Controllers
             var vm = new ToyViewModel()
             {
                 Producers = producers,
-                Categories = categories
+                Categories = categories,
+                Conditions = FormHelper.GetFormCondition()
             };
             return View(vm);
         }
@@ -189,6 +190,8 @@ namespace Collection.Controllers
                 Categories = FormHelper.GetFormCategories(_categoryRepository.GetCategories()),
                 Producer = _toy.Producer.Id,
                 Category = _toy.Category.Id,
+                Conditions = FormHelper.GetFormCondition(),
+                Condition = (int)_toy.Condition
             };
 
             return View(model);
@@ -204,6 +207,7 @@ namespace Collection.Controllers
             {
                 model.Toy.Producer = _producerRepository.GetProducerByID(model.Producer);
                 model.Toy.Category = _categoryRepository.GetCategoryById(model.Category);
+                model.Toy.Condition = (Condition)model.Condition;
 
                 _context.Update(model.Toy);
 

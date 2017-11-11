@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Collection.Models
 {
+    public enum Condition{
+        New,
+        Used
+    }
     public class Toy
     {
         public int ToyID { get; set; }
@@ -18,5 +22,8 @@ namespace Collection.Models
         public Producer Producer { get; set; }
         public bool InCollection { get; set; }
         public ICollection<Gallery> Gallery { get; set; }
+        public Condition Condition { get; set; }
+        public bool IsDamaged { get; set; }
+        public bool ForSale { get; set; }
     }
 }
