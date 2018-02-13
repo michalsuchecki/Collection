@@ -50,7 +50,25 @@ namespace Collection.Repositories
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
-                         .Where(i => i.InCollection)
+                         .Where(i => i.InCollection && !i.Sold)
+                         .OrderBy(i => i.Name);
+        }
+        public IQueryable<Toy> GetMySoldToys()
+        {
+            return _context.Toys.Include(i => i.Category)
+                         .Include(i => i.Producer)
+                         .Include(i => i.Gallery)
+                         .Where(x => x.Sold)
+                         .OrderBy(x => x.Name);
+        }
+
+        public IQueryable<Toy> GetToysForSale()
+        {
+            return _context.Toys
+                         .Include(i => i.Category)
+                         .Include(i => i.Producer)
+                         .Include(i => i.Gallery)
+                         .Where(i => i.InCollection && i.ForSale)
                          .OrderBy(i => i.Name);
         }
 
@@ -60,7 +78,7 @@ namespace Collection.Repositories
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
-                         .Where(i => i.InCollection && i.Category.Id == categoryId)
+                         .Where(i => i.InCollection && !i.Sold && i.Category.Id == categoryId)
                          .OrderBy(i => i.Name);
         }
 
@@ -70,7 +88,7 @@ namespace Collection.Repositories
                          .Include(i => i.Category)
                          .Include(i => i.Producer)
                          .Include(i => i.Gallery)
-                         .Where(i => !i.InCollection)
+                         .Where(i => !i.InCollection && !i.Sold)
                          .OrderBy(i => i.Name);
         }
 
@@ -124,6 +142,7 @@ namespace Collection.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
 
     }
 }

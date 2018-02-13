@@ -56,6 +56,28 @@
         </div>
 
         <div class="form-group">
+            <label asp-for="Toy.PurchaseDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input type="date" asp-for="Toy.PurchaseDate" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Toy.Price" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Toy.Price" class="form-control" />
+                <span asp-validation-for="Toy.SoldPrice" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Toy.SoldDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input type="date" asp-for="Toy.SoldDate" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
             <label asp-for="Toy.InCollection" class="col-md-2 control-label"></label>
             <div class="col-md-1 pull-left">
                 <input asp-for="Toy.InCollection" class="form-control"/>
@@ -66,6 +88,13 @@
             <label asp-for="Toy.ForSale" class="col-md-2 control-label"></label>
             <div class="col-md-1 pull-left">
                 <input asp-for="Toy.ForSale" class="form-control" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Toy.Sold" class="col-md-2 control-label"></label>
+            <div class="col-md-1 pull-left">
+                <input asp-for="Toy.Sold" class="form-control" />
             </div>
         </div>
 
@@ -99,4 +128,10 @@
 @section Scripts {
     <script src="~/js/items.js"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script type="text/javascript">
+    $(function () {
+        //$('#datetimepicker1').datepicker();
+        //$('#datetimepicker1').datetimepicker({ format: 'DD/MM/YYYY' });
+    });
+    </script>
 }

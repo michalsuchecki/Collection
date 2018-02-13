@@ -11,9 +11,10 @@ using System;
 namespace Collection.Migrations
 {
     [DbContext(typeof(ToyContext))]
-    partial class ToyContextModelSnapshot : ModelSnapshot
+    [Migration("20180213185609_SoldProperties")]
+    partial class SoldProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

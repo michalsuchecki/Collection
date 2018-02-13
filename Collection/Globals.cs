@@ -12,11 +12,5 @@ namespace Collection
         public static string toysThumbnailsDirectory = "thumbs";
         public static string thumbnailSufix = ".jpg";
         public static string imageSufix = "_l.jpg";
-
-        public static Size ThumbSize = new Size()
-        {
-            Height = 320,
-            Width = 400
-        };
     }
 }

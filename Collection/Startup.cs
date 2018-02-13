@@ -1,54 +1,50 @@
 ﻿using System;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
+using Collection.Infrastructure.IoC;
+using Collection.Models;
+using Collection.Repositories;
+using Collection.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Collection.Repositories;
-using Collection.Models;
-using Collection.Services;
-using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
 
 namespace Collection
 {
     public class Startup
     {
         private string _contentRootPath;
-
-        public IConfigurationRoot _Configuration { get; set; }
+        public IConfigurationRoot Configuration { get; set; }
+        public IContainer ApplicationContainer { get; private set; }
 
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("settings.json", optional: true, reloadOnChange: true)
+                .AddJsonFile("settings.json", optional : true, reloadOnChange : true)
                 .AddEnvironmentVariables();
-            _Configuration = builder.Build();
+            Configuration = builder.Build();
 
             _contentRootPath = env.ContentRootPath;
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-
-            string conn = _Configuration.GetConnectionString("DefaultConnection");
-            if (conn.Contains("%CONTENTROOTPATH%"))
-            {
-                conn = conn.Replace("%CONTENTROOTPATH%", _contentRootPath);
-            }
-
             // Database
-            services.AddDbContext<ToyContext>(options => options.UseSqlServer(conn));
+            services.AddDbContext<ToyContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             // Identities
             services.AddIdentity<User, IdentityRole>()
-                    .AddEntityFrameworkStores<ToyContext>()
-                    .AddDefaultTokenProviders();
+                .AddEntityFrameworkStores<ToyContext>()
+                .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(o =>
             {
@@ -61,8 +57,9 @@ namespace Collection
                 o.User.RequireUniqueEmail = true;
             });
 
-            services.ConfigureApplicationCookie(o => {
-                o.Cookie.HttpOnly=true;
+            services.ConfigureApplicationCookie(o =>
+            {
+                o.Cookie.HttpOnly = true;
                 o.Cookie.Expiration = TimeSpan.FromDays(150);
                 o.LoginPath = "/Account/Login";
                 o.LogoutPath = "/Account/Logout";
@@ -86,7 +83,15 @@ namespace Collection
             services.AddTransient<IPostRepository, PostRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IBlogService, BlogService>();
-            
+
+            var builder = new ContainerBuilder();
+
+            builder.Populate(services);
+            builder.RegisterModule(new ContainerModule(Configuration));
+
+            ApplicationContainer = builder.Build();
+
+            return new AutofacServiceProvider(ApplicationContainer);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory log, ToyContext context)
@@ -107,8 +112,8 @@ namespace Collection
 
             app.UseMvc(r =>
                 r.MapRoute(
-                name: "default",
-                template: "{controller=blog}/{action=index}/{id?}"
+                    name: "default",
+                    template: "{controller=blog}/{action=index}/{id?}"
                 ));
 
             ToyInitializer.Initialize(context);

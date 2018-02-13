@@ -10,6 +10,8 @@ namespace Collection.Repositories
     {
         IQueryable<Toy> GetAllToys();
         IQueryable<Toy> GetMyToys();
+        IQueryable<Toy> GetMySoldToys();
+        IQueryable<Toy> GetToysForSale();
         IQueryable<Toy> GetMyToysByCategory(int categoryId);
         IQueryable<Toy> GetWantedToys();
         IQueryable<Toy> GetWantedToysByCategory(int categoryId);
@@ -21,6 +23,6 @@ namespace Collection.Repositories
         void UpdateToy(Toy toy);
 
         void Save();
-        
+
     }
 }

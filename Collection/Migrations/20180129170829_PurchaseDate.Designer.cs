@@ -11,9 +11,10 @@ using System;
 namespace Collection.Migrations
 {
     [DbContext(typeof(ToyContext))]
-    partial class ToyContextModelSnapshot : ModelSnapshot
+    [Migration("20180129170829_PurchaseDate")]
+    partial class PurchaseDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -115,12 +116,6 @@ namespace Collection.Migrations
                     b.Property<int?>("ProducerId");
 
                     b.Property<DateTime?>("PurchaseDate");
-
-                    b.Property<bool>("Sold");
-
-                    b.Property<DateTime?>("SoldDate");
-
-                    b.Property<decimal?>("SoldPrice");
 
                     b.HasKey("ToyID");
 

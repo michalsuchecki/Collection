@@ -65,12 +65,25 @@ namespace Collection.Controllers
                     case "wanted":
                         ViewBag.Section = "Wanted toys";
                         Toys = _toyRepository.GetWantedToys();
+                        model.TotalPrice = Toys.Sum(x => x.Price);
+                        break;
+                    case "forsale":
+                        ViewBag.Section = "Toys for sale";
+                        Toys = _toyRepository.GetToysForSale();
+                        model.TotalPrice = Toys.Sum(x => x.Price);
+                        break;
+                    case "sold":
+                        ViewBag.Section = "My sold toys";
+                        Toys = _toyRepository.GetMySoldToys();
+                        model.TotalPrice = Toys.Sum(x => x.SoldPrice ?? 0);
                         break;
                     case "collection":
                     default:
                         ViewBag.Section = "My collection";
                         Toys = _toyRepository.GetMyToys();
+                        model.TotalPrice = Toys.Sum(x => x.Price);
                         break;
+
                 }
             }
 
@@ -112,7 +125,7 @@ namespace Collection.Controllers
             page = (page - 1) ?? 0;
 
             model.Toys = new PaginatedList<Toy>(Toys, page.Value);
-            model.TotalPrice = Toys.Sum(x => x.Price);
+            //model.TotalPrice = Toys.Sum(x => x.Price);
             return View(model);
         }
 

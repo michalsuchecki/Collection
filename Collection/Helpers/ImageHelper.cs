@@ -5,7 +5,6 @@ using System.IO;
 using ImageSharp;
 using ImageSharp.Processing;
 
-
 namespace Collection.Helpers
 {
     public class ImageHelper
@@ -65,10 +64,11 @@ namespace Collection.Helpers
                 var thumb = img.Resize(new ResizeOptions
                 {
                     Mode = ResizeMode.Crop,
-                    Size = Globals.ThumbSize,
+                    Size = new SixLabors.Primitives.Size(400,320)
                 });
 
-                thumb.Save(output);           
+                //thumb.Save(output);
+                thumb.SaveAsJpeg(output);
             }
         }
 

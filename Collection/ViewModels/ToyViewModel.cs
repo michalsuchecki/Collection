@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace Collection.ViewModels
 {
@@ -16,5 +17,13 @@ namespace Collection.ViewModels
         public int Condition { get; set; }
         public List<SelectListItem> Conditions { get; set; }
         public List<IFormFile> Images { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd-mm-yyyy}", ApplyFormatInEditMode=true)]
+        [DataType(DataType.Date)] 
+        public DateTime? PurchaseDate { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:dd-mm-yyyy}", ApplyFormatInEditMode=true)]
+        [DataType(DataType.Date)] 
+        public DateTime? SoldDate { get; set; }
     }
 }

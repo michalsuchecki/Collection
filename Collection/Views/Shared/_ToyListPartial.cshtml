@@ -8,7 +8,16 @@
             </th>
             <th>Name</th>
             <th>Index</th>
-            <th>Price</th>
+            @if (ViewData["display"] as String == "sold")
+            {
+                <th>Sold Price</th>
+            }
+            else
+            {
+                <th>Price</th>
+
+            }
+
             <th>Producer</th>
             <th>Category</th>
             @if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
@@ -28,21 +37,28 @@
                             @{
                                 var name = item.Gallery.FirstOrDefault()?.FileName;
                                 //<a asp-action="Details" asp-route-id="@item.ToyID">
-                                    @if (!String.IsNullOrEmpty(name))
-                                    {
-                                        <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
-                                    }
-                                    else
-                                    {
-                                        <img src=@("/img/no_img.jpg") class="responsive" />
-                                    }
+                                @if (!String.IsNullOrEmpty(name))
+                                {
+                                    <img src=@($"/img/toys/thumbs/{name}.jpg") class="responsive" />
+                                }
+                                else
+                                {
+                                    <img src=@("/img/no_img.jpg") class="responsive" />
+                                }
                                 //</a>
                             }
                         </div>
                     </td>
                     <td><strong>@item.Name</strong></td>
                     <td>@item.Index</td>
-                    <td class="text-right">@String.Format("{0:C}", item.Price)</td>
+                    @if (ViewData["display"] as String == "sold")
+                    {
+                        <td class="text-right">@String.Format("{0:C}", item.SoldPrice)</td>
+                    }
+                    else
+                    {
+                        <td class="text-right">@String.Format("{0:C}", item.Price)</td>
+                    }
                     <td>@item.Producer.Name</td>
                     <td>@item.Category.Name</td>
 
@@ -55,7 +71,7 @@
                         </td>
                     }
                 </tr>
-                                }
+            }
         }
     </tbody>
 </table>
