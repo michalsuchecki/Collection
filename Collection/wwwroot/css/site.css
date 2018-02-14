@@ -345,3 +345,7 @@ a.pg-btn:hover {
 .dropdown-menu li a{
     line-height: 50px;
 }
+
+.btn.delete{
+    color: #000;
+}
