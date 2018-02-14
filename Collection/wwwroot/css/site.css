@@ -341,3 +341,7 @@ a.pg-btn:hover {
     max-height: 100%;
     max-width: 100%;
 }
+
+.dropdown-menu li a{
+    line-height: 50px;
+}
