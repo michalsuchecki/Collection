@@ -1,12 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using Collection.Core.Enums;
+using System.Collections.Generic;
 
 namespace Collection.Core.Domain
 {
-    public enum Condition
-    {
-        New,
-        Used
-    }
     public class Item
     {
         public int ItemId { get; set; }
