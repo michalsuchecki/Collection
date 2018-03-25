@@ -1,19 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collection", "Collection\Collection.csproj", "{8990218D-C4FD-4DF0-9B9C-F03C970EE6D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection", "Collection\Collection.csproj", "{8990218D-C4FD-4DF0-9B9C-F03C970EE6D9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collection.Tests", "Collection.Tests\Collection.Tests.csproj", "{A90DB2B2-055C-4F9D-9814-69B58EDC58A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Tests", "Collection.Tests\Collection.Tests.csproj", "{A90DB2B2-055C-4F9D-9814-69B58EDC58A5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collection.Api", "Collection.Api\Collection.Api.csproj", "{319C1C27-3532-41CB-9ED0-7B23E45C6EB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Api", "Collection.Api\Collection.Api.csproj", "{319C1C27-3532-41CB-9ED0-7B23E45C6EB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collection.Core", "Collection.Core\Collection.Core.csproj", "{B4CF59AE-513A-433C-A75B-E046D9F70B13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Core", "Collection.Core\Collection.Core.csproj", "{B4CF59AE-513A-433C-A75B-E046D9F70B13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Collection.Infrastructure", "Collection.Infrastructure\Collection.Infrastructure.csproj", "{A7F97215-3BC8-4504-8CB2-56717A699646}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Infrastructure", "Collection.Infrastructure\Collection.Infrastructure.csproj", "{A7F97215-3BC8-4504-8CB2-56717A699646}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Repository.Entity", "Collection.Repository.Entity\Collection.Repository.Entity.csproj", "{F467932D-884E-4382-BE0B-2D2993A58A76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Service", "Collection.Service\Collection.Service.csproj", "{D907FE9F-14AC-4179-A76C-CED1AD2A7AF5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,8 +47,15 @@ Global
 		{F467932D-884E-4382-BE0B-2D2993A58A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F467932D-884E-4382-BE0B-2D2993A58A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F467932D-884E-4382-BE0B-2D2993A58A76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D907FE9F-14AC-4179-A76C-CED1AD2A7AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D907FE9F-14AC-4179-A76C-CED1AD2A7AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D907FE9F-14AC-4179-A76C-CED1AD2A7AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D907FE9F-14AC-4179-A76C-CED1AD2A7AF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52D29F13-A3F2-480E-B3D9-FB8CDDD61854}
 	EndGlobalSection
 EndGlobal
