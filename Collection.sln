@@ -15,8 +15,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Infrastructure",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Repository.Entity", "Collection.Repository.Entity\Collection.Repository.Entity.csproj", "{F467932D-884E-4382-BE0B-2D2993A58A76}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Service", "Collection.Service\Collection.Service.csproj", "{D907FE9F-14AC-4179-A76C-CED1AD2A7AF5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{F467932D-884E-4382-BE0B-2D2993A58A76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F467932D-884E-4382-BE0B-2D2993A58A76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F467932D-884E-4382-BE0B-2D2993A58A76}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D907FE9F-14AC-4179-A76C-CED1AD2A7AF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D907FE9F-14AC-4179-A76C-CED1AD2A7AF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D907FE9F-14AC-4179-A76C-CED1AD2A7AF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D907FE9F-14AC-4179-A76C-CED1AD2A7AF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

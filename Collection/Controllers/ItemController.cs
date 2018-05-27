@@ -10,11 +10,12 @@ using Collection.ViewModels;
 using Collection.Helpers;
 using Collection.Repositories;
 using Collection.Infrastructure;
-
+using Collection.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Http;
 
 namespace Collection.Controllers
 {
-    public class ItemController : Controller
+    public class ItemController : ControllerBase
     {
         private readonly ToyContext _context;
         private readonly IHostingEnvironment _environment;
@@ -125,7 +126,6 @@ namespace Collection.Controllers
             page = (page - 1) ?? 0;
 
             model.Toys = new PaginatedList<Toy>(Toys, page.Value);
-            //model.TotalPrice = Toys.Sum(x => x.Price);
             return View(model);
         }
 
@@ -142,6 +142,8 @@ namespace Collection.Controllers
         // GET: Item/Create
         public IActionResult Create()
         {
+            UpdateRefererUrl();
+
             var producers = FormHelper.GetFormProducers(_context.Producers.ToArray());
             var categories = FormHelper.GetFormCategories(_context.Categories.ToArray());
 
@@ -179,7 +181,7 @@ namespace Collection.Controllers
                 }
 
                 _toyRepository.Save();
-                return RedirectToAction("Index");
+                return RedirectToReferer();
             }
             else
             {
@@ -192,6 +194,8 @@ namespace Collection.Controllers
         // GET: Item/Edit/5
         public IActionResult Edit(int? id)
         {
+            UpdateRefererUrl();
+
             if (id == null) return NotFound();
 
             var _toy = _toyRepository.GetToyById(id.Value);
@@ -239,7 +243,7 @@ namespace Collection.Controllers
 
                 _toyRepository.Save();
 
-                return RedirectToAction("Index");
+                return RedirectToReferer();
             }
             return View(model);
         }
@@ -250,6 +254,8 @@ namespace Collection.Controllers
             if (id == null) return NotFound();
             var toy = _toyRepository.GetToyById(id.Value);
             if (toy == null) return NotFound();
+
+            UpdateRefererUrl();
 
             return View(toy);
         }
@@ -278,7 +284,7 @@ namespace Collection.Controllers
             _toyRepository.DeleteToy(id);
             _toyRepository.Save();
 
-            return RedirectToAction("Index");
+            return RedirectToReferer();
         }
 
         [HttpGet]
