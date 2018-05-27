@@ -1,6 +1,9 @@
 using System;
+using System.Linq;
 using Collection.Infrastructure.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace Collection.Controllers
 {
@@ -21,5 +24,33 @@ namespace Collection.Controllers
             else
                 return RedirectToAction("Index");
         }
+
+        #region Cookies
+        public string GetCookie(string key)  
+        {  
+            return Request.Cookies["Key"];  
+        }  
+
+        public void SetCookie(string key, string value, int? expireTime = null)  
+        {  
+            
+            if (expireTime.HasValue)
+            {
+                CookieOptions option = new CookieOptions();  
+                option.Expires = DateTime.Now.AddMinutes(expireTime.Value);  
+                Response.Cookies.Append(key, value, option);  
+            }
+            else  
+            {
+                Response.Cookies.Append(key, value);    
+            }
+        }  
+
+        public void RemoveCookie(string key)
+        {
+            Response.Cookies.Delete(key); 
+        }
+        
+        #endregion
     }
 }
