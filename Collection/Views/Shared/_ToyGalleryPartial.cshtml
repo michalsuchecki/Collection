@@ -28,8 +28,10 @@
                 @if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
                 {
                     <footer class="admin">
-                        <a asp-action="Edit" asp-route-id="@item.ToyID" class="btn ">Edit</a>
-                        <a asp-action="Delete" asp-route-id="@item.ToyID" class="btn">Delete</a>
+                        <div class="btn-group">
+                            <a asp-action="Edit" asp-route-id="@item.ToyID" class="btn edit"><span class="fa fa-edit"></span></a>
+                            <a asp-action="Delete" asp-route-id="@item.ToyID" class="btn delete"><span class="fa fa-trash"></span></a>
+                        </div>
                     </footer>
                 }
 

@@ -144,7 +144,8 @@ input[type=file] {
     height: 100px;
     width: 133.3333px;
     border: 1px solid #dfdfdf;
-    border-radius: 5px;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 .responsive {
@@ -346,6 +347,57 @@ a.pg-btn:hover {
     line-height: 50px;
 }
 
-.btn.delete{
-    color: #000;
+.item_title{
+    height: 60px;
+}
+
+.fa.fa-exclamation-triangle{
+    color:orange;
+}
+
+.fa.fa-dollar-sign{
+    color:darkgreen;
+}
+
+.fa.disabled{
+    color:#ccc;
+}
+
+h4.name{
+    text-transform: uppercase;
+}
+
+p.producer{
+    color:#999;
+    font-size: 80%;
+    text-transform:uppercase;
+}
+
+p.producer span{
+    text-transform: capitalize;
+}
+
+p.category{
+    color:#999;
+    font-size: 80%;
+    text-transform:uppercase;
+    margin-bottom: 0;
+    margin-top: 28px;
+}
+
+tr.item:hover{
+    background-color:#eee;
+}
+
+.icon{
+    height: 20px;
+    width: 20px;
+    margin-top:10px;
+    margin-bottom:10px;
+    margin-right: 0;
+}
+
+.big-icon{
+    width: 40px;
+    font-size:20px;
 }
