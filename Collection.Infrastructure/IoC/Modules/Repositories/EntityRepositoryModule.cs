@@ -14,10 +14,10 @@ namespace Collection.Infrastructure.IoC.Modules.Repositories
                 .GetTypeInfo()
                 .Assembly;
 
-            builder.RegisterAssemblyTypes(assembly)
-                .Where(x => x.IsAssignableTo<IRepository>())
-                .AsImplementedInterfaces()
-                .InstancePerLifetimeScope();
+            // builder.RegisterAssemblyTypes(assembly)
+            //     .Where(x => x.IsAssignableTo<IRepository>())
+            //     .AsImplementedInterfaces()
+            //     .InstancePerLifetimeScope();
         }
     }
 }

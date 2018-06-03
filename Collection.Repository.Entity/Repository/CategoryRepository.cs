@@ -54,5 +54,25 @@ namespace Collection.Repository.Entity.Repository
                 await _context.SaveChangesAsync();
             }
         }
+
+        public IQueryable<Category> List(bool readOnly = false)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Category Insert(Category entity, bool forceSave = true)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Category Update(Category entity, bool forceSave = true)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Delete(Category entity, bool forceSave = true)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

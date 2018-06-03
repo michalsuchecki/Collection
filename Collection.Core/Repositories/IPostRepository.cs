@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Collection.Core.Repositories
 {
-    public interface IPostRepository : IRepository
+    public interface IPostRepository : IRepository<Post>
     {
         Task<Post> GetPostAsync(int id);
         Task<IEnumerable<Post>> GetAllAsync();

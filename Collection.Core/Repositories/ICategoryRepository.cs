@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Collection.Core.Repositories
 {
-    public interface ICategoryRepository : IRepository
+    public interface ICategoryRepository : IRepository<Category>
     {
         Task<Category> GetAsync(int id);
         Task<Category> GetAsync(string name);

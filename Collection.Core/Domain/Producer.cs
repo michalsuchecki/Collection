@@ -1,6 +1,6 @@
 ﻿namespace Collection.Core.Domain
 {
-    public class Producer
+    public class Producer : IEntity
     {
         public int ProducerId { get; set; }
         public string Name { get; set; }

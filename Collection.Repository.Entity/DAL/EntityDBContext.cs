@@ -18,6 +18,11 @@ namespace Collection.Repository.Entity.DAL
             Database.EnsureCreated();
         }
 
+        protected override void  OnModelCreating(ModelBuilder builder)
+        {
+
+        }
+
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             builder.UseSqlServer(_connectionString);

@@ -60,5 +60,25 @@ namespace ollection.Repository.Entity.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public IQueryable<Item> List(bool readOnly = false)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Item Insert(Item entity, bool forceSave = true)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Item Update(Item entity, bool forceSave = true)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(Item entity, bool forceSave = true)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -23,6 +23,11 @@ namespace Collection.Repository.Entity.Repositories
             throw new NotImplementedException();
         }
 
+        public void Delete(Image entity, bool forceSave = true)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<IEnumerable<Image>> GetAllAsync()
         {
             return await _context.Images.ToListAsync();
@@ -40,9 +45,24 @@ namespace Collection.Repository.Entity.Repositories
             throw new NotImplementedException();
         }
 
+        public Image Insert(Image entity, bool forceSave = true)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IQueryable<Image> List(bool readOnly = false)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task RemoveAsync(int id)
         {
             await Task.CompletedTask;
+            throw new NotImplementedException();
+        }
+
+        public Image Update(Image entity, bool forceSave = true)
+        {
             throw new NotImplementedException();
         }
 

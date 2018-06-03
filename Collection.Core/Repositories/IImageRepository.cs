@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Collection.Core.Repositories
 {
-    public interface IImageRepository : IRepository
+    public interface IImageRepository : IRepository<Image>
     {
         Task<Image> GetImageAsync(int id);
         Task<Image> GetImagesAsync(Item item);

@@ -1,6 +1,6 @@
 ﻿namespace Collection.Core.Domain
 {
-    public class Image
+    public class Image : IEntity
     {
         public int ImageId { get; set; }
         public string FileName { get; set; }

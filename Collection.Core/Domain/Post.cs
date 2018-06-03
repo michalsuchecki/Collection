@@ -2,7 +2,7 @@
 
 namespace Collection.Core.Domain
 {
-    public class Post
+    public class Post : IEntity
     {
         public int PostId { get; set; }
         public string Topic { get; set; }
