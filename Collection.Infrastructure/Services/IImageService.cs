@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Collection.Core.Domain;
+using Collection.Entity.Entity.Item;
 using Collection.Infrastructure.DTO;
 
 namespace Collection.Infrastructure.Services

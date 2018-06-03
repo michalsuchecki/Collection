@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Collection.Core.Domain;
+using Collection.Entity.Entity.Item;
 using Collection.Repository.Entity.DAL;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;

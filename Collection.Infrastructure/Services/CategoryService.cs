@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-using Collection.Core.Domain;
+using Collection.Entity.Entity.Common;
 using Collection.Infrastructure.DTO;
 using Collection.Core.Repositories;
 using AutoMapper;

@@ -1,4 +1,4 @@
-﻿namespace Collection.Core.Domain
+﻿namespace Collection.Entity.Entity.Item
 {
     public class Image : IEntity
     {

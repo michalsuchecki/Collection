@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Collection.Core.Domain;
+using Collection.Entity.Entity.Common;
 using Collection.Core.Repositories;
 using Collection.Repository.Entity.DAL;
 using Microsoft.EntityFrameworkCore;

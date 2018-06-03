@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using Collection.Core.Domain;
+using Collection.Entity.Entity;
 
 namespace Collection.Core.Repositories
 {

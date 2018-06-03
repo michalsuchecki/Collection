@@ -1,4 +1,4 @@
-﻿using Collection.Core.Domain;
+﻿using Collection.Entity.Entity.Blog;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

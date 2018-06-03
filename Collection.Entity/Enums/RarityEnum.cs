@@ -1,4 +1,4 @@
-namespace Collection.Core.Enums
+namespace Collection.Entity.Enums
 {
     public enum RarityEnum
     {

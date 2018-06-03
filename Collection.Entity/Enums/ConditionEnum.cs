@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Collection.Core.Enums
+namespace Collection.Entity.Enums
 {
     public enum Condition
     {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Collection.Infrastructure.DTO;
 using Collection.Core.Repositories;
-using Collection.Core.Domain;
+using Collection.Entity.Entity.Item;
 using AutoMapper;
 using Collection.Infrastructure.Filters;
 using System;

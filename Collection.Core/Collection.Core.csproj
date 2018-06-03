@@ -5,5 +5,11 @@
     <AssemblyName>Collection.Core</AssemblyName>
     <PackageId>Collection.Core</PackageId>
   </PropertyGroup>
+
+
+    <ItemGroup>
+    <ProjectReference Include="../Collection.Entity/Collection.Entity.csproj" />
+  </ItemGroup>
+
   
 </Project>

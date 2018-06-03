@@ -1,4 +1,6 @@
-﻿namespace Collection.Core.Domain
+﻿using Collection.Entity.Entity;
+
+namespace Collection.Entity.Entity.Common
 {
     public class Category : IEntity
     {

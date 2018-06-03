@@ -15,8 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="../Collection.Repository.Entity/Collection.Repository.Entity.csproj" />
+    <ProjectReference Include="../Collection.Entity/Collection.Entity.csproj" />
     <ProjectReference Include="../Collection.Core/Collection.Core.csproj" />
+    <ProjectReference Include="../Collection.Repository.Entity/Collection.Repository.Entity.csproj" />
   </ItemGroup>
 
   <ItemGroup>

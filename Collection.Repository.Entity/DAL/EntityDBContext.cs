@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Collection.Core.Domain;
+using Collection.Entity.Entity.Common;
+using Collection.Entity.Entity.Blog;
+using Collection.Entity.Entity.Item;
+using Collection.Entity.Entity.User;
 using System.Linq;
 using System.Threading.Tasks;
 

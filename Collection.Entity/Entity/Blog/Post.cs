@@ -1,6 +1,7 @@
 ﻿using System;
+using Collection.Entity.Entity.User;
 
-namespace Collection.Core.Domain
+namespace Collection.Entity.Entity.Blog
 {
     public class Post : IEntity
     {
@@ -8,6 +9,6 @@ namespace Collection.Core.Domain
         public string Topic { get; set; }
         public string Message { get; set; }
         public DateTime PublishDate { get; set; }
-        public User Author { get; set; }
+        public Collection.Entity.Entity.User.User Author { get; set; }
     }
 }

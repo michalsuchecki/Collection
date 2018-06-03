@@ -1,4 +1,4 @@
-﻿using Collection.Core.Domain;
+﻿using Collection.Entity.Entity.User;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

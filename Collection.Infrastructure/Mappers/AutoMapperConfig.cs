@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using Collection.Core.Domain;
+using Collection.Entity.Entity.Item;
+using Collection.Entity.Entity.Common;
 using Collection.Infrastructure.DTO;
 
 namespace Collection.Infrastructure.Mappers

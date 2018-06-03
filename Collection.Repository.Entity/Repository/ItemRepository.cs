@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Collection.Core.Repositories;
-using Collection.Core.Domain;
+using Collection.Entity.Entity.Item;
 using Collection.Repository.Entity.DAL;
 
 namespace ollection.Repository.Entity.Repositories
