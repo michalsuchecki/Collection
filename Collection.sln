@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection", "Collection\Collection.csproj", "{8990218D-C4FD-4DF0-9B9C-F03C970EE6D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Tests", "Collection.Tests\Collection.Tests.csproj", "{A90DB2B2-055C-4F9D-9814-69B58EDC58A5}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Api", "Collection.Api\Collection.Api.csproj", "{319C1C27-3532-41CB-9ED0-7B23E45C6EB4}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Collection.Core", "Collection.Core\Collection.Core.csproj", "{B4CF59AE-513A-433C-A75B-E046D9F70B13}"
