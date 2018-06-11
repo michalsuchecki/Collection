@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Collection.Entity.Enums
+﻿namespace Collection.Entity.Enums
 {
-    public enum Condition
+    public enum ConditionEnum
     {
         New = 1,
         Used = 2,
