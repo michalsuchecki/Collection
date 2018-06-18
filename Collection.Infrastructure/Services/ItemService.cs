@@ -22,57 +22,19 @@ namespace Collection.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<ItemDto>> GetAllAsync()
+        public Task<IEnumerable<ItemDto>> GetAllAsync()
         {
-            var items = await _itemRepository.GetAllAsync();
-            return _mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(items);
+            throw new NotImplementedException();
         }
 
-        public async Task<ItemDto> GetAsync(int id)
+        public Task<ItemDto> GetAsync(int id)
         {
-            var item = await _itemRepository.GetItemAsync(id);
-            return _mapper.Map<Item,ItemDto>(item);
+            throw new NotImplementedException();
         }
-        public async Task<IEnumerable<ItemDto>> GetFilteredAsync(ItemFilter filter)
+
+        public Task<IEnumerable<ItemDto>> GetFilteredAsync(ItemFilter filter)
         {
-            // var items = _itemRepository.GetAll();
-
-            // switch (filter.DisplayAs)
-            // {
-            //     case DisplayAs.Wanted:
-            //         items = items.Where(x => !x.InCollection);
-            //         break;
-            //     case DisplayAs.Collection:
-            //     default:
-            //         items = items.Where(x => x.InCollection);
-            //         break;
-            // }
-
-            // if (!String.IsNullOrEmpty(filter.SearchString))
-            // {
-            //     items = items.Where(x => x.Name.ToLower().Contains(filter.SearchString.ToLower()));
-            // }
-
-            // if(filter.Category != 0)
-            // {
-            //     items = items.Where(x => x.Category.CategoryId == filter.Category);
-            // }
-        
-            // if (filter.Producer != 0)
-            // {
-            //     items = items.Where(x => x.Producer.ProducerId == filter.Producer);
-            // }
-
-            // // TODO 12 items per page -> take from settings
-
-            // if (filter.Page <= 0) filter.Page = 1;
-
-            // items = items.Skip((filter.Page - 1) * 12).Take(12);
-
-            // var result = await items.ToListAsync();
-
-            // return _mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(result);
-            return null;
+            throw new NotImplementedException();
         }
     }
 }

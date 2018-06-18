@@ -7,11 +7,5 @@ namespace Collection.Core.Repositories
 {
     public interface IItemRepository : IRepository<Item>
     {
-        Task<Item> GetItemAsync(int id);
-        Task<IEnumerable<Item>> GetAllAsync();
-        IQueryable<Item> GetAll();
-        Task AddAsync(Item item);
-        Task UpdateAsync(Item item);
-        Task RemoveAsync(int id);
     }
 }

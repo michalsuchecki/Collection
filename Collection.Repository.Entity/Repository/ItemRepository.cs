@@ -4,7 +4,7 @@ using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Collection.Core.Repositories;
-using Collection.Entity.Entity.Item;
+using Collection.Entity.Item;
 using Collection.Repository.Entity.DAL;
 
 namespace ollection.Repository.Entity.Repositories
@@ -17,66 +17,27 @@ namespace ollection.Repository.Entity.Repositories
             _context = context;
         }
 
-        public Task AddAsync(Item item)
-        {
-
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<Item>> GetAllAsync()
-        {
-            return await _context.Items
-                .Include(x => x.Category)
-                .Include(x => x.Producer)
-                .Include(x => x.Images).ToListAsync();
-        }
-
-        public IQueryable<Item> GetAll()
-        {
-            return _context.Items
-                .Include(x => x.Category)
-                .Include(x => x.Producer)
-                .Include(x => x.Images);
-        }
-
-        public async Task<Item> GetItemAsync(int id)
-        {
-            var query = _context.Items
-                .Include(x => x.Category)
-                .Include(x => x.Producer)
-                .Include(x => x.Images)
-                .Where(x => x.ItemId == id)
-                
-                .FirstOrDefaultAsync();
-            return await query;
-        }
-
-        public Task RemoveAsync(int id)
+        public Task<Item> GetById(bool readOnly = false)
         {
             throw new NotImplementedException();
         }
 
-        public Task UpdateAsync(Item item)
+        public Task<IQueryable<Item>> List(bool readOnly = false)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Item> List(bool readOnly = false)
+        public Task<Item> Insert(Item entity, bool forceSave = true)
         {
             throw new NotImplementedException();
         }
 
-        public Item Insert(Item entity, bool forceSave = true)
+        public Task<Item> Update(Item entity, bool forceSave = true)
         {
             throw new NotImplementedException();
         }
 
-        public Item Update(Item entity, bool forceSave = true)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Item entity, bool forceSave = true)
+        public Task Delete(Item entity, bool forceSave = true)
         {
             throw new NotImplementedException();
         }

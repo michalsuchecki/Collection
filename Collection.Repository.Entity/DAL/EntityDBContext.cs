@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Collection.Entity.Entity.Common;
-using Collection.Entity.Entity.Blog;
-using Collection.Entity.Entity.Item;
-using Collection.Entity.Entity.User;
+using Collection.Entity.Common;
+using Collection.Entity.Blog;
+using Collection.Entity.Item;
+using Collection.Entity.User;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -36,7 +36,7 @@ namespace Collection.Repository.Entity.DAL
         public DbSet<Category> Categories { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Producer> Producers { get; set; }
-        public DbSet<Image> Images { get; set; }
+        public DbSet<ItemImage> Images { get; set; }
         public DbSet<Post> Posts { get; set; }
         public DbSet<User> Users { get; set; }
     }

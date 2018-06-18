@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Collection.Entity.Entity.Item;
+using Collection.Entity.Item;
 using Collection.Repository.Entity.DAL;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -17,58 +17,28 @@ namespace Collection.Repository.Entity.Repositories
         {
             _context = context;
         }
-        public async Task AddAsync(Image image)
-        {
-            await Task.CompletedTask;
-            throw new NotImplementedException();
-        }
 
-        public void Delete(Image entity, bool forceSave = true)
+        public Task<ItemImage> GetById(bool readOnly = false)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Image>> GetAllAsync()
-        {
-            return await _context.Images.ToListAsync();
-        }
-
-        public async Task<Image> GetImageAsync(int id)
-        {
-            await Task.CompletedTask;
-            throw new NotImplementedException();
-        }
-
-        public async Task<Image> GetImagesAsync(Item item)
-        {
-            await Task.CompletedTask;
-            throw new NotImplementedException();
-        }
-
-        public Image Insert(Image entity, bool forceSave = true)
+        public Task<IQueryable<ItemImage>> List(bool readOnly = false)
         {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Image> List(bool readOnly = false)
+        public Task<ItemImage> Insert(ItemImage entity, bool forceSave = true)
         {
             throw new NotImplementedException();
         }
 
-        public async Task RemoveAsync(int id)
-        {
-            await Task.CompletedTask;
-            throw new NotImplementedException();
-        }
-
-        public Image Update(Image entity, bool forceSave = true)
+        public Task<ItemImage> Update(ItemImage entity, bool forceSave = true)
         {
             throw new NotImplementedException();
         }
-
-        public async Task UpdateAsync(Image image)
+        public Task Delete(ItemImage entity, bool forceSave = true)
         {
-            await Task.CompletedTask;
             throw new NotImplementedException();
         }
     }

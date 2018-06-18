@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Collection.Entity.Entity;
+using Collection.Entity;
 
 namespace Collection.Repository.Entity.Mapping
 {
