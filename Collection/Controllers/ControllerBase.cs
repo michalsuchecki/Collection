@@ -1,6 +1,6 @@
 using System;
 using System.Linq;
-using Collection.Infrastructure.Extensions;
+using Collection.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;

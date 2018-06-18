@@ -10,7 +10,7 @@ using Collection.ViewModels;
 using Collection.Helpers;
 using Collection.Repositories;
 using Collection.Infrastructure;
-using Collection.Infrastructure.Extensions;
+using Collection.Extensions;
 using Microsoft.AspNetCore.Http;
 
 namespace Collection.Controllers

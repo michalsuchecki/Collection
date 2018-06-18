@@ -1,4 +1,4 @@
-namespace Collection.Entity.Entity
+namespace Collection.Entity
 {
     public interface IEntity
     {

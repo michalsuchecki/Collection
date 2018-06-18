@@ -1,7 +1,7 @@
 ﻿using Collection.Entity.Enums;
 using System;
 
-namespace Collection.Entity.Entity.User
+namespace Collection.Entity.User
 {
     public class UserItem : EntityBase
     {

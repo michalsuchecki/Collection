@@ -1,5 +1,5 @@
 ﻿
-using Collection.Entity.Entity.Common;
+using Collection.Entity.Common;
 using System.Collections.Generic;
 
 namespace Collection.Infrastructure.DTO

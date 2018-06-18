@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Collection.Entity.Entity.Item;
-using Collection.Entity.Entity.Common;
+using Collection.Entity.Item;
+using Collection.Entity.Common;
 using Collection.Infrastructure.DTO;
 
 namespace Collection.Infrastructure.Mappers
@@ -11,9 +11,9 @@ namespace Collection.Infrastructure.Mappers
         {
             var mapper = new MapperConfiguration(c =>
             {
-                c.CreateMap<Item, ItemDto>().ForMember(x => x.Images, m => m.MapFrom(src => src.Images));
-                c.CreateMap<Image, ImageDto>();
-                c.CreateMap<Image, ImageThumbDto>();
+                //c.CreateMap<Item, ItemDto>().ForMember(x => x.Images, m => m.MapFrom(src => src.Images));
+                c.CreateMap<ItemImage, ImageDto>();
+                c.CreateMap<ItemImage, ImageThumbDto>();
                 c.CreateMap<Category, CategoryDto>();
                 
             });

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Collection.Entity.Entity.User
+namespace Collection.Entity.User
 {
     public class UserRole : EntityBase
     {

@@ -1,4 +1,4 @@
-﻿using Collection.Entity.Entity.Item;
+﻿using Collection.Entity.Item;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

@@ -1,16 +1,14 @@
-﻿using Collection.Entity.Entity.Item;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using Collection.Entity.Item;
 
 namespace Collection.Core.Repositories
 {
-    public interface IImageRepository : IRepository<Image>
+    public interface IImageRepository : IRepository<ItemImage>
     {
-        Task<Image> GetImageAsync(int id);
-        Task<Image> GetImagesAsync(Item item);
-        Task<IEnumerable<Image>> GetAllAsync();
-        Task AddAsync(Image image);
-        Task UpdateAsync(Image image);
-        Task RemoveAsync(int id);
+        //Task<Image> GetImageAsync(int id);
+        //Task<Image> GetImagesAsync(Item item);
+        //Task<IEnumerable<Image>> GetAllAsync();
+        //Task AddAsync(Image image);
+        //Task UpdateAsync(Image image);
+        //Task RemoveAsync(int id);
     }
 }

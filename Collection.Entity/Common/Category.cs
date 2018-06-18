@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Collection.Entity.Entity.Common
+namespace Collection.Entity.Common
 {
     public class Category : EntityBase
     {

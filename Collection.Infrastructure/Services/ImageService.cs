@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using Collection.Entity.Entity.Item;
+using Collection.Entity.Item;
 using Collection.Core.Repositories;
 using Collection.Infrastructure.DTO;
 
@@ -30,23 +30,25 @@ namespace Collection.Infrastructure.Services
         {
             if(toyId >= 0)
             {
-                IList<Image> images = new List<Image>();
-                var image = await _repository.GetImageAsync(toyId);
-                images.Add(image);
+                IList<ItemImage> images = new List<ItemImage>();
+                // var image = await _repository.GetImageAsync(toyId);
+                // images.Add(image);
 
-                var filenames = images.Select(x => x.FileName);
+                // var filenames = images.Select(x => x.FileName);
 
-                return await _imageProvider.GetImagesAsync(filenames);
+                // return await _imageProvider.GetImagesAsync(filenames);
             }
             else
             {
-                var images = await _repository.GetAllAsync();
-                var filenames = images.Select(x => x.FileName);
+                // var images = await _repository.GetAllAsync();
+                // var filenames = images.Select(x => x.FileName);
 
-                return await _imageProvider.GetImagesAsync(filenames);
+                // return await _imageProvider.GetImagesAsync(filenames);
 
                 //return _mapper.Map<IEnumerable<ImageThumbDto>>(images);
             }
+
+            return null;
 
         }
 
@@ -65,10 +67,10 @@ namespace Collection.Infrastructure.Services
 
         public async Task<IEnumerable<ImageDto>> GetItemImages(Item item)
         {
-            var images = await _repository.GetImagesAsync(item);
+            // var images = await _repository.GetImagesAsync(item);
 
-            return _mapper.Map<IEnumerable<ImageDto>>(images);
-            
+            // return _mapper.Map<IEnumerable<ImageDto>>(images);
+            return null;
         }
 
         public async Task UpdateAsync()

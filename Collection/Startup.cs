@@ -1,7 +1,7 @@
 ﻿using System;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Collection.Infrastructure.IoC;
+//using Collection.Infrastructure.IoC;
 using Collection.Models;
 using Collection.Repositories;
 using Collection.Services;
@@ -87,7 +87,7 @@ namespace Collection
             var builder = new ContainerBuilder();
 
             builder.Populate(services);
-            builder.RegisterModule(new ContainerModule(Configuration));
+            //builder.RegisterModule(new ContainerModule(Configuration));
 
             ApplicationContainer = builder.Build();
 

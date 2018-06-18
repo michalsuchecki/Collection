@@ -5,7 +5,7 @@
   </PropertyGroup>
 
  <ItemGroup>
-    <ProjectReference Include="../Collection.Infrastructure/Collection.Infrastructure.csproj" />
+    <!-- <ProjectReference Include="../Collection.Infrastructure/Collection.Infrastructure.csproj" /> -->
   </ItemGroup>
 
   <ItemGroup>

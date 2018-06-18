@@ -1,4 +1,4 @@
-﻿namespace Collection.Entity.Entity.Item
+﻿namespace Collection.Entity.Item
 {
     public class ItemCondition : EntityBase
     {

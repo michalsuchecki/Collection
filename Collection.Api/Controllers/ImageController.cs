@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 using AutoMapper;
-using Collection.Entity.Entity.Item;
+using Collection.Entity.Item;
 using Collection.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 
