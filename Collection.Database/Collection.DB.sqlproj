@@ -93,6 +93,7 @@
     <None Include="Scripts\Item\ItemDescription.Table.sql" />
     <None Include="Scripts\Common\Category.Table.sql" />
     <None Include="Scripts\Common\Producer.Table.sql" />
+    <Build Include="Programmability\Procedures\MigrateData.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\PostDeployment.sql" />
