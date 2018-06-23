@@ -22,19 +22,5 @@ namespace Collection.Infrastructure.Services
             _mapper = mapper;
         }
 
-        public Task<IEnumerable<ItemDto>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<ItemDto> GetAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<ItemDto>> GetFilteredAsync(ItemFilter filter)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

@@ -19,38 +19,5 @@ namespace Collection.Infrastructure.Services
             _mapper = mapper;
         }
 
-
-
-        public async Task<IEnumerable<CategoryDto>> GetAllAsync()
-        {
-            var categories = _repository.List(true);
-            return _mapper.Map<IEnumerable<CategoryDto>>(categories);
-        }
-
-        public async Task<Category> GetAsync(string name)
-        {
-            //return await _repository.GetAsync(name);
-            return null;
-        }
-
-        public async Task<IEnumerable<ItemDto>> GetItemsAsync(string name)
-        {
-            // var category = _repository.GetAsync(name);
-            // await Task.CompletedTask;
-            // throw new System.NotImplementedException();
-            return null;
-        }
-
-        public async Task AddAsync(Category category)
-        {
-            await Task.CompletedTask;
-            throw new System.NotImplementedException();
-        }
-
-        public async Task UpdateAsync(Category category)
-        {
-            await Task.CompletedTask;
-            throw new System.NotImplementedException();
-        }
     }
 }

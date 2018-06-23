@@ -7,10 +7,5 @@ namespace Collection.Infrastructure.Services
 {
     public interface ICategoryService
     {
-        Task<IEnumerable<CategoryDto>> GetAllAsync();
-        Task<Category> GetAsync(string name);
-        Task<IEnumerable<ItemDto>> GetItemsAsync(string name);
-        Task AddAsync(Category category);
-        Task UpdateAsync(Category category);
     }
 }

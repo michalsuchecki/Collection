@@ -19,22 +19,22 @@ namespace Collection.Api.Controllers
             _itemService = itemService;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> Get([FromQuery]ItemFilter filter)
-        {
-            var items = await _itemService.GetFilteredAsync(filter);
-            return Json(items);
-        }
+        // [HttpGet]
+        // public async Task<IActionResult> Get([FromQuery]ItemFilter filter)
+        // {
+        //     // var items = await _itemService.GetFilteredAsync(filter);
+        //     // return Json(items);
+        // }
 
-        [HttpGet("{id?}")]
-        public async Task<IActionResult> Get(int? id)
-        {
-            if (id != null)
-            {
-                var item = await _itemService.GetAsync(id.Value);
-                return Json(item);
-            }
-            return NotFound();
-        }
+        // [HttpGet("{id?}")]
+        // public async Task<IActionResult> Get(int? id)
+        // {
+        //     if (id != null)
+        //     {
+        //         // var item = await _itemService.GetAsync(id.Value);
+        //         // return Json(item);
+        //     }
+        //     return NotFound();
+        // }
     }
 }

@@ -9,8 +9,5 @@ namespace Collection.Infrastructure.Services
 {
     public interface IItemService : IServices
     {
-        Task<ItemDto> GetAsync(int id);
-        Task<IEnumerable<ItemDto>> GetAllAsync();
-        Task<IEnumerable<ItemDto>> GetFilteredAsync(ItemFilter filter);
     }
 }

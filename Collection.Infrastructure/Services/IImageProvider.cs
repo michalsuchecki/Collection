@@ -6,6 +6,5 @@ namespace Collection.Infrastructure.Services
 {
     public interface IImageProvider
     {
-         Task<IEnumerable<ImageThumbDto>> GetImagesAsync(IEnumerable<string> files);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Collection.Infrastructure.Services
 {
-    public interface IServices
+    public interface IServices 
     {
     }
 }
