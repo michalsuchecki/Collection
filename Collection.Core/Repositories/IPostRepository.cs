@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Collection.Core.Repositories
 {
-    public interface IPostRepository : IRepository<Post>
+    public interface IPostRepository
     {
     }
 }

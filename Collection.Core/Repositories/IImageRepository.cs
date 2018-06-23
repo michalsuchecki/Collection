@@ -2,7 +2,7 @@
 
 namespace Collection.Core.Repositories
 {
-    public interface IImageRepository : IRepository<ItemImage>
+    public interface IImageRepository
     {
     }
 }
