@@ -1,17 +1,20 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Collection.Entity.Common;
-using Collection.Entity.Blog;
-using Collection.Entity.Item;
-using Collection.Entity.User;
-using System.Linq;
 using System.Threading.Tasks;
+using System.Linq;
+
+using Collection.Repository.Entity.Mapping;
 
 namespace Collection.Repository.Entity.DAL
 {
     public class EntityDBContext : DbContext
     {
         private readonly string _connectionString;
-        public EntityDBContext(DbContextOptions<EntityDBContext> options) : this(options, "Server=(localdb)\\MSSQLLocalDB;Database=Collection;Trusted_Connection=True;MultipleActiveResultSets=true")
+
+        public EntityDBContext()
+        {
+            _connectionString = @"Server=(localdb)\Sandbox;Database=Collection_2_0;Trusted_Connection=True;MultipleActiveResultSets=true";
+        }
+        public EntityDBContext(DbContextOptions<EntityDBContext> options) : this(options, @"Server=(localdb)\Sandbox;Database=Collection_2_0;Trusted_Connection=True;MultipleActiveResultSets=true")
         {
         }
 
@@ -23,21 +26,32 @@ namespace Collection.Repository.Entity.DAL
 
         protected override void  OnModelCreating(ModelBuilder builder)
         {
+            // Common
+            builder.ApplyConfiguration(new CategoryMap());
+            builder.ApplyConfiguration(new ProducerMap());
 
+            // Items
+            builder.ApplyConfiguration(new ItemConditionMap());
+            builder.ApplyConfiguration(new ItemDescriptionMap());
+            builder.ApplyConfiguration(new ItemImageMap());
+            builder.ApplyConfiguration(new ItemRarityMap());
+            builder.ApplyConfiguration(new ItemStateMap());
+            builder.ApplyConfiguration(new ItemMap());
+
+            // User
+            builder.ApplyConfiguration(new UserItemMap());
+            builder.ApplyConfiguration(new UserMap());
+            builder.ApplyConfiguration(new UserRoleMap());
+
+            base.OnModelCreating(builder);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             builder.UseSqlServer(_connectionString);
             builder.EnableSensitiveDataLogging();
+
             base.OnConfiguring(builder);
         }
-
-        public DbSet<Category> Categories { get; set; }
-        public DbSet<Item> Items { get; set; }
-        public DbSet<Producer> Producers { get; set; }
-        public DbSet<ItemImage> Images { get; set; }
-        public DbSet<Post> Posts { get; set; }
-        public DbSet<User> Users { get; set; }
     }
 }

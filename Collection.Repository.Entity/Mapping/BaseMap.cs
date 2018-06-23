@@ -7,7 +7,7 @@ namespace Collection.Repository.Entity.Mapping
     public class BaseMap<TEntity> : IEntityTypeConfiguration<TEntity>
         where TEntity : class, IEntity
     {
-        public void Configure(EntityTypeBuilder<TEntity> builder)
+        public virtual void Configure(EntityTypeBuilder<TEntity> builder)
         {
         }
     }

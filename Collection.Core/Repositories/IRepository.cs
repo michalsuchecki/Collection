@@ -6,7 +6,9 @@ namespace Collection.Core.Repositories
 {
     public interface IRepository<TEntity> where TEntity : class, IEntity
     {
-        Task<TEntity> GetById(bool readOnly = false);
+        Task<TEntity> GetById(int Id, bool readOnly = false);
+        
+        //Task<TEntity> GetById<T>(T Id, bool readOnly = false);
         Task<IQueryable<TEntity>> List(bool readOnly = false);
         Task<TEntity> Insert(TEntity entity, bool forceSave = true);
         Task<TEntity> Update(TEntity entity, bool forceSave = true);
