@@ -1,7 +1,7 @@
 using Autofac;
 using Collection.Core.Repositories;
 using Collection.Infrastructure.Services;
-using Collection.Repository.Entity.Repositories;
+using Collection.Repository.Entity.Repository;
 
 namespace Collection.Infrastructure.IoC.Modules
 {

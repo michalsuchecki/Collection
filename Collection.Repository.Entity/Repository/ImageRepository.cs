@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using Collection.Repository.Entity.Repository;
 
-namespace Collection.Repository.Entity.Repositories
+namespace Collection.Repository.Entity.Repository
 {
     public class ImageRepository : Repository<ItemImage>, IImageRepository
     {

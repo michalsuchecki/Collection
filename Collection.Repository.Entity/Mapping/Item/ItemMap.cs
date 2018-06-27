@@ -9,7 +9,7 @@ namespace Collection.Repository.Entity.Mapping
         public override void Configure(EntityTypeBuilder<Item> builder)
         {
             builder.ToTable("Item");
-            builder.HasKey(x => x.CategoryId);
+            builder.HasKey(x => x.ItemId);
             builder.Property(x => x.Name).HasMaxLength(100);
             builder.Property(x => x.Index).HasMaxLength(100);
 

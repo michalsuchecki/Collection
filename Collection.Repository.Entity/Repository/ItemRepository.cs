@@ -9,7 +9,7 @@ using Collection.Core.Repositories;
 using Collection.Entity.Item;
 using Collection.Repository.Entity.Repository;
 
-namespace ollection.Repository.Entity.Repositories
+namespace Collection.Repository.Entity.Repository
 {
     public class ItemRepository : Repository<Item>, IItemRepository
     {
