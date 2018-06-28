@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Collection.Core.Repositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IRepository<User>
     {
     }
 }

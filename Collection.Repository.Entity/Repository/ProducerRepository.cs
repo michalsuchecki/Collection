@@ -8,10 +8,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Collection.Repository.Entity.Repository
 {
-    public class CategoryRepository : Repository<Category>, ICategoryRepository
+    public class ProducerRepository : Repository<Producer>, IProducerRepository
     {
-        public CategoryRepository(EntityDBContext context) : base(context)
-        {          
+        public ProducerRepository(EntityDBContext context) : base(context)
+        {
         }
     }
 }
