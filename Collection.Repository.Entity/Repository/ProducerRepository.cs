@@ -13,5 +13,11 @@ namespace Collection.Repository.Entity.Repository
         public ProducerRepository(EntityDBContext context) : base(context)
         {
         }
+
+        public override IEnumerable<Producer> Search(string search)
+        {
+            return List(true).Where(x => x.Name.ToLower().Contains(search.ToLower())).ToList();
+        }
+
     }
 }

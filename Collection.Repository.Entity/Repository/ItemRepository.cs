@@ -7,6 +7,7 @@ using Collection.Repository.Entity.DAL;
 using Collection.Core.Repositories;
 using Collection.Entity.Item;
 using Collection.Repository.Entity.Repository;
+using Collection.Entity.Common;
 
 namespace Collection.Repository.Entity.Repository
 {
@@ -14,6 +15,21 @@ namespace Collection.Repository.Entity.Repository
     {
         public ItemRepository(EntityDBContext context) : base(context)
         {
+        }
+
+        public override IEnumerable<Item> Search(string search)
+        {
+            return List(true).Where(x => x.Name.ToLower().Contains(search.ToLower())).ToList();
+        }
+
+        public IEnumerable<Item> GetItemsByCategory(Category category)
+        {
+            return List().Where(x => x.CategoryId == category.CategoryId).ToList();
+        }
+
+        public IEnumerable<Item> GetItemsByProducer(Producer producer)
+        {
+            return List().Where(x => x.ProducerId == producer.ProducerId).ToList();
         }
     }
 }

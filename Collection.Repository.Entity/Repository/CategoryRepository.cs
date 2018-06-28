@@ -13,5 +13,10 @@ namespace Collection.Repository.Entity.Repository
         public CategoryRepository(EntityDBContext context) : base(context)
         {          
         }
+
+        public override IEnumerable<Category> Search(string search)
+        {
+            return List(true).Where(x => x.Name.ToLower().Contains(search.ToLower())).ToList();
+        }
     }
 }

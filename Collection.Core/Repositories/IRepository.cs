@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Collection.Entity;
 
 namespace Collection.Core.Repositories
@@ -10,5 +11,6 @@ namespace Collection.Core.Repositories
         TEntity Insert(TEntity entity, bool forceSave = true);
         TEntity Update(TEntity entity, bool forceSave = true);
         void Delete(TEntity entity, bool forceSave = true);
+        IEnumerable<TEntity> Search(string search);
     }
 }
