@@ -1,49 +1,57 @@
 ﻿@model IEnumerable<Collection.Models.Toy>
 
-
 <table class="table">
     <tbody>
         @{
             foreach (var item in Model)
             {
+                    var isDamaged = !item.IsDamaged ? "disabled" : "";
+                    var isForSale = !(item.ForSale || item.Sold) ? "disabled" : "";
+
+                    var filename = item.Gallery.FirstOrDefault()?.FileName;
+                    var path = String.IsNullOrEmpty(filename) ? "/img/no_img.jpg" : $"/img/toys/thumbs/{filename}.jpg";
+
+                    var index = !String.IsNullOrEmpty(item.Index) ? "#" + item.Index : "";
+
+                    decimal price = 0;
+                    string date = null;
+
+                    if(ViewData["display"] as String == "sold")
+                    {
+                        date = item.SoldDate?.ToString("dd/MM/yyyy");
+                        price = @item.SoldPrice ?? 0;
+                    }
+                    else
+                    {
+                        date = item.PurchaseDate?.ToString("dd/MM/yyyy");
+                        price = @item.Price;
+                    }
+
                 <tr class="item">
                     <td>
                         <article class="row">
                             <section class="col-md-2">
                                 <div class="list_img">
-                                @{
-                                    var filename = item.Gallery.FirstOrDefault()?.FileName;
-                                    var path = String.IsNullOrEmpty(filename) ? "/img/no_img.jpg" : $"/img/toys/thumbs/{filename}.jpg";
-                                }
-                                <img src=@(path) class="responsive" />
+                                 <img src=@(path) class="responsive" />
                                 </div>
                             </section>
                             <section class="col-md-9">
                                 <header class="row">
                                     <div class="col-md-11"><h4 class="name"><strong>@item.Name</strong></h4></div>
                                     <div class="col-md-1">
-                                        @{
-                                            var isDamaged = !item.IsDamaged ? "disabled" : "";
-                                            var isForSale = !(item.ForSale || item.Sold) ? "disabled" : "";
-                                        }                                    
+                                  
                                         <span class="fa icon fa-exclamation-triangle @isDamaged" title="Damaged"></span>
                                         <span class="fa icon fa-dollar-sign @isForSale" title="For Sale"></span>
                                     </div>
                                 </header>
                                 <section class="row">
                                     <section class="col-md-9">
-                                        @{
-                                            var index = !String.IsNullOrEmpty(item.Index) ? "#" + item.Index : "";
-                                        }
                                         <p class="producer"><span>By </span>@item.Producer.Name @index</p>
                                         <p class="category">Category: @item.Category.Name</p>
                                     </section>
                                     <section class="col-md-3">
-                                        @{
-                                            var date = (ViewData["display"] as String == "sold") ? item.SoldDate?.ToString("dd/MM/yyyy") : item.PurchaseDate?.ToString("dd/MM/yyyy");
-                                        }
                                         <p class="text-right">@date</p>
-                                        <p class="text-right">@item.Price PLN</p>
+                                        <p class="text-right">@price PLN</p>
                                     </section>
                                 </section>
                             </section>
