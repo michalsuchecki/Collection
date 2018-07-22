@@ -6,6 +6,8 @@
     border-radius: 2px;
     border: 1px solid #D4D4D4;
     transition: box-shadow .25s;
+    position:relative;
+    overflow: hidden;
 }
 
 .card:hover {
@@ -50,4 +52,38 @@
     padding: 10px;
     font-weight: 600;
     text-transform: uppercase
+}
+
+.card-options{
+    position: absolute;
+    top: 0;
+    right:-50px;
+    width: 50px;
+    height: 250px;
+    display: inline-block;
+
+    transition: all 0.2s ease-out;
+}
+
+.card-options::after{
+    content:'';
+    position: absolute;
+    top:0;
+    right: -50px;
+    width: 50px;
+    height: 250px;
+    background-color: black;
+    opacity: 0.5;
+}
+
+
+.card:hover .card-options, .card-options::after{
+    right:0;
+}
+
+.card-button{
+    width: 100%;
+    color:white;
+    position:relative;
+    z-index:1;
 }

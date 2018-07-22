@@ -6,7 +6,15 @@
 
         <div class="col-sm-4">
             <article class="card">
+                @if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
+                {
+                    <div class="card-options">
+                        <a asp-action="Edit" asp-route-id="@item.ToyID" class="btn edit card-button"><span class="fa fa-edit"></span></a>
+                        <a asp-action="Delete" asp-route-id="@item.ToyID" class="btn delete card-button"><span class="fa fa-trash"></span></a>
+                    </div>
+                }
                 <a class="img-card" href="#">
+
                     @{
                         var name = item.Gallery.FirstOrDefault()?.FileName;
                         var src = !String.IsNullOrEmpty(name) ? $"/img/toys/thumbs/{name}.jpg" : "/img/no_img.jpg";
@@ -24,17 +32,6 @@
                         by @item.Producer.Name
                     </div>
                 </div>
-
-                @if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
-                {
-                    <footer class="admin">
-                        <div class="btn-group">
-                            <a asp-action="Edit" asp-route-id="@item.ToyID" class="btn edit"><span class="fa fa-edit"></span></a>
-                            <a asp-action="Delete" asp-route-id="@item.ToyID" class="btn delete"><span class="fa fa-trash"></span></a>
-                        </div>
-                    </footer>
-                }
-
             </article>
         </div>
     }
