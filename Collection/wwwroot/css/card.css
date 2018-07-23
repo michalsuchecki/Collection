@@ -10,6 +10,14 @@
     overflow: hidden;
 }
 
+.card-forsale{
+    background-color: lightgreen;
+}
+
+.card-damaged{
+    background-color: lightcoral;
+}
+
 .card:hover {
     box-shadow: 0 4px 10px 0 rgba(0,0,0,0.2),0 4px 10px 0 rgba(0,0,0,0.19);
 }
@@ -34,6 +42,7 @@
     height:100px;
     padding: 15px;
     text-align: left;
+    background-color: white;
 }
 
 .card-title {

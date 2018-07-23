@@ -3,9 +3,13 @@
 @{
     foreach (var item in Model)
     {
-
+        var colorStyle = item.ForSale ? "card-forsale" : "";
+        if(colorStyle == "") 
+        {
+            colorStyle = item.IsDamaged ? "card-damaged" : "";
+        }
         <div class="col-sm-4">
-            <article class="card">
+            <article class="card @(@colorStyle)">
                 @if ((await AuthorizationService.AuthorizeAsync(User, "modify")).Succeeded)
                 {
                     <div class="card-options">
