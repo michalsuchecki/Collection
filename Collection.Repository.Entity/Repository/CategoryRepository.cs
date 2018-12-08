@@ -14,9 +14,9 @@ namespace Collection.Repository.Entity.Repository
         {          
         }
 
-        public override IEnumerable<Category> Search(string search)
+        public override IQueryable<Category> Search(string search)
         {
-            return List(true).Where(x => x.Name.ToLower().Contains(search.ToLower())).ToList();
+            return List(true).Where(x => x.Name.ToLower().Contains(search.ToLower()));
         }
     }
 }

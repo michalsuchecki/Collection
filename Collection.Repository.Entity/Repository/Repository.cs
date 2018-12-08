@@ -29,7 +29,7 @@ namespace Collection.Repository.Entity.Repository
                 return _context.Set<TEntity>();
         }
 
-        public virtual IEnumerable<TEntity> Search(string search)
+        public virtual IQueryable<TEntity> Search(string search)
         {
             return null;
         }
