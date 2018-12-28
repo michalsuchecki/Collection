@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>@ViewBag.Title</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="~/lib/bootstrap/dist/css/bootstrap-reboot.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <header class="container-fluid">
+        <nav class="navbar navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header col-md-2">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Collection</a>
+                </div>
+                <div class="col-md-6">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a asp-controller="blog" asp-action="index">Home</a></li>
+                        <li role="presentation" class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                Toys<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-controller="item" asp-action="index" asp-route-display="collection">Collection</a></li>
+                                <li><a asp-controller="item" asp-action="index" asp-route-display="wanted">Wanted</a></li>
+                                <li><a asp-controller="item" asp-action="index" asp-route-display="forsale">For Sale</a></li>
+                                <li><a asp-controller="item" asp-action="index" asp-route-display="sold">Sold</a></li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="home" asp-action="about">About me</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 login">
+                    @if (User.Identity.IsAuthenticated)
+                        {
+                        <a asp-controller="account" asp-action="logout" class="navbar-btn btn btn-danger pull-right">Log out</a>
+                        <p class="navbar-text pull-right">Hi, <a asp-action="index" asp-controller="manage" class="">@User.Identity.Name</a></p>
+                        }
+                        else
+                        {
+                        <a asp-controller="account" asp-action="login" class=" navbar-btn btn btn-danger pull-right">Login</a>
+                        }
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 text-center strech_full bg-collection">
+                <h2 class="text-uppercase"><span>@ViewBag.Section</span></h2>
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        @RenderBody()
+    </main>
+
+    <script src="~/js/jquery.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
