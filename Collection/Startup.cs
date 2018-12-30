@@ -21,7 +21,7 @@ namespace Collection
 {
     public class Startup
     {
-        private string _contentRootPath;
+        private readonly string _contentRootPath;
         public IConfigurationRoot Configuration { get; set; }
         public IContainer ApplicationContainer { get; private set; }
 
