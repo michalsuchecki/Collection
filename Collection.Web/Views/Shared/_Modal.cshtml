@@ -1,0 +1,36 @@
+﻿@model Collection.Web.ViewModels.ModalViewModel
+@using Collection.Web.ViewModels;
+
+@{
+    var modalSize = "";
+
+    if (String.IsNullOrEmpty(modalSize) && Model.Size == ModalSize.ExtraLarge)
+    {
+        modalSize = "modal-xl;";
+    }
+    if (String.IsNullOrEmpty(modalSize) && Model.Size == ModalSize.Large)
+    {
+        modalSize = "modal-lg";
+    }
+    if (String.IsNullOrEmpty(modalSize) && Model.Size == ModalSize.Small)
+    {
+        modalSize = "modal-sm";
+    }
+}
+
+<div class="modal fade" id="collectionModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered @modalSize" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><strong>@Model.Title</strong></h5>
+            </div>
+            <div class="modal-body">
+                @Model.Body
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="Collection.Common.CloseModal(); @Model.OnConfirm">OK</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="Collection.Common.CloseModal(); @Model.OnClose">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

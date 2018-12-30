@@ -17,6 +17,9 @@ namespace Collection.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddDistributedMemoryCache();
+            services.AddSession();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -24,10 +27,15 @@ namespace Collection.Web
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseDatabaseErrorPage();
             }
 
+            
+            app.UseDefaultFiles();
             app.UseStaticFiles();
-            app.UseMvc();
+            app.UseSession();
+
+            app.UseMvc(r => r.MapRoute(name: "default", template: "{controller=home}/{action=index}/{id?}"));
         }
     }
 }
