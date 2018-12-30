@@ -8,38 +8,29 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>@ViewBag.Title</title>
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    @*<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">*@
+    @*<link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">*@
+    <link href="https://fonts.googleapis.com/css?family=Charm" rel="stylesheet">
     <link href="~/css/bootstrap.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
     @RenderSection("Styles", required: false)
 </head>
 <body>
     <header class="container-fluid">
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container">
-                <div class="navbar-header col-md-2">
+                <div class="navbar-header col-md-3">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Collection</a>
+                    <a class="navbar-brand brand-text" href="#">Abigail Toys Collection</a>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="" id="navbarText">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active"><a asp-controller="blog" asp-action="index" class="nav-link">Home</a></li>
-                            <li class="nav-item" role="presentation">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Toys
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <li><a asp-controller="item" asp-action="index" asp-route-display="collection" class="nav-link">Collection</a></li>
-                                    <li><a asp-controller="item" asp-action="index" asp-route-display="wanted" class="nav-link">Wanted</a></li>
-                                    <li><a asp-controller="item" asp-action="index" asp-route-display="forsale" class="nav-link">For Sale</a></li>
-                                    <li><a asp-controller="item" asp-action="index" asp-route-display="sold" class="nav-link">Sold</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item"><a asp-controller="home" asp-action="about" class="nav-link">About me</a></li>
+                            <li class="nav-item active text-uppercase"><a asp-controller="blog" asp-action="index" class="nav-link">Home</a></li>
+                            <li class="nav-item text-uppercase"><a asp-controller="item" asp-action="index" class="nav-link">Collection</a></li>
+                            <li class="nav-item text-uppercase"><a asp-controller="home" asp-action="about" class="nav-link">About me</a></li>
                         </ul>
                     </div>
                 </div>
@@ -55,7 +46,6 @@
                         <a asp-controller="account" asp-action="login" class=" navbar-btn btn btn-danger pull-right">Login</a>
                     }
                 </div>
-
             </div>
         </nav>
     </header>
@@ -76,8 +66,9 @@
 
     </div>
 
+
     <script src="~/js/jquery.min.js"></script>
-    <script src="~/js/bootstrap.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
     <script src="~/js/collection.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
